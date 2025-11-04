@@ -8,76 +8,66 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Deep cosmic background - evolution darkness */
-    --background: 260 40% 8%;
-    --background-gradient-start: 260 45% 10%;
-    --background-gradient-end: 220 40% 12%;
-    --foreground: 200 20% 98%;
+    /* Core Background - Deep Space Black */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    /* Electric cyan primary - represents digital evolution */
-    --primary: 190 100% 55%;
-    --primary-foreground: 260 30% 10%;
-    --primary-glow: 190 100% 65%;
-    
-    /* Deep violet secondary - represents biological heritage */
-    --secondary: 280 60% 50%;
-    --secondary-foreground: 200 15% 98%;
-    --secondary-glow: 280 70% 65%;
+    /* Card Elements - Elevated dark surfaces */
+    --card: 240 6% 10%;
+    --card-foreground: 0 0% 98%;
+    --card-border: 240 4% 16%;
 
-    /* Accent - magenta for highlights */
-    --accent: 320 80% 55%;
-    --accent-foreground: 200 15% 98%;
-    --accent-glow: 320 90% 65%;
+    /* Primary - Electric Cyan (evolution, intelligence) */
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 10% 3.9%;
+    --primary-glow: 180 100% 60%;
+    --primary-dark: 180 100% 35%;
 
-    /* DNA-inspired card surfaces */
-    --card: 260 35% 12%;
-    --card-foreground: 200 15% 95%;
-    --card-border: 260 40% 18%;
+    /* Secondary - Neon Magenta (human potential) */
+    --secondary: 320 100% 60%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-glow: 320 100% 70%;
 
-    /* Muted surfaces */
-    --muted: 260 30% 18%;
-    --muted-foreground: 200 10% 65%;
+    /* Accent - Deep Violet */
+    --accent: 270 70% 60%;
+    --accent-foreground: 0 0% 98%;
 
-    /* Destructive states */
-    --destructive: 0 85% 60%;
+    /* Muted - Subtle dark gray */
+    --muted: 240 5% 20%;
+    --muted-foreground: 240 5% 64.9%;
+
+    /* Borders */
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 180 100% 50%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    /* Borders and inputs */
-    --border: 260 30% 22%;
-    --input: 260 35% 18%;
-    --ring: 190 100% 55%;
+    /* Popover */
+    --popover: 240 6% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    /* UI Elements */
-    --popover: 260 35% 10%;
-    --popover-foreground: 200 15% 95%;
-
-    /* Evolution gradient colors */
-    --evolution-start: 280 60% 50%;
-    --evolution-mid: 260 70% 55%;
-    --evolution-end: 190 100% 55%;
-
-    /* Chromosome colors */
-    --chromosome-x: 190 100% 60%;
-    --chromosome-y: 280 70% 60%;
-
+    /* Radius */
     --radius: 0.75rem;
 
     /* Chart colors */
-    --chart-1: 190 100% 55%;
-    --chart-2: 280 60% 50%;
-    --chart-3: 320 80% 55%;
+    --chart-1: 180 100% 50%;
+    --chart-2: 320 100% 60%;
+    --chart-3: 270 70% 60%;
     --chart-4: 240 60% 55%;
     --chart-5: 200 70% 50%;
 
     /* Sidebar */
-    --sidebar-background: 260 35% 10%;
-    --sidebar-foreground: 200 15% 95%;
-    --sidebar-primary: 190 100% 55%;
-    --sidebar-primary-foreground: 260 30% 10%;
-    --sidebar-accent: 260 30% 18%;
-    --sidebar-accent-foreground: 200 15% 95%;
-    --sidebar-border: 260 30% 18%;
-    --sidebar-ring: 190 100% 55%;
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 240 10% 3.9%;
+    --sidebar-accent: 240 5% 20%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 180 100% 50%;
   }
 }
 
@@ -88,73 +78,71 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background: linear-gradient(135deg, hsl(var(--background-gradient-start)), hsl(var(--background-gradient-end)));
     min-height: 100vh;
   }
 }
 
 @layer utilities {
-  .glow-text {
-    text-shadow: 0 0 30px hsl(var(--primary) / 0.4), 0 0 60px hsl(var(--primary) / 0.2);
+  /* Neon Text Effects */
+  .neon-text {
+    text-shadow: 
+      0 0 10px hsl(var(--primary) / 0.8),
+      0 0 20px hsl(var(--primary) / 0.5),
+      0 0 40px hsl(var(--primary) / 0.3);
   }
 
-  .glow-text-secondary {
-    text-shadow: 0 0 30px hsl(var(--secondary) / 0.5), 0 0 60px hsl(var(--secondary) / 0.3);
+  .neon-text-magenta {
+    text-shadow: 
+      0 0 10px hsl(var(--secondary) / 0.8),
+      0 0 20px hsl(var(--secondary) / 0.5),
+      0 0 40px hsl(var(--secondary) / 0.3);
   }
 
-  .glow-border {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.3), inset 0 0 20px hsl(var(--primary) / 0.1);
+  /* Electric Gradient */
+  .electric-gradient {
+    background: linear-gradient(135deg, 
+      hsl(var(--primary)) 0%, 
+      hsl(var(--accent)) 50%,
+      hsl(var(--secondary)) 100%);
+    background-size: 200% 200%;
   }
 
-  .glow-border-secondary {
-    box-shadow: 0 0 20px hsl(var(--secondary) / 0.3), inset 0 0 20px hsl(var(--secondary) / 0.1);
+  /* Neon Border */
+  .neon-border {
+    box-shadow: 
+      0 0 10px hsl(var(--primary) / 0.5),
+      0 0 20px hsl(var(--primary) / 0.3),
+      inset 0 0 10px hsl(var(--primary) / 0.1);
   }
 
+  /* Card Glow Effects */
   .glow-card {
-    box-shadow: 0 4px 20px hsl(var(--background) / 0.5);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid hsl(var(--border));
   }
 
   .glow-card:hover {
-    box-shadow: 0 8px 40px hsl(var(--primary) / 0.2), 0 0 60px hsl(var(--secondary) / 0.15);
-    transform: translateY(-2px);
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 
+      0 0 20px hsl(var(--primary) / 0.3),
+      0 0 40px hsl(var(--secondary) / 0.2),
+      inset 0 0 20px hsl(var(--primary) / 0.05);
+    transform: translateY(-8px) scale(1.02);
   }
 
-  .evolution-gradient {
-    background: linear-gradient(135deg, 
-      hsl(var(--evolution-start)) 0%, 
-      hsl(var(--evolution-mid)) 50%, 
-      hsl(var(--evolution-end)) 100%);
-  }
-
-  .dna-pattern {
+  /* Energy Grid Background */
+  .energy-grid {
     background-image: 
-      repeating-linear-gradient(45deg, 
-        transparent, 
-        transparent 10px, 
-        hsl(var(--primary) / 0.03) 10px, 
-        hsl(var(--primary) / 0.03) 20px);
+      linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
 
-  .animate-glow {
-    animation: glow-pulse 3s ease-in-out infinite;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes glow-pulse {
-    0%, 100% { 
-      filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.4));
-    }
-    50% { 
-      filter: drop-shadow(0 0 40px hsl(var(--primary) / 0.6));
-    }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+  /* Orb Glow Effect */
+  .orb-glow {
+    filter: 
+      drop-shadow(0 0 20px hsl(var(--primary) / 0.6))
+      drop-shadow(0 0 40px hsl(var(--secondary) / 0.4))
+      drop-shadow(0 0 60px hsl(var(--accent) / 0.3));
   }
 }

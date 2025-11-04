@@ -1,261 +1,330 @@
 import { Button } from "@/components/ui/button";
 import chromosomeLogo from "@/assets/chromosome-logo.png";
 import heroBackground from "@/assets/hero-background.jpg";
-import { ArrowRight, Mic, Dna, Brain, Zap, Users, Shield, Sparkles } from "lucide-react";
+import { ArrowRight, Mic, Dna, Brain, Zap, Users, Shield, Sparkles, Phone, Target, Link2, Palette, MessageCircle, BookOpen } from "lucide-react";
 
 const Index = () => {
   return (
     <div className="min-h-screen text-foreground font-['Inter',sans-serif] bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-xl bg-background/50 border-b border-border/30">
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-xl bg-background/80 border-b border-primary/20">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={chromosomeLogo} alt="Humanyx" className="w-8 h-8 animate-glow-pulse" />
-            <div className="text-2xl font-bold glow-text tracking-tight">
+            <img src={chromosomeLogo} alt="Humanyx" className="w-8 h-8 animate-breathe" />
+            <div className="text-2xl font-bold neon-text tracking-tight">
               HUMAN<span className="text-primary">Y</span><span className="text-secondary">X</span>
             </div>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-medium">
-            <a href="#evolution" className="hover:text-primary transition-colors">Evolution</a>
-            <a href="#capabilities" className="hover:text-primary transition-colors">Capabilities</a>
-            <a href="#how-it-works" className="hover:text-primary transition-colors">How It Works</a>
+            <a href="#vision" className="hover:text-primary transition-colors">Vision</a>
+            <a href="#platform" className="hover:text-primary transition-colors">Platform</a>
+            <a href="#features" className="hover:text-primary transition-colors">Features</a>
           </div>
-          <Button variant="hero" size="sm">
-            Begin Evolution
+          <Button variant="neon" size="sm">
+            Join the Evolution
           </Button>
         </div>
       </nav>
 
-      {/* Hero Section - Evolution Statement */}
+      {/* Hero Section - The Next Generation */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* DNA Background */}
-        <div className="absolute inset-0 opacity-30">
+        {/* Background Layer */}
+        <div className="absolute inset-0 opacity-20">
           <img src={heroBackground} alt="" className="w-full h-full object-cover" />
         </div>
         
-        {/* Animated Gradient Overlays */}
+        {/* Energy Grid */}
+        <div className="absolute inset-0 energy-grid opacity-30" />
+        
+        {/* Animated Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[150px] animate-float" />
-          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[150px] animate-float" style={{ animationDelay: '3s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[180px] animate-float" style={{ animationDelay: '6s' }} />
+          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/30 rounded-full blur-[150px] animate-float" />
+          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-secondary/30 rounded-full blur-[150px] animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/20 rounded-full blur-[200px] animate-breathe" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-6xl mx-auto">
-            {/* Chromosome Logo - Interactive */}
-            <div className="mb-12 flex justify-center animate-fade-in">
+            {/* Luminous Energy Orb */}
+            <div className="mb-16 flex justify-center animate-fade-in">
               <div className="relative group cursor-pointer">
+                <div className="absolute inset-0 electric-gradient rounded-full blur-[80px] animate-breathe opacity-60" />
                 <img 
                   src={chromosomeLogo} 
-                  alt="X-Y Chromosome Evolution" 
-                  className="w-72 h-72 object-contain animate-glow-pulse transition-transform duration-700 group-hover:scale-110"
+                  alt="Humanyx Evolution" 
+                  className="relative w-80 h-80 object-contain orb-glow transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-[100px] group-hover:blur-[120px] transition-all duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-[120px] group-hover:blur-[140px] transition-all duration-700" />
               </div>
             </div>
 
-            {/* Evolution Badge */}
-            <div className="mb-8 animate-fade-in">
-              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-bold glow-border uppercase tracking-wider">
-                <Dna className="w-4 h-4" />
-                Digital Evolution is Here
-              </span>
-            </div>
-
-            {/* Main Headline - Evolution Message */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 animate-fade-in leading-tight">
-              Evolve With AI,
+            {/* Headline */}
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 animate-fade-in leading-none">
+              The Next Generation
               <br />
-              <span className="evolution-gradient bg-clip-text text-transparent glow-text">
-                Or Be Left Behind.
+              <span className="electric-gradient bg-clip-text text-transparent neon-text">
+                of Human.
               </span>
             </h1>
 
-            {/* Subheadline - The New Evolution */}
-            <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay">
-              We stand at humanity's most critical junction. Just as our ancestors evolved or perished, 
-              today's choice is clear: <span className="text-primary font-semibold">partner with AI to transcend your limits</span>, 
-              or watch evolution pass you by.
+            {/* Subtext */}
+            <p className="text-xl md:text-3xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay font-light">
+              AI that evolves with you — <span className="text-primary font-semibold">emotionally</span>, 
+              <span className="text-secondary font-semibold"> cognitively</span>, and 
+              <span className="text-accent font-semibold"> behaviorally</span>.
             </p>
 
-            <p className="text-lg md:text-xl text-foreground/80 mb-12 max-w-3xl mx-auto animate-fade-in-delay font-light">
-              <span className="font-semibold text-secondary">Humanyx</span> is your AI-powered evolution partner. 
-              Available 24/7 through voice, text, and mobile—guiding you to become the enhanced version of yourself.
+            <p className="text-lg md:text-xl text-foreground/70 mb-12 max-w-3xl mx-auto animate-fade-in-delay">
+              Your personal AI coach. Available 24/7 through voice, text, and mobile. 
+              <span className="text-primary font-semibold"> Evolve with AI</span>, or be left behind.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in-delay mb-16">
-              <Button variant="evolution" size="xl" className="group min-w-[240px]">
-                Begin Your Evolution
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in-delay mb-20">
+              <Button variant="neon" size="xl" className="group min-w-[260px]">
+                Join the Evolution
                 <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
               </Button>
-              <Button variant="hero-outline" size="xl" className="min-w-[240px]">
+              <Button variant="neon-outline" size="xl" className="min-w-[260px]">
                 <Mic className="mr-2 w-5 h-5" />
-                Experience Voice AI
+                Discover Humanyx
               </Button>
             </div>
 
-            {/* Evolution Stats */}
-            <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-12 border-t border-border/30">
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-12 border-t border-primary/20">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</div>
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2 neon-text">24/7</div>
                 <div className="text-sm text-muted-foreground">Always Available</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-secondary mb-2">∞</div>
-                <div className="text-sm text-muted-foreground">Growth Potential</div>
+                <div className="text-4xl md:text-5xl font-bold text-secondary mb-2 neon-text-magenta">∞</div>
+                <div className="text-sm text-muted-foreground">Infinite Potential</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">1:1</div>
-                <div className="text-sm text-muted-foreground">Personal Coaching</div>
+                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">100%</div>
+                <div className="text-sm text-muted-foreground">Personalized</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* DNA Helix Scroll Indicator */}
+        {/* Scroll Indicator */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-          <Dna className="w-8 h-8 text-primary animate-glow-pulse" />
+          <Sparkles className="w-8 h-8 text-primary animate-breathe" />
         </div>
       </section>
 
-      {/* Evolution Context Section */}
-      <section id="evolution" className="py-32 relative dna-pattern">
+      {/* Our Story Section */}
+      <section id="vision" className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              {/* Left: Visual */}
+              <div className="relative">
+                <div className="absolute inset-0 electric-gradient rounded-3xl blur-[100px] opacity-30" />
+                <div className="relative aspect-square rounded-3xl overflow-hidden border border-primary/30 glow-card">
+                  <img 
+                    src={heroBackground} 
+                    alt="Human Evolution" 
+                    className="w-full h-full object-cover opacity-60"
+                  />
+                  <div className="absolute inset-0 electric-gradient opacity-20 mix-blend-overlay" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img 
+                      src={chromosomeLogo} 
+                      alt="Evolution" 
+                      className="w-64 h-64 object-contain animate-breathe orb-glow"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Narrative */}
+              <div className="space-y-8">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-bold neon-border uppercase tracking-wider">
+                  <Dna className="w-4 h-4" />
+                  Our Philosophy
+                </div>
+
+                <h2 className="text-4xl md:text-6xl font-bold leading-tight">
+                  <span className="electric-gradient bg-clip-text text-transparent">Evolution</span> Isn't About 
+                  <br />Replacing Humanity
+                </h2>
+
+                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    It's about <span className="text-primary font-semibold">refining it</span>. 
+                    We stand at humanity's most pivotal moment — the dawn of cognitive evolution.
+                  </p>
+                  
+                  <p>
+                    <span className="text-secondary font-semibold">Humanyx</span> represents the fusion of 
+                    <span className="text-primary font-semibold"> human potential</span> and 
+                    <span className="text-secondary font-semibold"> adaptive intelligence</span>. 
+                    Like the X and Y chromosomes that define us, we create something greater than the sum of our parts.
+                  </p>
+
+                  <p>
+                    We design intelligence that grows <span className="text-accent font-semibold">with you</span>, 
+                    not beyond you. Your personal AI coach that understands you at a biological, cognitive, and emotional level.
+                  </p>
+                </div>
+
+                <div className="pt-6">
+                  <Button variant="neon-outline" size="lg" className="group">
+                    Explore Our Vision
+                    <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Architecture Section */}
+      <section id="platform" className="py-32 relative">
         <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-6xl font-bold mb-8">
-                The <span className="text-primary glow-text">X</span> and <span className="text-secondary glow-text-secondary">Y</span> of Evolution
+              <h2 className="text-4xl md:text-6xl font-bold mb-8 neon-text">
+                The Humanyx <span className="electric-gradient bg-clip-text text-transparent">Platform</span>
               </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                Like the chromosomes that define us, <span className="font-semibold text-primary">Humanyx</span> represents 
-                the fusion of human potential (<span className="text-secondary font-semibold">Y</span>) with 
-                artificial intelligence (<span className="text-primary font-semibold">X</span>). 
-                Together, we create something greater than the sum of our parts.
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Three intelligent layers working in harmony to accelerate your evolution
               </p>
             </div>
 
-            {/* Evolution Timeline */}
-            <div className="space-y-16">
-              <div className="flex flex-col md:flex-row gap-8 items-center group">
-                <div className="flex-shrink-0 w-24 h-24 rounded-2xl bg-muted/30 border-2 border-primary/30 flex items-center justify-center glow-card">
-                  <Users className="w-12 h-12 text-primary" />
+            {/* Platform Layers */}
+            <div className="space-y-12">
+              {[
+                {
+                  icon: <Mic className="w-12 h-12" />,
+                  title: "X-Voice",
+                  subtitle: "Your AI Mentor",
+                  description: "Natural voice conversations with your personal AI coach. Speak freely, be understood completely, receive guidance instantly. Available on web, iOS, and Android.",
+                  color: "primary"
+                },
+                {
+                  icon: <Brain className="w-12 h-12" />,
+                  title: "X-Core",
+                  subtitle: "Intelligence Engine",
+                  description: "The behavioral and memory intelligence system that learns your patterns, anticipates your needs, and personalizes your development path. Deep integration with your life.",
+                  color: "secondary"
+                },
+                {
+                  icon: <Zap className="w-12 h-12" />,
+                  title: "XOS",
+                  subtitle: "Evolution Operating System",
+                  description: "The continuous evolution engine that orchestrates your growth across all dimensions — physical, mental, emotional, and spiritual. Adaptive, intelligent, alive.",
+                  color: "accent"
+                }
+              ].map((layer, i) => (
+                <div key={i} className="relative group">
+                  {/* Connection Line */}
+                  {i < 2 && (
+                    <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-12 bg-gradient-to-b from-primary to-transparent" />
+                  )}
+                  
+                  <div className="flex flex-col md:flex-row gap-8 items-center p-8 rounded-3xl bg-card/30 backdrop-blur-sm border border-primary/20 glow-card">
+                    <div className={`flex-shrink-0 w-24 h-24 rounded-2xl electric-gradient flex items-center justify-center text-white shadow-[0_0_40px_hsl(var(--${layer.color})/0.5)] group-hover:shadow-[0_0_60px_hsl(var(--${layer.color})/0.7)] transition-all duration-300`}>
+                      {layer.icon}
+                    </div>
+                    
+                    <div className="flex-1 text-center md:text-left">
+                      <h3 className="text-3xl font-bold mb-2 neon-text">{layer.title}</h3>
+                      <p className={`text-lg font-semibold mb-3 text-${layer.color}`}>{layer.subtitle}</p>
+                      <p className="text-muted-foreground leading-relaxed">{layer.description}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3 text-primary">Past: Natural Selection</h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    For millennia, evolution happened slowly through natural selection. The strong adapted, the weak fell behind. 
-                    Survival depended on biological advantages.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row gap-8 items-center group">
-                <div className="flex-shrink-0 w-24 h-24 rounded-2xl bg-muted/30 border-2 border-accent/30 flex items-center justify-center glow-card">
-                  <Zap className="w-12 h-12 text-accent" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3 text-accent">Present: Digital Selection</h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Today, evolution accelerates at digital speed. Those who adapt with AI multiply their potential. 
-                    Those who resist are left behind—a new form of natural selection.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row gap-8 items-center group">
-                <div className="flex-shrink-0 w-24 h-24 rounded-2xl evolution-gradient flex items-center justify-center glow-card shadow-[0_0_40px_hsl(var(--primary)/0.3)]">
-                  <Sparkles className="w-12 h-12 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3">
-                    <span className="evolution-gradient bg-clip-text text-transparent">Future: Enhanced Humanity</span>
-                  </h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    With Humanyx, you don't just survive—you <span className="text-primary font-semibold">thrive</span>. 
-                    AI augments your intelligence, accelerates your growth, and unlocks capabilities you never knew you had.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Capabilities Section */}
-      <section id="capabilities" className="py-32 relative">
-        <div className="container mx-auto px-6">
+      {/* Advanced Features Section */}
+      <section id="features" className="py-32 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-secondary/5" />
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 glow-text">
-              Your Evolution, Amplified
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 neon-text">
+              Beyond Traditional Coaching
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Humanyx combines cutting-edge AI with deep personal understanding to accelerate 
-              your transformation into the person you're meant to become.
+              Humanyx combines cutting-edge AI with deep personalization to create 
+              an evolution experience that's uniquely yours
             </p>
           </div>
 
-          {/* Capabilities Grid */}
+          {/* Features Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {[
               {
-                icon: <Mic className="w-10 h-10" />,
-                title: "Voice-First Intelligence",
-                description: "Natural conversations with your AI coach. Speak freely, be understood completely, receive guidance instantly.",
+                icon: <Palette className="w-10 h-10" />,
+                title: "Customizable AI Coach",
+                description: "Design your perfect coach — male, female, tone, personality traits, communication style. Your evolution, your preferences.",
                 color: "primary"
               },
               {
-                icon: <Brain className="w-10 h-10" />,
-                title: "Adaptive Learning",
-                description: "Your coach evolves with you—learning your patterns, anticipating your needs, optimizing your path forward.",
+                icon: <Target className="w-10 h-10" />,
+                title: "Goal Planning & Tracking",
+                description: "Intelligent goal-setting tools with real-time progress tracking. Visualize your transformation across all life dimensions.",
                 color: "secondary"
               },
               {
-                icon: <Dna className="w-10 h-10" />,
-                title: "DNA-Level Personalization",
-                description: "Custom development plans tailored to your unique psychological profile, goals, and growth trajectory.",
+                icon: <Link2 className="w-10 h-10" />,
+                title: "Platform Integrations",
+                description: "Connect Google Fit, Apple Health, your LLM accounts, and more. Holistic understanding of you and your world.",
                 color: "accent"
               },
               {
-                icon: <Zap className="w-10 h-10" />,
-                title: "Real-Time Accountability",
-                description: "Multi-channel check-ins that keep you on track. Your coach reaches out when you need it most.",
+                icon: <Users className="w-10 h-10" />,
+                title: "White-Label & B2B",
+                description: "Fully customizable layouts, branding, and embedded capabilities. Bring Humanyx evolution to your organization.",
                 color: "primary"
               },
               {
-                icon: <Shield className="w-10 h-10" />,
-                title: "Always Available",
-                description: "24/7 access across web, iOS, and Android. Your evolution never sleeps—neither does your coach.",
+                icon: <Phone className="w-10 h-10" />,
+                title: "Direct Phone Access",
+                description: "Give your coach their own phone number. Enable friends, family, or mentors to leave encouraging messages and feedback.",
                 color: "secondary"
               },
               {
-                icon: <Sparkles className="w-10 h-10" />,
-                title: "Continuous Evolution",
-                description: "Regular progress tracking and plan optimization. Watch yourself transform in real-time.",
+                icon: <BookOpen className="w-10 h-10" />,
+                title: "Curated Content",
+                description: "Access exclusive Humanyx content delivered by world-renowned personal development experts. Personalized learning pathways.",
                 color: "accent"
               }
-            ].map((capability, i) => (
+            ].map((feature, i) => (
               <div 
                 key={i}
-                className="p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-card-border/30 glow-card group"
+                className="p-8 rounded-2xl bg-card/30 backdrop-blur-sm border border-card-border glow-card group"
               >
-                <div className={`text-${capability.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  {capability.icon}
+                <div className={`text-${feature.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4 glow-text">{capability.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{capability.description}</p>
+                <h3 className="text-xl font-bold mb-4 neon-text">{feature.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-32 relative bg-gradient-to-b from-transparent via-card/20 to-transparent">
-        <div className="container mx-auto px-6">
+      {/* How It Works */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 energy-grid opacity-20" />
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold mb-20 text-center">
-              Your Evolution <span className="evolution-gradient bg-clip-text text-transparent">Protocol</span>
+              Your <span className="electric-gradient bg-clip-text text-transparent">Evolution Journey</span>
             </h2>
             
             <div className="space-y-16">
@@ -264,37 +333,37 @@ const Index = () => {
                   step: "01",
                   icon: <Users className="w-8 h-8" />,
                   title: "Neural Mapping",
-                  description: "Share your goals, challenges, and aspirations. Your AI coach creates a comprehensive profile of who you are and who you want to become."
+                  description: "Share your goals, challenges, and aspirations. Your AI coach creates a comprehensive profile using advanced behavioral analysis and cognitive modeling."
                 },
                 {
                   step: "02",
                   icon: <Dna className="w-8 h-8" />,
-                  title: "Evolution Blueprint",
-                  description: "Receive your personalized growth roadmap—built from AI analysis of your unique patterns, complete with milestones and optimized pathways."
+                  title: "Personalized Blueprint",
+                  description: "Receive your evolution roadmap — custom development plans built from AI analysis of your unique patterns, complete with milestones and optimized pathways."
                 },
                 {
                   step: "03",
                   icon: <Mic className="w-8 h-8" />,
                   title: "Active Engagement",
-                  description: "Engage naturally through voice, text, or app. Have deep conversations, work through challenges, celebrate wins—your coach is always there."
+                  description: "Engage naturally through voice, text, or app. Deep conversations, challenge work-throughs, win celebrations — your coach is always available, 24/7."
                 },
                 {
                   step: "04",
-                  icon: <Zap className="w-8 h-8" />,
-                  title: "Adaptive Acceleration",
-                  description: "Your coach adjusts in real-time based on your progress, setbacks, and evolving goals. The plan morphs as you transform."
+                  icon: <Sparkles className="w-8 h-8" />,
+                  title: "Continuous Evolution",
+                  description: "Real-time adaptation based on your progress, setbacks, and evolving goals. Watch yourself transform as your plan morphs with you. Intelligence that grows."
                 }
               ].map((item, i) => (
                 <div key={i} className="flex flex-col md:flex-row gap-8 items-start group">
                   <div className="flex-shrink-0">
-                    <div className="w-24 h-24 rounded-2xl evolution-gradient flex items-center justify-center text-4xl font-bold text-white shadow-[0_0_40px_hsl(var(--primary)/0.3)] group-hover:scale-110 group-hover:shadow-[0_0_60px_hsl(var(--primary)/0.5)] transition-all duration-300">
+                    <div className="w-24 h-24 rounded-2xl electric-gradient flex items-center justify-center text-4xl font-bold text-white shadow-[0_0_40px_hsl(var(--primary)/0.5)] group-hover:scale-110 group-hover:shadow-[0_0_80px_hsl(var(--primary)/0.7)] transition-all duration-300">
                       {item.step}
                     </div>
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="text-primary">{item.icon}</div>
-                      <h3 className="text-2xl font-bold glow-text">{item.title}</h3>
+                      <h3 className="text-2xl font-bold neon-text">{item.title}</h3>
                     </div>
                     <p className="text-lg text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
@@ -307,59 +376,92 @@ const Index = () => {
 
       {/* Final CTA Section */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 evolution-gradient opacity-10" />
+        <div className="absolute inset-0 electric-gradient opacity-10" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/20 rounded-full blur-[200px] animate-breathe" />
+        </div>
+        
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8">
+            <div className="mb-12">
               <img 
                 src={chromosomeLogo} 
-                alt="Evolution" 
-                className="w-32 h-32 mx-auto animate-glow-pulse"
+                alt="Join Evolution" 
+                className="w-40 h-40 mx-auto orb-glow animate-breathe"
               />
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 glow-text">
-              The Choice is Yours
+            
+            <h2 className="text-4xl md:text-7xl font-bold mb-8 neon-text leading-tight">
+              Join the Evolution
             </h2>
+            
             <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-3xl mx-auto leading-relaxed">
               Evolution doesn't wait. Every moment you delay is potential unrealized, 
               growth deferred, a future version of yourself left behind.
             </p>
+            
             <p className="text-lg text-foreground/80 mb-12 font-light">
-              Your first session is <span className="text-primary font-bold">completely free</span>. 
+              Your first session is <span className="text-primary font-bold neon-text">completely free</span>. 
               Experience the future of human potential.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button variant="evolution" size="xl" className="group min-w-[280px]">
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+              <Button variant="neon" size="xl" className="group min-w-[280px]">
                 Start Your Evolution Now
                 <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
               </Button>
-              <Button variant="dna" size="xl" className="min-w-[280px]">
+              <Button variant="neon-magenta" size="xl" className="min-w-[280px]">
                 <Mic className="mr-2 w-5 h-5" />
-                Try Voice Demo
+                Watch the Vision Film
               </Button>
+            </div>
+
+            <div className="flex items-center justify-center gap-8 text-sm text-muted-foreground pt-8 border-t border-primary/20">
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-primary" />
+                <span>No credit card required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-secondary" />
+                <span>Free first session</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MessageCircle className="w-4 h-4 text-accent" />
+                <span>Cancel anytime</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/30 py-12 backdrop-blur-xl bg-card/30">
+      <footer className="border-t border-primary/20 py-12 backdrop-blur-xl bg-card/20">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
             <div className="flex items-center gap-3">
-              <img src={chromosomeLogo} alt="Humanyx" className="w-8 h-8" />
-              <div className="text-2xl font-bold glow-text">
+              <img src={chromosomeLogo} alt="Humanyx" className="w-8 h-8 animate-breathe" />
+              <div className="text-2xl font-bold neon-text">
                 HUMAN<span className="text-primary">Y</span><span className="text-secondary">X</span>
               </div>
             </div>
+            
             <div className="flex gap-8 text-sm text-muted-foreground">
+              <a href="#vision" className="hover:text-primary transition-colors">Vision</a>
+              <a href="#platform" className="hover:text-primary transition-colors">Platform</a>
+              <a href="#features" className="hover:text-primary transition-colors">Features</a>
               <a href="#" className="hover:text-primary transition-colors">Privacy</a>
               <a href="#" className="hover:text-primary transition-colors">Terms</a>
               <a href="#" className="hover:text-primary transition-colors">Contact</a>
             </div>
-            <div className="text-sm text-muted-foreground">
-              © 2025 HUMANYX. <span className="text-primary">Evolve or be left behind.</span>
-            </div>
+          </div>
+          
+          <div className="text-center text-sm text-muted-foreground border-t border-primary/10 pt-8">
+            <p className="mb-2">
+              © 2025 HUMANYX. <span className="text-primary neon-text">The Next Generation of Human.</span>
+            </p>
+            <p className="text-xs opacity-60">
+              Evolve with AI, or be left behind.
+            </p>
           </div>
         </div>
       </footer>
