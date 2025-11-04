@@ -84,8 +84,14 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" }
         },
         "glow-pulse": {
-          "0%, 100%": { filter: "drop-shadow(0 0 20px hsl(var(--primary) / 0.4))" },
-          "50%": { filter: "drop-shadow(0 0 40px hsl(var(--primary) / 0.6))" }
+          "0%, 100%": { 
+            filter: "drop-shadow(0 0 30px hsl(var(--primary) / 0.5)) drop-shadow(0 0 60px hsl(var(--secondary) / 0.3))",
+            transform: "scale(1)"
+          },
+          "50%": { 
+            filter: "drop-shadow(0 0 50px hsl(var(--primary) / 0.7)) drop-shadow(0 0 80px hsl(var(--secondary) / 0.5))",
+            transform: "scale(1.02)"
+          }
         },
         "float": {
           "0%, 100%": { transform: "translateY(0px)" },
