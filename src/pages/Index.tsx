@@ -32,11 +32,11 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Faint Background Image */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none">
+        <div className="absolute inset-0 opacity-40 pointer-events-none">
           <img 
             src={heroBackground}
             alt=""
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover"
           />
         </div>
 
