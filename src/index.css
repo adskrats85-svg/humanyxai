@@ -17,11 +17,11 @@ All colors MUST be HSL.
     --card-foreground: 0 0% 98%;
     --card-border: 240 4% 16%;
 
-    /* Primary - Electric Cyan (evolution, intelligence) */
-    --primary: 180 100% 50%;
+    /* Primary - Electric Neon Blue (evolution, intelligence) */
+    --primary: 220 100% 55%;
     --primary-foreground: 240 10% 3.9%;
-    --primary-glow: 180 100% 60%;
-    --primary-dark: 180 100% 35%;
+    --primary-glow: 220 100% 65%;
+    --primary-dark: 220 100% 40%;
 
     /* Secondary - Neon Magenta (human potential) */
     --secondary: 320 100% 60%;
@@ -39,7 +39,7 @@ All colors MUST be HSL.
     /* Borders */
     --border: 240 4% 16%;
     --input: 240 4% 16%;
-    --ring: 180 100% 50%;
+    --ring: 220 100% 55%;
 
     /* Destructive */
     --destructive: 0 84% 60%;
@@ -53,7 +53,7 @@ All colors MUST be HSL.
     --radius: 0.75rem;
 
     /* Chart colors */
-    --chart-1: 180 100% 50%;
+    --chart-1: 220 100% 55%;
     --chart-2: 320 100% 60%;
     --chart-3: 270 70% 60%;
     --chart-4: 240 60% 55%;
@@ -62,12 +62,12 @@ All colors MUST be HSL.
     /* Sidebar */
     --sidebar-background: 240 10% 3.9%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary: 220 100% 55%;
     --sidebar-primary-foreground: 240 10% 3.9%;
     --sidebar-accent: 240 5% 20%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 240 4% 16%;
-    --sidebar-ring: 180 100% 50%;
+    --sidebar-ring: 220 100% 55%;
   }
 }
 
