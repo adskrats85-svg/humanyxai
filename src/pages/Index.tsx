@@ -186,8 +186,17 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-32 relative">
-        <div className="container mx-auto px-6">
+      <section id="features" className="py-32 relative overflow-hidden">
+        {/* Faint Background Image */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+          <img 
+            src={heroBackground}
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
@@ -249,7 +258,15 @@ const Index = () => {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-32 relative">
+      <section id="how-it-works" className="py-32 relative overflow-hidden">
+        {/* Faint Background Image */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+          <img 
+            src={heroBackground}
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/30 to-transparent pointer-events-none" />
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-5xl mx-auto">
@@ -304,6 +321,14 @@ const Index = () => {
 
       {/* CTA Section */}
       <section className="py-32 relative overflow-hidden">
+        {/* Faint Background Image */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+          <img 
+            src={heroBackground}
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-[150px]" />
         </div>
