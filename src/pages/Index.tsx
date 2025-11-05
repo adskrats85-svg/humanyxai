@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import heroBackground from "@/assets/hero-background.jpg";
+import orbyCore from "@/assets/orby-core.png";
+import humanProfiles from "@/assets/human-profiles.png";
 import { ArrowRight, Mic, Dna, Brain, Zap, Users, Shield, Sparkles, Phone, Target, Link2, Palette, MessageCircle, BookOpen } from "lucide-react";
 
 const Index = () => {
@@ -67,6 +69,37 @@ const Index = () => {
                 <Mic className="mr-2 w-5 h-5" />
                 Discover Humanyx
               </Button>
+            </div>
+
+            {/* Orby - The Central Intelligence */}
+            <div className="relative max-w-4xl mx-auto mb-16">
+              <div className="relative w-full h-[400px] flex items-center justify-center">
+                {/* Rotating Orby Background */}
+                <div className="absolute inset-0 flex items-center justify-center animate-spin-slow">
+                  <img 
+                    src={orbyCore} 
+                    alt="Orby - Your AI Life Coach" 
+                    className="w-80 h-80 object-contain opacity-90"
+                  />
+                </div>
+                
+                {/* Human Profiles Centered */}
+                <div className="relative z-10">
+                  <img 
+                    src={humanProfiles} 
+                    alt="Humanity Enhanced" 
+                    className="w-96 h-auto object-contain"
+                  />
+                </div>
+              </div>
+              
+              <div className="text-center mt-8">
+                <h3 className="text-2xl md:text-3xl font-bold mb-3">Meet Orby</h3>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Your central AI intelligence. A living, breathing life coach providing 
+                  context-rich information personalized to you, 24/7.
+                </p>
+              </div>
             </div>
 
             {/* Stats */}
