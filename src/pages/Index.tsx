@@ -2,10 +2,8 @@ import { Button } from "@/components/ui/button";
 import orbyCore from "@/assets/orby-dna.png";
 import heroBackground from "@/assets/hero-background.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen text-foreground">
+  return <div className="min-h-screen text-foreground">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass-effect border-b border-primary/20">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -33,13 +31,7 @@ const Index = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Faint Background Image */}
         <div className="absolute inset-0 opacity-40 pointer-events-none">
-          <img 
-            src={heroBackground}
-            alt=""
-            className="w-full h-full object-cover"
-            fetchPriority="high"
-            decoding="async"
-          />
+          <img src={heroBackground} alt="" className="w-full h-full object-cover" fetchPriority="high" decoding="async" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -53,15 +45,14 @@ const Index = () => {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 opacity-0 animate-hero-fade-in-delay-1 leading-tight">
-              Evolve with
-              <br />
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 opacity-0 animate-hero-fade-in-delay-1 leading-tight">Humanity, Redefined 
+
+            <br />
               <span className="glow-text">Intelligence</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed opacity-0 animate-hero-fade-in-delay-2">
-              Transform your potential with <span className="text-primary font-semibold">Orby</span>, your AI life coach. 
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed opacity-0 animate-hero-fade-in-delay-2">Transform your potential with Orby, your AI life coach. Available 24/7 across web nd mobile—personalized guidance that evolves with you.<span className="text-primary font-semibold">Orby</span>, your AI life coach. 
               Available 24/7 across web and mobile—personalized guidance that evolves with you.
             </p>
 
@@ -100,13 +91,7 @@ const Index = () => {
       <section id="orby" className="py-32 relative overflow-hidden">
         {/* Faint Background Image */}
         <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby pointer-events-none">
-          <img 
-            src={heroBackground}
-            alt=""
-            className="w-full h-full object-contain"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src={heroBackground} alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -128,13 +113,7 @@ const Index = () => {
                 <div className="relative">
                   {/* Rotating Background Orby */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <img 
-                      src={orbyCore}
-                      alt="Orby AI Core"
-                      className="w-[600px] h-[600px] object-contain animate-spin-slow opacity-30"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    <img src={orbyCore} alt="Orby AI Core" className="w-[600px] h-[600px] object-contain animate-spin-slow opacity-30" loading="lazy" decoding="async" />
                   </div>
                 </div>
               </div>
@@ -142,34 +121,25 @@ const Index = () => {
 
             {/* Orby Features */}
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {[
-                {
-                  icon: <Brain className="w-8 h-8" />,
-                  title: "Context-Aware",
-                  description: "Orby remembers your journey, preferences, and goals to provide deeply personalized guidance."
-                },
-                {
-                  icon: <Sparkles className="w-8 h-8" />,
-                  title: "Always Learning",
-                  description: "Continuously evolving with AI advancements to bring you cutting-edge coaching techniques."
-                },
-                {
-                  icon: <MessageCircle className="w-8 h-8" />,
-                  title: "Natural Conversation",
-                  description: "Engage through voice or text—Orby adapts to your preferred communication style."
-                }
-              ].map((feature, i) => (
-                <div 
-                  key={i}
-                  className="p-8 rounded-2xl glow-card hover:scale-105 transition-all duration-300 group"
-                >
+              {[{
+              icon: <Brain className="w-8 h-8" />,
+              title: "Context-Aware",
+              description: "Orby remembers your journey, preferences, and goals to provide deeply personalized guidance."
+            }, {
+              icon: <Sparkles className="w-8 h-8" />,
+              title: "Always Learning",
+              description: "Continuously evolving with AI advancements to bring you cutting-edge coaching techniques."
+            }, {
+              icon: <MessageCircle className="w-8 h-8" />,
+              title: "Natural Conversation",
+              description: "Engage through voice or text—Orby adapts to your preferred communication style."
+            }].map((feature, i) => <div key={i} className="p-8 rounded-2xl glow-card hover:scale-105 transition-all duration-300 group">
                   <div className="text-primary mb-4 group-hover:scale-110 transition-transform">
                     {feature.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -179,13 +149,7 @@ const Index = () => {
       <section id="features" className="py-32 relative overflow-hidden">
         {/* Faint Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <img 
-            src={heroBackground}
-            alt=""
-            className="w-full h-full object-contain"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src={heroBackground} alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -201,49 +165,37 @@ const Index = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: <Mic className="w-8 h-8" />,
-                  title: "Voice-First Coaching",
-                  description: "Natural conversations with your AI coach. Just speak—Orby listens, understands, and guides you forward."
-                },
-                {
-                  icon: <Target className="w-8 h-8" />,
-                  title: "Personalized Plans",
-                  description: "AI-generated development roadmaps tailored to your unique goals, strengths, and challenges."
-                },
-                {
-                  icon: <TrendingUp className="w-8 h-8" />,
-                  title: "Smart Accountability",
-                  description: "Multi-channel check-ins and follow-ups keep you motivated and on track toward your goals."
-                },
-                {
-                  icon: <Smartphone className="w-8 h-8" />,
-                  title: "Cross-Platform Sync",
-                  description: "Seamless experience across web, iOS, and Android. Your progress follows you everywhere."
-                },
-                {
-                  icon: <Globe className="w-8 h-8" />,
-                  title: "Available 24/7",
-                  description: "Your coach is always there when you need guidance, support, or just someone to talk to."
-                },
-                {
-                  icon: <Brain className="w-8 h-8" />,
-                  title: "Evolving AI",
-                  description: "Stay ahead with a platform that grows with AI advancements—you evolve, we evolve."
-                }
-              ].map((feature, i) => (
-                <div 
-                  key={i}
-                  className="p-8 rounded-2xl glow-card hover:scale-105 transition-all duration-300 group"
-                >
+              {[{
+              icon: <Mic className="w-8 h-8" />,
+              title: "Voice-First Coaching",
+              description: "Natural conversations with your AI coach. Just speak—Orby listens, understands, and guides you forward."
+            }, {
+              icon: <Target className="w-8 h-8" />,
+              title: "Personalized Plans",
+              description: "AI-generated development roadmaps tailored to your unique goals, strengths, and challenges."
+            }, {
+              icon: <TrendingUp className="w-8 h-8" />,
+              title: "Smart Accountability",
+              description: "Multi-channel check-ins and follow-ups keep you motivated and on track toward your goals."
+            }, {
+              icon: <Smartphone className="w-8 h-8" />,
+              title: "Cross-Platform Sync",
+              description: "Seamless experience across web, iOS, and Android. Your progress follows you everywhere."
+            }, {
+              icon: <Globe className="w-8 h-8" />,
+              title: "Available 24/7",
+              description: "Your coach is always there when you need guidance, support, or just someone to talk to."
+            }, {
+              icon: <Brain className="w-8 h-8" />,
+              title: "Evolving AI",
+              description: "Stay ahead with a platform that grows with AI advancements—you evolve, we evolve."
+            }].map((feature, i) => <div key={i} className="p-8 rounded-2xl glow-card hover:scale-105 transition-all duration-300 group">
                   <div className="text-primary mb-4 group-hover:scale-110 transition-transform">
                     {feature.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -253,13 +205,7 @@ const Index = () => {
       <section id="how-it-works" className="py-32 relative overflow-hidden">
         {/* Faint Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <img 
-            src={heroBackground}
-            alt=""
-            className="w-full h-full object-contain"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src={heroBackground} alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/30 to-transparent pointer-events-none" />
         <div className="container mx-auto px-6 relative z-10">
@@ -274,29 +220,23 @@ const Index = () => {
             </div>
             
             <div className="space-y-16">
-              {[
-                {
-                  step: "01",
-                  title: "Share Your Vision",
-                  description: "Tell Orby about your goals, challenges, and aspirations through natural conversation. Your AI coach learns what drives you."
-                },
-                {
-                  step: "02",
-                  title: "Receive Your Plan",
-                  description: "Get a personalized development roadmap designed specifically for your journey—with milestones, exercises, and timelines."
-                },
-                {
-                  step: "03",
-                  title: "Engage Daily",
-                  description: "Connect with Orby via voice, text, or app. Ask questions, share wins, work through challenges—your coach is always available."
-                },
-                {
-                  step: "04",
-                  title: "Evolve Together",
-                  description: "Regular check-ins keep you accountable. As you grow, Orby adapts—your plan evolves with your changing needs and AI capabilities."
-                }
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col md:flex-row gap-8 items-start group">
+              {[{
+              step: "01",
+              title: "Share Your Vision",
+              description: "Tell Orby about your goals, challenges, and aspirations through natural conversation. Your AI coach learns what drives you."
+            }, {
+              step: "02",
+              title: "Receive Your Plan",
+              description: "Get a personalized development roadmap designed specifically for your journey—with milestones, exercises, and timelines."
+            }, {
+              step: "03",
+              title: "Engage Daily",
+              description: "Connect with Orby via voice, text, or app. Ask questions, share wins, work through challenges—your coach is always available."
+            }, {
+              step: "04",
+              title: "Evolve Together",
+              description: "Regular check-ins keep you accountable. As you grow, Orby adapts—your plan evolves with your changing needs and AI capabilities."
+            }].map((item, i) => <div key={i} className="flex flex-col md:flex-row gap-8 items-start group">
                   <div className="flex-shrink-0">
                     <div className="w-24 h-24 rounded-2xl glass-effect flex items-center justify-center text-4xl font-bold glow-text group-hover:scale-110 transition-all duration-300 border border-primary/30">
                       {item.step}
@@ -306,8 +246,7 @@ const Index = () => {
                     <h3 className="text-3xl font-bold mb-4">{item.title}</h3>
                     <p className="text-lg text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -317,13 +256,7 @@ const Index = () => {
       <section className="py-32 relative overflow-hidden">
         {/* Faint Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <img 
-            src={heroBackground}
-            alt=""
-            className="w-full h-full object-contain"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src={heroBackground} alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
         </div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-[150px]" />
@@ -375,8 +308,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
