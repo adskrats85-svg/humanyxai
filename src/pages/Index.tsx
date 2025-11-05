@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import orbyCore from "@/assets/orby-ai-core.png";
-import humanProfiles from "@/assets/human-duo-profiles.png";
+import orbyCore from "@/assets/orby-dna.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 
 const Index = () => {
@@ -108,24 +107,26 @@ const Index = () => {
 
             {/* Orby Visual */}
             <div className="relative max-w-4xl mx-auto mb-20">
-              {/* Rotating Orby Background */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <img 
-                  src={orbyCore}
-                  alt="Orby AI Core"
-                  className="w-[500px] h-[500px] object-contain animate-spin-slow opacity-40"
-                />
-              </div>
-              
-              {/* Human Profiles with Orby Center */}
-              <div className="relative flex items-center justify-center py-20">
-                {/* Centered Glowing Orby */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                  <img 
-                    src={orbyCore}
-                    alt="Orby"
-                    className="w-40 h-40 object-contain orb-glow animate-glow"
-                  />
+              {/* Centered Glowing Orby */}
+              <div className="relative flex items-center justify-center py-32">
+                <div className="relative">
+                  {/* Rotating Background Orby */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img 
+                      src={orbyCore}
+                      alt="Orby AI Core"
+                      className="w-[600px] h-[600px] object-contain animate-spin-slow opacity-30"
+                    />
+                  </div>
+                  
+                  {/* Main Glowing Orby */}
+                  <div className="relative z-10">
+                    <img 
+                      src={orbyCore}
+                      alt="Orby"
+                      className="w-[400px] h-[400px] object-contain orb-glow animate-glow"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
