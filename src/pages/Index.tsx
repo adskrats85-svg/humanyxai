@@ -97,7 +97,7 @@ const Index = () => {
       {/* Meet Orby Section */}
       <section id="orby" className="py-32 relative overflow-hidden">
         {/* Faint Background Image */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby pointer-events-none">
           <img 
             src={heroBackground}
             alt=""
