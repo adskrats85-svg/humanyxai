@@ -119,12 +119,6 @@ const Index = () => {
               
               {/* Human Profiles with Orby Center */}
               <div className="relative flex items-center justify-center py-20">
-                <img 
-                  src={humanProfiles}
-                  alt="Human Connection"
-                  className="w-full max-w-3xl object-contain relative z-10"
-                />
-                
                 {/* Centered Glowing Orby */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
                   <img 
