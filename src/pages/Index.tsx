@@ -37,6 +37,8 @@ const Index = () => {
             src={heroBackground}
             alt=""
             className="w-full h-full object-cover"
+            fetchPriority="high"
+            decoding="async"
           />
         </div>
 
@@ -102,6 +104,8 @@ const Index = () => {
             src={heroBackground}
             alt=""
             className="w-full h-full object-contain"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         
@@ -128,6 +132,8 @@ const Index = () => {
                       src={orbyCore}
                       alt="Orby AI Core"
                       className="w-[600px] h-[600px] object-contain animate-spin-slow opacity-30"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
@@ -177,6 +183,8 @@ const Index = () => {
             src={heroBackground}
             alt=""
             className="w-full h-full object-contain"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         
@@ -249,6 +257,8 @@ const Index = () => {
             src={heroBackground}
             alt=""
             className="w-full h-full object-contain"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/30 to-transparent pointer-events-none" />
@@ -311,6 +321,8 @@ const Index = () => {
             src={heroBackground}
             alt=""
             className="w-full h-full object-contain"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
