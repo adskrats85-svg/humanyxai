@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import orbyCore from "@/assets/orby-dna.png";
 import heroBackground from "@/assets/hero-background.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
@@ -9,22 +10,50 @@ import { useState } from "react";
 const Index = () => {
   const [email, setEmail] = useState("");
   const [bottomEmail, setBottomEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleEarlyAccessSubmit = (e: React.FormEvent, fromLocation: string) => {
+  const handleEarlyAccessSubmit = async (e: React.FormEvent, fromLocation: string) => {
     e.preventDefault();
     const submittedEmail = fromLocation === "hero" ? email : bottomEmail;
     
-    if (submittedEmail) {
-      toast({
-        title: "Request Received!",
-        description: "You're on the list. We'll be in touch soon.",
-      });
-      
-      if (fromLocation === "hero") {
-        setEmail("");
+    if (!submittedEmail) return;
+    
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('signups')
+        .insert([{ email: submittedEmail, source: fromLocation }]);
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: "Already signed up!",
+            description: "You're already on our early access list.",
+          });
+        } else {
+          throw error;
+        }
       } else {
-        setBottomEmail("");
+        toast({
+          title: "You're on the list!",
+          description: `We'll send updates to ${submittedEmail}`,
+        });
+        
+        if (fromLocation === "hero") {
+          setEmail("");
+        } else {
+          setBottomEmail("");
+        }
       }
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -102,9 +131,15 @@ const Index = () => {
                   required
                   className="flex-1 bg-background/50 border-primary/30 focus:border-primary"
                 />
-                <Button variant="gradient" size="lg" type="submit" className="group whitespace-nowrap">
+                <Button 
+                  variant="gradient" 
+                  size="lg" 
+                  type="submit" 
+                  className="group whitespace-nowrap"
+                  disabled={isSubmitting}
+                >
                   <Zap className="w-5 h-5" />
-                  Request Early Access
+                  {isSubmitting ? "Joining..." : "Request Early Access"}
                 </Button>
               </form>
 
@@ -334,9 +369,15 @@ const Index = () => {
                 required
                 className="flex-1 w-full bg-background/50 border-primary/30 focus:border-primary"
               />
-              <Button variant="gradient" size="lg" type="submit" className="group whitespace-nowrap w-full sm:w-auto">
+              <Button 
+                variant="gradient" 
+                size="lg" 
+                type="submit" 
+                className="group whitespace-nowrap w-full sm:w-auto"
+                disabled={isSubmitting}
+              >
                 <Zap className="w-5 h-5" />
-                Request Early Access
+                {isSubmitting ? "Joining..." : "Request Early Access"}
               </Button>
             </form>
 
