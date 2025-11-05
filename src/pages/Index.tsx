@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import orbyCore from "@/assets/orby-dna.png";
+import heroSymbol from "@/assets/hero-symbol.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 
 const Index = () => {
@@ -93,7 +94,16 @@ const Index = () => {
 
       {/* Meet Orby Section */}
       <section id="orby" className="py-32 relative overflow-hidden">
-        <div className="container mx-auto px-6">
+        {/* Faint Background Image */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+          <img 
+            src={heroSymbol}
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
