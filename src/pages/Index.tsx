@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import orbyCore from "@/assets/orby-dna.png";
-import heroSymbol from "@/assets/hero-symbol.png";
+import heroBackground from "@/assets/hero-background.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 
 const Index = () => {
@@ -34,7 +34,7 @@ const Index = () => {
         {/* Faint Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
           <img 
-            src={heroSymbol}
+            src={heroBackground}
             alt=""
             className="w-full h-full object-contain"
           />
@@ -106,7 +106,7 @@ const Index = () => {
         {/* Faint Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
           <img 
-            src={heroSymbol}
+            src={heroBackground}
             alt=""
             className="w-full h-full object-contain"
           />
