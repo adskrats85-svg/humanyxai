@@ -73,14 +73,17 @@ const Index = () => {
 
             {/* Orby - The Central Intelligence */}
             <div className="relative max-w-4xl mx-auto mb-16">
-              <div className="relative w-full h-[400px] flex items-center justify-center">
-                {/* Rotating Orby Background */}
-                <div className="absolute inset-0 flex items-center justify-center animate-spin-slow">
-                  <img 
-                    src={orbyCore} 
-                    alt="Orby - Your AI Life Coach" 
-                    className="w-80 h-80 object-contain opacity-90"
-                  />
+              <div className="relative w-full h-[500px] flex items-center justify-center">
+                {/* Rotating Orby Background with Enhanced Glow */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative animate-spin-slow">
+                    <img 
+                      src={orbyCore} 
+                      alt="Orby - Your AI Life Coach" 
+                      className="w-[500px] h-[500px] object-contain drop-shadow-[0_0_80px_rgba(59,130,246,0.9)] animate-breathe"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-secondary/40 to-accent/40 rounded-full blur-3xl animate-pulse" />
+                  </div>
                 </div>
                 
                 {/* Human Profiles Centered */}
@@ -88,7 +91,7 @@ const Index = () => {
                   <img 
                     src={humanProfiles} 
                     alt="Humanity Enhanced" 
-                    className="w-96 h-auto object-contain"
+                    className="w-[480px] h-auto object-contain drop-shadow-[0_0_40px_rgba(0,0,0,0.6)]"
                   />
                 </div>
               </div>
