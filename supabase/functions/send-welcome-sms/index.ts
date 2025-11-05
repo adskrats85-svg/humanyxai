@@ -1,6 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.79.0";
-import twilio from "https://esm.sh/twilio@5.3.4";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -36,8 +35,6 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Twilio credentials not configured");
     }
 
-    const twilioClient = twilio(accountSid, authToken);
-
     // Validate phone number format (basic E.164 check)
     if (!phone.match(/^\+?[1-9]\d{1,14}$/)) {
       console.error("Invalid phone number format:", phone);
@@ -62,13 +59,30 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Send SMS via Twilio
-    const message = await twilioClient.messages.create({
-      body: "Welcome to HumanYX and expressing interest to become an evolution pioneer....the gene pool is better already it! We'll keep you updated on our progress. Reply STOP to unsubscribe.",
-      from: twilioPhone,
-      to: phone,
+    // Send SMS via Twilio REST API (Deno-compatible)
+    const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`;
+    const authHeader = `Basic ${btoa(`${accountSid}:${authToken}`)}`;
+
+    const twilioResponse = await fetch(twilioUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': authHeader,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        To: phone,
+        From: twilioPhone,
+        Body: "Welcome to HumanYX! Thanks for expressing interest to become an evolution pioneer....the gene pool is better already! We'll keep you updated on our progress. Reply STOP to unsubscribe.",
+      }),
     });
 
+    if (!twilioResponse.ok) {
+      const error = await twilioResponse.json();
+      console.error("Twilio API error:", error);
+      throw new Error(error.message || `Twilio API error: ${twilioResponse.status}`);
+    }
+
+    const message = await twilioResponse.json();
     console.log("SMS sent successfully:", message.sid);
 
     // Log successful SMS
