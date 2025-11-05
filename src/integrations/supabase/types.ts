@@ -16,22 +16,79 @@ export type Database = {
     Tables: {
       signups: {
         Row: {
+          contact_preference:
+            | Database["public"]["Enums"]["contact_preference_type"]
+            | null
           created_at: string | null
           email: string
           id: string
+          is_rate_limited: boolean | null
+          last_sms_sent_at: string | null
+          phone: string | null
+          rate_limit_reason: string | null
+          sms_send_count: number | null
           source: string | null
         }
         Insert: {
+          contact_preference?:
+            | Database["public"]["Enums"]["contact_preference_type"]
+            | null
           created_at?: string | null
           email: string
           id?: string
+          is_rate_limited?: boolean | null
+          last_sms_sent_at?: string | null
+          phone?: string | null
+          rate_limit_reason?: string | null
+          sms_send_count?: number | null
           source?: string | null
         }
         Update: {
+          contact_preference?:
+            | Database["public"]["Enums"]["contact_preference_type"]
+            | null
           created_at?: string | null
           email?: string
           id?: string
+          is_rate_limited?: boolean | null
+          last_sms_sent_at?: string | null
+          phone?: string | null
+          rate_limit_reason?: string | null
+          sms_send_count?: number | null
           source?: string | null
+        }
+        Relationships: []
+      }
+      sms_logs: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          id: string
+          ip_address: string | null
+          phone: string
+          reason: string | null
+          status: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          ip_address?: string | null
+          phone: string
+          reason?: string | null
+          status: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          ip_address?: string | null
+          phone?: string
+          reason?: string | null
+          status?: string
+          user_agent?: string | null
         }
         Relationships: []
       }
@@ -40,10 +97,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      can_send_sms: { Args: { phone_input: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      contact_preference_type: "email" | "sms" | "both"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -170,6 +227,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      contact_preference_type: ["email", "sms", "both"],
+    },
   },
 } as const
