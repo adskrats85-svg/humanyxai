@@ -43,7 +43,7 @@ const Index = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-6xl mx-auto">
             {/* Tagline */}
-            <div className="mb-8 animate-fade-in">
+            <div className="mb-8 opacity-0 animate-hero-fade-in">
               <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-effect border border-primary/30 text-sm font-semibold">
                 <Sparkles className="w-4 h-4 text-primary" />
                 AI-Powered Personal Development Platform
@@ -51,20 +51,20 @@ const Index = () => {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 animate-fade-in leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 opacity-0 animate-hero-fade-in-delay-1 leading-tight">
               Evolve with
               <br />
               <span className="glow-text">Intelligence</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-delay">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed opacity-0 animate-hero-fade-in-delay-2">
               Transform your potential with <span className="text-primary font-semibold">Orby</span>, your AI life coach. 
               Available 24/7 across web and mobile—personalized guidance that evolves with you.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in-delay">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 opacity-0 animate-hero-fade-in-delay-3">
               <Button variant="gradient" size="xl" className="group">
                 <Zap className="w-5 h-5" />
                 Start Your Journey
@@ -76,7 +76,7 @@ const Index = () => {
             </div>
 
             {/* Trust Badge */}
-            <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground animate-scale-in">
+            <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground opacity-0 animate-hero-fade-in-delay-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 Available on iOS & Android

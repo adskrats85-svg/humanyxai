@@ -106,6 +106,56 @@ export default {
         "scale-in": {
           "0%": { opacity: "0", transform: "scale(0.8)" },
           "100%": { opacity: "1", transform: "scale(1)" }
+        },
+        "hero-fade-in": {
+          "0%": { 
+            opacity: "0", 
+            transform: "translateY(40px) scale(0.95)" 
+          },
+          "100%": { 
+            opacity: "1", 
+            transform: "translateY(0) scale(1)" 
+          }
+        },
+        "hero-fade-in-delay-1": {
+          "0%, 20%": { 
+            opacity: "0", 
+            transform: "translateY(40px) scale(0.95)" 
+          },
+          "100%": { 
+            opacity: "1", 
+            transform: "translateY(0) scale(1)" 
+          }
+        },
+        "hero-fade-in-delay-2": {
+          "0%, 35%": { 
+            opacity: "0", 
+            transform: "translateY(40px) scale(0.95)" 
+          },
+          "100%": { 
+            opacity: "1", 
+            transform: "translateY(0) scale(1)" 
+          }
+        },
+        "hero-fade-in-delay-3": {
+          "0%, 50%": { 
+            opacity: "0", 
+            transform: "translateY(40px) scale(0.95)" 
+          },
+          "100%": { 
+            opacity: "1", 
+            transform: "translateY(0) scale(1)" 
+          }
+        },
+        "hero-fade-in-delay-4": {
+          "0%, 65%": { 
+            opacity: "0", 
+            transform: "translateY(30px)" 
+          },
+          "100%": { 
+            opacity: "1", 
+            transform: "translateY(0)" 
+          }
         }
       },
       animation: {
@@ -119,6 +169,11 @@ export default {
         "float": "float 8s ease-in-out infinite",
         "spin-slow": "spin-slow 30s linear infinite",
         "scale-in": "scale-in 0.8s ease-out forwards",
+        "hero-fade-in": "hero-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "hero-fade-in-delay-1": "hero-fade-in-delay-1 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "hero-fade-in-delay-2": "hero-fade-in-delay-2 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "hero-fade-in-delay-3": "hero-fade-in-delay-3 2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "hero-fade-in-delay-4": "hero-fade-in-delay-4 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
     },
   },
