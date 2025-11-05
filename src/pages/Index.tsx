@@ -98,10 +98,9 @@ const Index = () => {
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
                 Meet <span className="glow-text">Orby</span>
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Your personal AI coach—a living, breathing intelligence designed to understand, 
-                guide, and evolve alongside you on your journey to self-improvement.
-              </p>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Your personal AI coach—a living, breathing intelligence designed to understand, guide, and evolve alongside you on your journey to self-improvement.
+
+            </p>
             </div>
 
             {/* Orby Visual */}
@@ -156,10 +155,7 @@ const Index = () => {
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
                 Your Coach, <span className="glow-text-accent">Your Way</span>
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Multimodal access meets personalized intelligence. HumanYX adapts to your life, 
-                not the other way around.
-              </p>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Your AI companion for emotional, mental, and behavioral growth.Multimodal access meets personalized intelligence. HumanYX adapts to your life, not the other way around.</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
