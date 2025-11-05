@@ -45,9 +45,8 @@ const Index = () => {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 opacity-0 animate-hero-fade-in-delay-1 leading-tight">Evolution. 
-Redefined.<br />
-              <span className="glow-text">Intelligence</span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 opacity-0 animate-hero-fade-in-delay-1 leading-tight">
+              Scale the next <span className="glow-text">version</span> of you
             </h1>
 
             {/* Subheadline */}
