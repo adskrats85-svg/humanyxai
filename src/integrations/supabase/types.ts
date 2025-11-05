@@ -20,7 +20,7 @@ export type Database = {
             | Database["public"]["Enums"]["contact_preference_type"]
             | null
           created_at: string | null
-          email: string
+          email: string | null
           id: string
           is_rate_limited: boolean | null
           last_sms_sent_at: string | null
@@ -34,7 +34,7 @@ export type Database = {
             | Database["public"]["Enums"]["contact_preference_type"]
             | null
           created_at?: string | null
-          email: string
+          email?: string | null
           id?: string
           is_rate_limited?: boolean | null
           last_sms_sent_at?: string | null
@@ -48,7 +48,7 @@ export type Database = {
             | Database["public"]["Enums"]["contact_preference_type"]
             | null
           created_at?: string | null
-          email?: string
+          email?: string | null
           id?: string
           is_rate_limited?: boolean | null
           last_sms_sent_at?: string | null
