@@ -45,18 +45,6 @@ const Index = () => {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-6xl mx-auto">
-            {/* Luminous Energy Orb */}
-            <div className="mb-16 flex justify-center animate-fade-in">
-              <div className="relative group cursor-pointer">
-                <div className="absolute inset-0 electric-gradient rounded-full blur-[80px] animate-breathe opacity-60" />
-                <img 
-                  src={chromosomeLogo} 
-                  alt="Humanyx Evolution" 
-                  className="relative w-80 h-80 object-contain orb-glow transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-[120px] group-hover:blur-[140px] transition-all duration-700" />
-              </div>
-            </div>
 
             {/* Headline */}
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 animate-fade-in leading-none">
