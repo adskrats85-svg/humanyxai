@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import chromosomeLogo from "@/assets/chromosome-logo.png";
 import heroBackground from "@/assets/hero-background.jpg";
 import { ArrowRight, Mic, Dna, Brain, Zap, Users, Shield, Sparkles, Phone, Target, Link2, Palette, MessageCircle, BookOpen } from "lucide-react";
 
@@ -9,11 +8,8 @@ const Index = () => {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 backdrop-blur-xl bg-background/80 border-b border-primary/20">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src={chromosomeLogo} alt="Humanyx" className="w-8 h-8 animate-breathe" />
-            <div className="text-2xl font-bold tracking-tight">
-              HUMANYX
-            </div>
+          <div className="text-2xl font-bold tracking-tight">
+            HUMANYX
           </div>
           <div className="hidden md:flex gap-8 text-sm font-medium">
             <a href="#vision" className="hover:text-primary transition-colors">Vision</a>
@@ -114,13 +110,6 @@ const Index = () => {
                     className="w-full h-full object-cover opacity-60"
                   />
                   <div className="absolute inset-0 electric-gradient opacity-20 mix-blend-overlay" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <img 
-                      src={chromosomeLogo} 
-                      alt="Evolution" 
-                      className="w-64 h-64 object-contain animate-breathe orb-glow"
-                    />
-                  </div>
                 </div>
               </div>
 
@@ -363,14 +352,6 @@ const Index = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-12">
-              <img 
-                src={chromosomeLogo} 
-                alt="Join Evolution" 
-                className="w-40 h-40 mx-auto orb-glow animate-breathe"
-              />
-            </div>
-            
             <h2 className="text-4xl md:text-7xl font-bold mb-8 leading-tight">
               Join the Evolution
             </h2>
@@ -418,11 +399,8 @@ const Index = () => {
       <footer className="border-t border-primary/20 py-12 backdrop-blur-xl bg-card/20">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
-            <div className="flex items-center gap-3">
-              <img src={chromosomeLogo} alt="Humanyx" className="w-8 h-8 animate-breathe" />
-              <div className="text-2xl font-bold">
-                HUMANYX
-              </div>
+            <div className="text-2xl font-bold">
+              HUMANYX
             </div>
             
             <div className="flex gap-8 text-sm text-muted-foreground">
