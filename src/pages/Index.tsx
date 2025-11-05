@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import orbyCore from "@/assets/orby-dna.png";
-import heroBackground from "@/assets/hero-background.png";
+import heroBackground from "@/assets/hero-background-v2.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 
 const Index = () => {
