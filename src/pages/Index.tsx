@@ -130,15 +130,6 @@ const Index = () => {
                       className="w-[600px] h-[600px] object-contain animate-spin-slow opacity-30"
                     />
                   </div>
-                  
-                  {/* Main Glowing Orby */}
-                  <div className="relative z-10">
-                    <img 
-                      src={orbyCore}
-                      alt="Orby"
-                      className="w-[400px] h-[400px] object-contain orb-glow animate-glow"
-                    />
-                  </div>
                 </div>
               </div>
             </div>
