@@ -1,8 +1,33 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/hooks/use-toast";
 import orbyCore from "@/assets/orby-dna.png";
 import heroBackground from "@/assets/hero-background.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
+import { useState } from "react";
+
 const Index = () => {
+  const [email, setEmail] = useState("");
+  const [bottomEmail, setBottomEmail] = useState("");
+
+  const handleEarlyAccessSubmit = (e: React.FormEvent, fromLocation: string) => {
+    e.preventDefault();
+    const submittedEmail = fromLocation === "hero" ? email : bottomEmail;
+    
+    if (submittedEmail) {
+      toast({
+        title: "Request Received!",
+        description: "You're on the list. We'll be in touch soon.",
+      });
+      
+      if (fromLocation === "hero") {
+        setEmail("");
+      } else {
+        setBottomEmail("");
+      }
+    }
+  };
+
   return <div className="min-h-screen text-foreground">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass-effect border-b border-primary/20">
@@ -56,12 +81,34 @@ const Index = () => {
               AI that listens, learns and evolves with you.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 opacity-0 animate-hero-fade-in-delay-3">
-              <Button variant="gradient" size="xl" className="group">
-                <Zap className="w-5 h-5" />
-                Start Your Journey
-              </Button>
+            {/* Early Access CTA */}
+            <div className="flex flex-col gap-6 justify-center items-center mb-16 opacity-0 animate-hero-fade-in-delay-3">
+              {/* Urgency Badge */}
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass-effect border border-primary/40">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-sm font-semibold text-primary">Limited Spots Available</span>
+              </div>
+
+              {/* Email Form */}
+              <form 
+                onSubmit={(e) => handleEarlyAccessSubmit(e, "hero")} 
+                className="flex flex-col sm:flex-row gap-3 w-full max-w-md"
+              >
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1 bg-background/50 border-primary/30 focus:border-primary"
+                />
+                <Button variant="gradient" size="lg" type="submit" className="group whitespace-nowrap">
+                  <Zap className="w-5 h-5" />
+                  Request Early Access
+                </Button>
+              </form>
+
+              {/* Voice Demo Button */}
               <Button variant="glass" size="xl" className="group">
                 <Mic className="w-5 h-5" />
                 Try Voice Demo
@@ -259,22 +306,45 @@ const Index = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-6xl font-bold mb-8 glow-text">
-              Don't Get Left Behind
+              Be Among the First
             </h2>
             <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
               Join the evolution of personal development. Grow with AI, not apart from it. 
               Your journey to becoming your best self starts today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button variant="gradient" size="xl" className="group">
-                <Zap className="w-5 h-5" />
-                Begin Your Evolution
-              </Button>
-              <Button variant="glass" size="xl">
-                <Mic className="w-5 h-5" />
-                Try Voice Demo
-              </Button>
+
+            {/* Urgency Badge */}
+            <div className="flex justify-center mb-6">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass-effect border border-primary/40">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-sm font-semibold text-primary">Limited Spots Available</span>
+              </div>
             </div>
+
+            {/* Email Form */}
+            <form 
+              onSubmit={(e) => handleEarlyAccessSubmit(e, "bottom")} 
+              className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6 max-w-md mx-auto"
+            >
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={bottomEmail}
+                onChange={(e) => setBottomEmail(e.target.value)}
+                required
+                className="flex-1 w-full bg-background/50 border-primary/30 focus:border-primary"
+              />
+              <Button variant="gradient" size="lg" type="submit" className="group whitespace-nowrap w-full sm:w-auto">
+                <Zap className="w-5 h-5" />
+                Request Early Access
+              </Button>
+            </form>
+
+            {/* Voice Demo Button */}
+            <Button variant="glass" size="xl">
+              <Mic className="w-5 h-5" />
+              Try Voice Demo
+            </Button>
           </div>
         </div>
       </section>
