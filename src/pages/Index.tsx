@@ -31,6 +31,15 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Faint Background Image */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+          <img 
+            src={heroSymbol}
+            alt=""
+            className="w-full h-full object-contain"
+          />
+        </div>
+        
         {/* Animated Background Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[150px] animate-float" />
