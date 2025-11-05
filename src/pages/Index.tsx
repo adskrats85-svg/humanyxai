@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 import orbyCore from "@/assets/orby-dna.png";
 import heroBackground from "@/assets/hero-background.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
@@ -10,20 +12,49 @@ import { useState } from "react";
 const Index = () => {
   const [email, setEmail] = useState("");
   const [bottomEmail, setBottomEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [bottomPhone, setBottomPhone] = useState("");
+  const [contactPreference, setContactPreference] = useState<"email" | "sms" | "both">("email");
+  const [bottomContactPreference, setBottomContactPreference] = useState<"email" | "sms" | "both">("email");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleEarlyAccessSubmit = async (e: React.FormEvent, fromLocation: string) => {
     e.preventDefault();
-    const submittedEmail = fromLocation === "hero" ? email : bottomEmail;
     
-    if (!submittedEmail) return;
+    const submittedEmail = fromLocation === "hero" ? email : bottomEmail;
+    const submittedPhone = fromLocation === "hero" ? phone : bottomPhone;
+    const preference = fromLocation === "hero" ? contactPreference : bottomContactPreference;
+    
+    // Validation
+    if ((preference === "email" || preference === "both") && !submittedEmail) {
+      toast({
+        title: "Email required",
+        description: "Please enter your email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if ((preference === "sms" || preference === "both") && !submittedPhone) {
+      toast({
+        title: "Phone required",
+        description: "Please enter your mobile number.",
+        variant: "destructive",
+      });
+      return;
+    }
     
     setIsSubmitting(true);
 
     try {
       const { error } = await supabase
         .from('signups')
-        .insert([{ email: submittedEmail, source: fromLocation }]);
+        .insert([{ 
+          email: submittedEmail || null,
+          phone: submittedPhone || null,
+          contact_preference: preference,
+          source: fromLocation 
+        }]);
 
       if (error) {
         if (error.code === '23505') {
@@ -35,15 +66,35 @@ const Index = () => {
           throw error;
         }
       } else {
+        // Query SMS logs if SMS was selected
+        let smsMessage = "";
+        if (preference === "sms" || preference === "both") {
+          const { data: smsLogs } = await supabase
+            .from('sms_logs')
+            .select('*')
+            .eq('phone', submittedPhone)
+            .eq('status', 'sent')
+            .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
+          
+          const smsCount = smsLogs?.length || 0;
+          smsMessage = ` You've used ${smsCount}/5 daily SMS.`;
+        }
+        
         toast({
           title: "You're on the list!",
-          description: `We'll send updates to ${submittedEmail}`,
+          description: preference === "email" 
+            ? `We'll send updates to ${submittedEmail}` 
+            : preference === "sms"
+            ? `We'll send updates to ${submittedPhone}.${smsMessage}`
+            : `We'll send updates via email and SMS.${smsMessage}`,
         });
         
         if (fromLocation === "hero") {
           setEmail("");
+          setPhone("");
         } else {
           setBottomEmail("");
+          setBottomPhone("");
         }
       }
     } catch (error) {
@@ -118,24 +169,61 @@ const Index = () => {
                 <span className="text-sm font-semibold text-primary">Limited Spots Available</span>
               </div>
 
-              {/* Email Form */}
+              {/* Contact Preference & Form */}
               <form 
                 onSubmit={(e) => handleEarlyAccessSubmit(e, "hero")} 
-                className="flex flex-col sm:flex-row gap-3 w-full max-w-md"
+                className="flex flex-col gap-4 w-full max-w-md"
               >
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="flex-1 bg-background/50 border-primary/30 focus:border-primary"
-                />
+                {/* Contact Preference Selector */}
+                <div className="glass-effect rounded-lg p-4 border border-primary/20">
+                  <Label className="text-sm font-semibold mb-3 block">How would you like to be contacted?</Label>
+                  <RadioGroup 
+                    value={contactPreference} 
+                    onValueChange={(value: "email" | "sms" | "both") => setContactPreference(value)}
+                    className="flex flex-col sm:flex-row gap-3"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="email" id="hero-email" />
+                      <Label htmlFor="hero-email" className="cursor-pointer">Email Only</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="sms" id="hero-sms" />
+                      <Label htmlFor="hero-sms" className="cursor-pointer">SMS Only</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="both" id="hero-both" />
+                      <Label htmlFor="hero-both" className="cursor-pointer">Both</Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                {/* Dynamic Input Fields */}
+                <div className="flex flex-col gap-3">
+                  {(contactPreference === "email" || contactPreference === "both") && (
+                    <Input
+                      type="email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="bg-background/50 border-primary/30 focus:border-primary"
+                    />
+                  )}
+                  {(contactPreference === "sms" || contactPreference === "both") && (
+                    <Input
+                      type="tel"
+                      placeholder="Enter your mobile number"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="bg-background/50 border-primary/30 focus:border-primary"
+                    />
+                  )}
+                </div>
+
                 <Button 
                   variant="gradient" 
                   size="lg" 
                   type="submit" 
-                  className="group whitespace-nowrap"
+                  className="group w-full"
                   disabled={isSubmitting}
                 >
                   <Zap className="w-5 h-5" />
@@ -356,24 +444,61 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Email Form */}
+            {/* Contact Preference & Form */}
             <form 
               onSubmit={(e) => handleEarlyAccessSubmit(e, "bottom")} 
-              className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6 max-w-md mx-auto"
+              className="flex flex-col gap-4 max-w-md mx-auto mb-6"
             >
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={bottomEmail}
-                onChange={(e) => setBottomEmail(e.target.value)}
-                required
-                className="flex-1 w-full bg-background/50 border-primary/30 focus:border-primary"
-              />
+              {/* Contact Preference Selector */}
+              <div className="glass-effect rounded-lg p-4 border border-primary/20">
+                <Label className="text-sm font-semibold mb-3 block">How would you like to be contacted?</Label>
+                <RadioGroup 
+                  value={bottomContactPreference} 
+                  onValueChange={(value: "email" | "sms" | "both") => setBottomContactPreference(value)}
+                  className="flex flex-col sm:flex-row gap-3"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="email" id="bottom-email" />
+                    <Label htmlFor="bottom-email" className="cursor-pointer">Email Only</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="sms" id="bottom-sms" />
+                    <Label htmlFor="bottom-sms" className="cursor-pointer">SMS Only</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="both" id="bottom-both" />
+                    <Label htmlFor="bottom-both" className="cursor-pointer">Both</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              {/* Dynamic Input Fields */}
+              <div className="flex flex-col gap-3">
+                {(bottomContactPreference === "email" || bottomContactPreference === "both") && (
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={bottomEmail}
+                    onChange={(e) => setBottomEmail(e.target.value)}
+                    className="bg-background/50 border-primary/30 focus:border-primary"
+                  />
+                )}
+                {(bottomContactPreference === "sms" || bottomContactPreference === "both") && (
+                  <Input
+                    type="tel"
+                    placeholder="Enter your mobile number"
+                    value={bottomPhone}
+                    onChange={(e) => setBottomPhone(e.target.value)}
+                    className="bg-background/50 border-primary/30 focus:border-primary"
+                  />
+                )}
+              </div>
+
               <Button 
                 variant="gradient" 
                 size="lg" 
                 type="submit" 
-                className="group whitespace-nowrap w-full sm:w-auto"
+                className="group w-full"
                 disabled={isSubmitting}
               >
                 <Zap className="w-5 h-5" />
