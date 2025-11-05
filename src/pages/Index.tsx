@@ -50,7 +50,8 @@ const Index = () => {
             </h1>
 
             {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed opacity-0 animate-hero-fade-in-delay-2">Your intelligent companion for the next phase of your life. Converse, reflect and evolve through rich, engaging dialogue. AI that listens, learns and evolves with you.<span className="text-primary font-semibold">Orby</span>, your AI life coach. 
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed opacity-0 animate-hero-fade-in-delay-2">Your intelligent companion for the next phase of your life. Converse, reflect and evolve through rich, engaging dialogue. 
+AI that listens, learns and evolves with you<span className="text-primary font-semibold">Orby</span>, your AI life coach. 
               Available 24/7 across web and mobile—personalized guidance that evolves with you.
             </p>
 
