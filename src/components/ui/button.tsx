@@ -15,10 +15,8 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        neon: "electric-gradient text-white font-bold shadow-[0_0_30px_hsl(var(--primary)/0.6),0_0_60px_hsl(var(--secondary)/0.4)] hover:shadow-[0_0_40px_hsl(var(--primary)/0.8),0_0_80px_hsl(var(--secondary)/0.6)] hover:scale-105 transition-all duration-300",
-        "neon-outline": "bg-transparent backdrop-blur-sm text-primary border-2 border-primary/50 hover:bg-primary/10 hover:border-primary hover:text-white neon-border transition-all duration-300",
-        "neon-magenta": "bg-secondary/20 backdrop-blur-sm text-secondary border-2 border-secondary/50 hover:bg-secondary/30 hover:border-secondary hover:text-white shadow-[0_0_20px_hsl(var(--secondary)/0.4)] hover:shadow-[0_0_40px_hsl(var(--secondary)/0.6)] transition-all duration-300",
-        "ghost-neon": "bg-transparent text-foreground hover:bg-primary/10 hover:text-primary transition-all duration-300",
+        hero: "bg-primary text-primary-foreground font-semibold shadow-[0_0_20px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_40px_hsl(var(--primary)/0.6)] hover:scale-105",
+        "hero-outline": "border-2 border-primary/50 bg-transparent text-foreground font-semibold hover:bg-primary/10 hover:border-primary hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)]",
       },
       size: {
         default: "h-10 px-4 py-2",

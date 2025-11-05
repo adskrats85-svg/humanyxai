@@ -8,66 +8,60 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Core Background - Deep Space Black */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Cosmic Background System */
+    --background: 220 65% 8%;
+    --background-gradient-start: 220 70% 10%;
+    --background-gradient-end: 260 60% 12%;
+    --foreground: 200 20% 98%;
 
-    /* Card Elements - Elevated dark surfaces */
-    --card: 240 6% 10%;
-    --card-foreground: 0 0% 98%;
-    --card-border: 240 4% 16%;
+    /* Neon Cyan Primary */
+    --primary: 190 90% 60%;
+    --primary-foreground: 220 65% 8%;
+    --primary-glow: 190 95% 70%;
 
-    /* Primary - Electric Neon Blue (evolution, intelligence) */
-    --primary: 220 100% 55%;
-    --primary-foreground: 240 10% 3.9%;
-    --primary-glow: 220 100% 65%;
-    --primary-dark: 220 100% 40%;
+    /* Deep Violet Accent */
+    --accent: 260 70% 50%;
+    --accent-foreground: 200 20% 98%;
+    --accent-glow: 260 80% 60%;
 
-    /* Secondary - Neon Magenta (human potential) */
-    --secondary: 320 100% 60%;
-    --secondary-foreground: 0 0% 98%;
-    --secondary-glow: 320 100% 70%;
+    /* Card & Surface */
+    --card: 220 60% 12%;
+    --card-foreground: 200 20% 98%;
+    --card-border: 190 50% 30%;
 
-    /* Accent - Deep Violet */
-    --accent: 270 70% 60%;
-    --accent-foreground: 0 0% 98%;
+    /* Muted & Secondary */
+    --muted: 220 50% 18%;
+    --muted-foreground: 200 15% 60%;
+    --secondary: 220 45% 20%;
+    --secondary-foreground: 200 20% 95%;
 
-    /* Muted - Subtle dark gray */
-    --muted: 240 5% 20%;
-    --muted-foreground: 240 5% 64.9%;
-
-    /* Borders */
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 220 100% 55%;
+    /* UI Elements */
+    --border: 220 40% 25%;
+    --input: 220 50% 18%;
+    --ring: 190 90% 60%;
+    --popover: 220 60% 12%;
+    --popover-foreground: 200 20% 98%;
 
     /* Destructive */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 200 20% 98%;
 
-    /* Popover */
-    --popover: 240 6% 10%;
-    --popover-foreground: 0 0% 98%;
-
-    /* Radius */
     --radius: 0.75rem;
 
-    /* Chart colors */
-    --chart-1: 220 100% 55%;
-    --chart-2: 320 100% 60%;
-    --chart-3: 270 70% 60%;
-    --chart-4: 240 60% 55%;
-    --chart-5: 200 70% 50%;
+    /* Custom Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(220 70% 10%), hsl(260 60% 12%));
+    --gradient-hero: linear-gradient(180deg, hsl(220 70% 10% / 0.8), hsl(260 60% 12% / 0.9));
+    --gradient-glow: radial-gradient(circle, hsl(190 90% 60% / 0.3) 0%, transparent 70%);
+    --gradient-accent: linear-gradient(135deg, hsl(190 90% 60%), hsl(260 70% 50%));
 
-    /* Sidebar */
-    --sidebar-background: 240 10% 3.9%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 220 100% 55%;
-    --sidebar-primary-foreground: 240 10% 3.9%;
-    --sidebar-accent: 240 5% 20%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 240 4% 16%;
-    --sidebar-ring: 220 100% 55%;
+    /* Effects */
+    --glow-sm: 0 0 20px hsl(190 90% 60% / 0.3);
+    --glow-md: 0 0 40px hsl(190 90% 60% / 0.4);
+    --glow-lg: 0 0 60px hsl(190 90% 60% / 0.5);
+    --glow-accent: 0 0 40px hsl(260 70% 50% / 0.4);
+    
+    /* Animation */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -78,71 +72,49 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    background: linear-gradient(135deg, hsl(var(--background-gradient-start)), hsl(var(--background-gradient-end)));
     min-height: 100vh;
   }
 }
 
 @layer utilities {
-  /* Neon Text Effects */
-  .neon-text {
-    text-shadow: 
-      0 0 10px hsl(var(--primary) / 0.8),
-      0 0 20px hsl(var(--primary) / 0.5),
-      0 0 40px hsl(var(--primary) / 0.3);
+  .glow-text {
+    text-shadow: 0 0 30px hsl(var(--primary-glow) / 0.5);
   }
 
-  .neon-text-magenta {
-    text-shadow: 
-      0 0 10px hsl(var(--secondary) / 0.8),
-      0 0 20px hsl(var(--secondary) / 0.5),
-      0 0 40px hsl(var(--secondary) / 0.3);
+  .glow-text-accent {
+    text-shadow: 0 0 30px hsl(var(--accent-glow) / 0.5);
   }
 
-  /* Electric Gradient */
-  .electric-gradient {
-    background: linear-gradient(135deg, 
-      hsl(var(--primary)) 0%, 
-      hsl(var(--accent)) 50%,
-      hsl(var(--secondary)) 100%);
-    background-size: 200% 200%;
+  .glow-border {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3),
+                inset 0 0 20px hsl(var(--primary) / 0.1);
   }
 
-  /* Neon Border */
-  .neon-border {
-    box-shadow: 
-      0 0 10px hsl(var(--primary) / 0.5),
-      0 0 20px hsl(var(--primary) / 0.3),
-      inset 0 0 10px hsl(var(--primary) / 0.1);
-  }
-
-  /* Card Glow Effects */
   .glow-card {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid hsl(var(--border));
+    box-shadow: 0 8px 32px hsl(var(--primary) / 0.15),
+                0 0 0 1px hsl(var(--card-border) / 0.3);
   }
 
-  .glow-card:hover {
-    border-color: hsl(var(--primary) / 0.5);
-    box-shadow: 
-      0 0 20px hsl(var(--primary) / 0.3),
-      0 0 40px hsl(var(--secondary) / 0.2),
-      inset 0 0 20px hsl(var(--primary) / 0.05);
-    transform: translateY(-8px) scale(1.02);
+  .animate-glow {
+    animation: glow-pulse 3s ease-in-out infinite;
   }
 
-  /* Energy Grid Background */
-  .energy-grid {
-    background-image: 
-      linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 
-  /* Orb Glow Effect */
-  .orb-glow {
-    filter: 
-      drop-shadow(0 0 20px hsl(var(--primary) / 0.6))
-      drop-shadow(0 0 40px hsl(var(--secondary) / 0.4))
-      drop-shadow(0 0 60px hsl(var(--accent) / 0.3));
+  @keyframes glow-pulse {
+    0%, 100% { 
+      filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.4));
+    }
+    50% { 
+      filter: drop-shadow(0 0 40px hsl(var(--primary) / 0.6));
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
   }
 }
