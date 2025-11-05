@@ -11,8 +11,8 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src={chromosomeLogo} alt="Humanyx" className="w-8 h-8 animate-breathe" />
-            <div className="text-2xl font-bold neon-text tracking-tight">
-              HUMAN<span className="text-primary">Y</span><span className="text-secondary">X</span>
+            <div className="text-2xl font-bold tracking-tight">
+              HUMANYX
             </div>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-medium">
@@ -46,25 +46,19 @@ const Index = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-6xl mx-auto">
 
-            {/* Headline */}
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 animate-fade-in leading-none">
               The Next Generation
               <br />
-              <span className="electric-gradient bg-clip-text text-transparent neon-text">
-                of Human.
-              </span>
+              of Human.
             </h1>
 
-            {/* Subtext */}
             <p className="text-xl md:text-3xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay font-light">
-              AI that evolves with you — <span className="text-primary font-semibold">emotionally</span>, 
-              <span className="text-secondary font-semibold"> cognitively</span>, and 
-              <span className="text-accent font-semibold"> behaviorally</span>.
+              AI that evolves with you — emotionally, cognitively, and behaviorally.
             </p>
 
             <p className="text-lg md:text-xl text-foreground/70 mb-12 max-w-3xl mx-auto animate-fade-in-delay">
               Your personal AI coach. Available 24/7 through voice, text, and mobile. 
-              <span className="text-primary font-semibold"> Evolve with AI</span>, or be left behind.
+              Evolve with AI, or be left behind.
             </p>
 
             {/* CTA Buttons */}
@@ -82,15 +76,15 @@ const Index = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-12 border-t border-primary/20">
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2 neon-text">24/7</div>
+                <div className="text-4xl md:text-5xl font-bold mb-2">24/7</div>
                 <div className="text-sm text-muted-foreground">Always Available</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-secondary mb-2 neon-text-magenta">∞</div>
+                <div className="text-4xl md:text-5xl font-bold mb-2">∞</div>
                 <div className="text-sm text-muted-foreground">Infinite Potential</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">100%</div>
+                <div className="text-4xl md:text-5xl font-bold mb-2">100%</div>
                 <div className="text-sm text-muted-foreground">Personalized</div>
               </div>
             </div>
@@ -132,31 +126,29 @@ const Index = () => {
 
               {/* Right: Narrative */}
               <div className="space-y-8">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-bold neon-border uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/30 text-sm font-bold uppercase tracking-wider">
                   <Dna className="w-4 h-4" />
                   Our Philosophy
                 </div>
 
                 <h2 className="text-4xl md:text-6xl font-bold leading-tight">
-                  <span className="electric-gradient bg-clip-text text-transparent">Evolution</span> Isn't About 
+                  Evolution Isn't About 
                   <br />Replacing Humanity
                 </h2>
 
                 <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                   <p>
-                    It's about <span className="text-primary font-semibold">refining it</span>. 
+                    It's about refining it. 
                     We stand at humanity's most pivotal moment — the dawn of cognitive evolution.
                   </p>
                   
                   <p>
-                    <span className="text-secondary font-semibold">Humanyx</span> represents the fusion of 
-                    <span className="text-primary font-semibold"> human potential</span> and 
-                    <span className="text-secondary font-semibold"> adaptive intelligence</span>. 
+                    Humanyx represents the fusion of human potential and adaptive intelligence. 
                     Like the X and Y chromosomes that define us, we create something greater than the sum of our parts.
                   </p>
 
                   <p>
-                    We design intelligence that grows <span className="text-accent font-semibold">with you</span>, 
+                    We design intelligence that grows with you, 
                     not beyond you. Your personal AI coach that understands you at a biological, cognitive, and emotional level.
                   </p>
                 </div>
@@ -178,8 +170,8 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-6xl font-bold mb-8 neon-text">
-                The Humanyx <span className="electric-gradient bg-clip-text text-transparent">Platform</span>
+              <h2 className="text-4xl md:text-6xl font-bold mb-8">
+                The Humanyx Platform
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Three intelligent layers working in harmony to accelerate your evolution
@@ -223,8 +215,8 @@ const Index = () => {
                     </div>
                     
                     <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-3xl font-bold mb-2 neon-text">{layer.title}</h3>
-                      <p className={`text-lg font-semibold mb-3 text-${layer.color}`}>{layer.subtitle}</p>
+                      <h3 className="text-3xl font-bold mb-2">{layer.title}</h3>
+                      <p className="text-lg font-semibold mb-3">{layer.subtitle}</p>
                       <p className="text-muted-foreground leading-relaxed">{layer.description}</p>
                     </div>
                   </div>
@@ -241,7 +233,7 @@ const Index = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 neon-text">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">
               Beyond Traditional Coaching
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -297,7 +289,7 @@ const Index = () => {
                 <div className={`text-${feature.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4 neon-text">{feature.title}</h3>
+                <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
               </div>
             ))}
@@ -312,7 +304,7 @@ const Index = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold mb-20 text-center">
-              Your <span className="electric-gradient bg-clip-text text-transparent">Evolution Journey</span>
+              Your Evolution Journey
             </h2>
             
             <div className="space-y-16">
@@ -379,7 +371,7 @@ const Index = () => {
               />
             </div>
             
-            <h2 className="text-4xl md:text-7xl font-bold mb-8 neon-text leading-tight">
+            <h2 className="text-4xl md:text-7xl font-bold mb-8 leading-tight">
               Join the Evolution
             </h2>
             
@@ -389,7 +381,7 @@ const Index = () => {
             </p>
             
             <p className="text-lg text-foreground/80 mb-12 font-light">
-              Your first session is <span className="text-primary font-bold neon-text">completely free</span>. 
+              Your first session is completely free. 
               Experience the future of human potential.
             </p>
             
@@ -428,8 +420,8 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
             <div className="flex items-center gap-3">
               <img src={chromosomeLogo} alt="Humanyx" className="w-8 h-8 animate-breathe" />
-              <div className="text-2xl font-bold neon-text">
-                HUMAN<span className="text-primary">Y</span><span className="text-secondary">X</span>
+              <div className="text-2xl font-bold">
+                HUMANYX
               </div>
             </div>
             
@@ -445,7 +437,7 @@ const Index = () => {
           
           <div className="text-center text-sm text-muted-foreground border-t border-primary/10 pt-8">
             <p className="mb-2">
-              © 2025 HUMANYX. <span className="text-primary neon-text">The Next Generation of Human.</span>
+              © 2025 HUMANYX. The Next Generation of Human.
             </p>
             <p className="text-xs opacity-60">
               Evolve with AI, or be left behind.
