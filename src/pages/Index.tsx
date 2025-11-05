@@ -107,7 +107,7 @@ const Index = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-20">
+            <div className="text-center mb-12">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
                 Meet <span className="glow-text">Orby</span>
               </h2>
