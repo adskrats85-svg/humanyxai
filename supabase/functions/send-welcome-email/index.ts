@@ -27,6 +27,21 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Validate internal secret
+  const INTERNAL_SECRET = Deno.env.get("EDGE_FUNCTION_SECRET");
+  const providedSecret = req.headers.get("x-internal-secret");
+
+  if (!INTERNAL_SECRET || providedSecret !== INTERNAL_SECRET) {
+    console.error("Unauthorized access attempt");
+    return new Response(
+      JSON.stringify({ error: "Unauthorized" }),
+      {
+        status: 401,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      }
+    );
+  }
+
   try {
     const requestBody = await req.json();
     
