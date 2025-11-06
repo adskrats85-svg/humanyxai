@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -8,10 +9,17 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-interface WelcomeEmailRequest {
-  email: string;
-  source?: string;
-}
+// Input validation schema
+const WelcomeEmailSchema = z.object({
+  email: z.string()
+    .email({ message: "Invalid email address" })
+    .max(255, { message: "Email must be less than 255 characters" })
+    .trim(),
+  source: z.string()
+    .max(100, { message: "Source must be less than 100 characters" })
+    .trim()
+    .optional(),
+});
 
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
@@ -20,7 +28,25 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { email, source }: WelcomeEmailRequest = await req.json();
+    const requestBody = await req.json();
+    
+    // Validate input
+    const validation = WelcomeEmailSchema.safeParse(requestBody);
+    if (!validation.success) {
+      console.error("Validation failed:", validation.error.errors);
+      return new Response(
+        JSON.stringify({ 
+          error: "Invalid input",
+          details: validation.error.errors.map(e => e.message).join(", ")
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const { email, source } = validation.data;
     console.log(`Sending welcome email to ${email} from source: ${source}`);
 
     const sourceMessage = source === 'hero' 

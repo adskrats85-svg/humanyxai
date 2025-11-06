@@ -1,16 +1,25 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.79.0";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-interface WelcomeSMSRequest {
-  phone: string;
-  source?: string;
-  signup_id: string;
-}
+// Input validation schema
+const WelcomeSMSSchema = z.object({
+  phone: z.string()
+    .regex(/^\+?[1-9]\d{1,14}$/, { message: "Invalid phone number format. Must be E.164 format (e.g., +1234567890)" })
+    .trim(),
+  source: z.string()
+    .max(100, { message: "Source must be less than 100 characters" })
+    .trim()
+    .optional(),
+  signup_id: z.string()
+    .uuid({ message: "Invalid signup ID format" })
+    .trim(),
+});
 
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
@@ -23,7 +32,25 @@ const handler = async (req: Request): Promise<Response> => {
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
   try {
-    const { phone, source, signup_id }: WelcomeSMSRequest = await req.json();
+    const requestBody = await req.json();
+    
+    // Validate input
+    const validation = WelcomeSMSSchema.safeParse(requestBody);
+    if (!validation.success) {
+      console.error("Validation failed:", validation.error.errors);
+      return new Response(
+        JSON.stringify({ 
+          error: "Invalid input",
+          details: validation.error.errors.map(e => e.message).join(", ")
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const { phone, source, signup_id } = validation.data;
     console.log(`Sending welcome SMS to ${phone} from source: ${source}, signup_id: ${signup_id}`);
 
     // Initialize Twilio client
@@ -33,30 +60,6 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!accountSid || !authToken || !twilioPhone) {
       throw new Error("Twilio credentials not configured");
-    }
-
-    // Validate phone number format (basic E.164 check)
-    if (!phone.match(/^\+?[1-9]\d{1,14}$/)) {
-      console.error("Invalid phone number format:", phone);
-      
-      // Log failed attempt
-      await supabase.from("sms_logs").insert({
-        phone,
-        email: null,
-        status: "failed",
-        reason: "Invalid phone number format",
-      });
-
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: "Invalid phone number format. Must be E.164 format (e.g., +1234567890)" 
-        }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
     }
 
     // Send SMS via Twilio REST API (Deno-compatible)
