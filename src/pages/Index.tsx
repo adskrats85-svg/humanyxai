@@ -279,11 +279,6 @@ const Index = () => {
                   <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby">
                     <img src={nyxCore} alt="" className="w-[500px] h-[500px] object-contain opacity-40 blur-sm" loading="lazy" decoding="async" />
                   </div>
-                  
-                  {/* Human Duo Profiles - Foreground */}
-                  <div className="relative z-10 flex items-center justify-center">
-                    <img src="/src/assets/human-duo-profiles.png" alt="Human profiles with AI" className="w-full max-w-lg object-contain" loading="lazy" decoding="async" />
-                  </div>
                 </div>
               </div>
             </div>
