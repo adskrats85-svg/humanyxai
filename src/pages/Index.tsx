@@ -4,6 +4,7 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { z } from 'zod';
 import nyxCore from "@/assets/nyx-dna.png";
 import heroStaticBackground from "@/assets/hero-static-background.png";
 import heroDuoFigures from "@/assets/hero-duo-figures.png";
@@ -19,6 +20,43 @@ import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ChatInterface from "@/components/ChatInterface";
 import VoiceChat from "@/components/VoiceChat";
+
+// Zod validation schema for signup form
+const signupSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .email({ message: "Please enter a valid email address" })
+    .max(255, { message: "Email must be less than 255 characters" })
+    .optional()
+    .or(z.literal('')),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^\+?[1-9]\d{1,14}$/, { 
+      message: "Phone must be in E.164 format (e.g., +1234567890)" 
+    })
+    .optional()
+    .or(z.literal('')),
+  contactPreference: z.enum(['email', 'sms', 'both']),
+}).refine(
+  (data) => {
+    if (data.contactPreference === 'email' || data.contactPreference === 'both') {
+      return data.email && data.email.length > 0;
+    }
+    return true;
+  },
+  { message: "Email is required for email notifications", path: ['email'] }
+).refine(
+  (data) => {
+    if (data.contactPreference === 'sms' || data.contactPreference === 'both') {
+      return data.phone && data.phone.length > 0;
+    }
+    return true;
+  },
+  { message: "Phone is required for SMS notifications", path: ['phone'] }
+);
+
 const Index = () => {
   const isMobile = useIsMobile();
   const [email, setEmail] = useState("");
@@ -35,22 +73,22 @@ const Index = () => {
     const preference = fromLocation === "hero" ? contactPreference : bottomContactPreference;
 
     // Normalize inputs
-    const normalizedEmail = rawEmail ? rawEmail.trim().toLowerCase() : null;
-    const normalizedPhone = rawPhone ? rawPhone.trim().replace(/\s+/g, "") : null;
+    const normalizedEmail = rawEmail ? rawEmail.trim().toLowerCase() : '';
+    const normalizedPhone = rawPhone ? rawPhone.trim().replace(/\s+/g, "") : '';
 
-    // Validation
-    if ((preference === "email" || preference === "both") && !normalizedEmail) {
+    // Validate with Zod schema
+    const validationResult = signupSchema.safeParse({
+      email: normalizedEmail,
+      phone: normalizedPhone,
+      contactPreference: preference,
+    });
+
+    if (!validationResult.success) {
+      const errors = validationResult.error.flatten().fieldErrors;
+      const firstError = Object.values(errors).flat()[0];
       toast({
-        title: "Email required",
-        description: "Please enter your email address.",
-        variant: "destructive"
-      });
-      return;
-    }
-    if ((preference === "sms" || preference === "both") && !normalizedPhone) {
-      toast({
-        title: "Phone required",
-        description: "Please enter your mobile number.",
+        title: "Validation Error",
+        description: firstError || "Please check your input",
         variant: "destructive"
       });
       return;
@@ -90,8 +128,8 @@ const Index = () => {
       const {
         error
       } = await supabase.from('signups').insert([{
-        email: normalizedEmail,
-        phone: normalizedPhone,
+        email: normalizedEmail || null,
+        phone: normalizedPhone || null,
         contact_preference: preference,
         source: fromLocation
       }]);
@@ -106,18 +144,14 @@ const Index = () => {
         throw error;
       }
 
-      // Query SMS logs if SMS was selected
-      let smsMessage = "";
-      if ((preference === "sms" || preference === "both") && normalizedPhone) {
-        const {
-          data: smsLogs
-        } = await supabase.from('sms_logs').select('*').eq('phone', normalizedPhone).eq('status', 'sent').gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
-        const smsCount = smsLogs?.length || 0;
-        smsMessage = ` You've used ${smsCount}/5 daily SMS.`;
-      }
+      // Success message without querying internal logs
       toast({
         title: "You're on the list!",
-        description: preference === "email" ? `We'll send updates to ${normalizedEmail}` : preference === "sms" ? `We'll send updates to ${normalizedPhone}.${smsMessage}` : `We'll send updates via email and SMS.${smsMessage}`
+        description: preference === "email" 
+          ? `We'll send updates to ${normalizedEmail}` 
+          : preference === "sms" 
+          ? `We'll send updates to ${normalizedPhone}` 
+          : `We'll send updates via email and SMS`
       });
       if (fromLocation === "hero") {
         setEmail("");
