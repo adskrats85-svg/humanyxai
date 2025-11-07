@@ -160,6 +160,10 @@ export default {
         "opacity-breathe-orby": {
           "0%, 100%": { opacity: "0.1" },
           "50%": { opacity: "0.8" }
+        },
+        "scroll": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" }
         }
       },
       animation: {
@@ -179,6 +183,7 @@ export default {
         "hero-fade-in-delay-3": "hero-fade-in-delay-3 2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "hero-fade-in-delay-4": "hero-fade-in-delay-4 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "opacity-breathe-orby": "opacity-breathe-orby 8s ease-in-out infinite",
+        "scroll": "scroll 30s linear infinite",
       },
     },
   },

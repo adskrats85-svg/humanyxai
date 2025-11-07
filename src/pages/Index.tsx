@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ChatInterface from "@/components/ChatInterface";
 import VoiceChat from "@/components/VoiceChat";
+import AsSeenOnBanner from "@/components/AsSeenOnBanner";
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -318,6 +319,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* As Seen On Banner */}
+      <AsSeenOnBanner />
 
       {/* Meet Nyx Section */}
       <section id="nyx" className="py-32 relative overflow-hidden">
