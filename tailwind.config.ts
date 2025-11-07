@@ -158,8 +158,8 @@ export default {
           }
         },
         "opacity-breathe-orby": {
-          "0%, 100%": { opacity: "0.3" },
-          "50%": { opacity: "0.85" }
+          "0%, 100%": { opacity: "0.1" },
+          "50%": { opacity: "0.8" }
         }
       },
       animation: {
