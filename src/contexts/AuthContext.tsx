@@ -5,6 +5,7 @@ import { supabase } from '@/integrations/supabase/client-fallback';
 interface AuthContextType {
   user: User | null;
   session: Session | null;
+  initializing: boolean;
   signOut: () => Promise<void>;
 }
 
@@ -13,6 +14,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
     // Set up auth state listener
@@ -25,11 +27,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     );
 
-    // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-    });
+// Check for existing session
+supabase.auth.getSession().then(({ data: { session } }) => {
+  setSession(session);
+  setUser(session?.user ?? null);
+  setInitializing(false);
+});
 
     return () => subscription.unsubscribe();
   }, []);
@@ -39,7 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, signOut }}>
+    <AuthContext.Provider value={{ user, session, initializing, signOut }}>
       {children}
     </AuthContext.Provider>
   );

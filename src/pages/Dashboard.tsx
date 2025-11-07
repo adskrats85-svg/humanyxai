@@ -6,16 +6,16 @@ import { Sparkles, MessageCircle, Mic, TrendingUp, Target, Brain, Zap, Globe } f
 import UserMenu from "@/components/UserMenu";
 
 export default function Dashboard() {
-  const { user } = useAuth();
+  const { user, initializing } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !initializing) {
       navigate('/auth');
     }
-  }, [user, navigate]);
+  }, [user, initializing, navigate]);
 
-  if (!user) return null;
+  if (!user && initializing) return null;
 
   return (
     <div className="min-h-screen text-foreground">
