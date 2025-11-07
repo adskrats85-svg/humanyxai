@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import orbyCore from "@/assets/orby-dna.png";
 import heroBackground from "@/assets/hero-background.png";
+import humanDuoProfiles from "@/assets/human-duo-profiles.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -177,12 +178,15 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Responsive Background Image */}
-        <div className="absolute inset-0 opacity-40 pointer-events-none flex items-center justify-center">
+        {/* Static Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none" />
+        
+        {/* Animated Human Figures Layer */}
+        <div className="absolute inset-0 animate-opacity-breathe-orby pointer-events-none flex items-center justify-center">
           <img 
-            src={isMobile ? orbyCore : heroBackground} 
+            src={humanDuoProfiles} 
             alt="" 
-            className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-cover"} 
+            className="w-full h-full object-cover"
             fetchPriority="high" 
             decoding="async" 
           />
