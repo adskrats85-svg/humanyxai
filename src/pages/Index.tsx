@@ -12,8 +12,6 @@ import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ChatInterface from "@/components/ChatInterface";
 import VoiceChat from "@/components/VoiceChat";
-
-
 const Index = () => {
   const isMobile = useIsMobile();
   const [email, setEmail] = useState("");
@@ -23,10 +21,8 @@ const Index = () => {
   const [contactPreference, setContactPreference] = useState<"email" | "sms" | "both">("email");
   const [bottomContactPreference, setBottomContactPreference] = useState<"email" | "sms" | "both">("email");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleEarlyAccessSubmit = async (e: React.FormEvent, fromLocation: string) => {
     e.preventDefault();
-
     const rawEmail = fromLocation === "hero" ? email : bottomEmail;
     const rawPhone = fromLocation === "hero" ? phone : bottomPhone;
     const preference = fromLocation === "hero" ? contactPreference : bottomContactPreference;
@@ -40,42 +36,34 @@ const Index = () => {
       toast({
         title: "Email required",
         description: "Please enter your email address.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
     if ((preference === "sms" || preference === "both") && !normalizedPhone) {
       toast({
         title: "Phone required",
         description: "Please enter your mobile number.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
     setIsSubmitting(true);
-
     try {
       // Check if email/phone is whitelisted for testing (build OR only for present values)
       const orFilters: string[] = [];
       if (normalizedEmail) orFilters.push(`email.eq.${normalizedEmail}`);
       if (normalizedPhone) orFilters.push(`phone.eq.${normalizedPhone}`);
-
       let whitelistCheck: any = null;
       if (orFilters.length > 0) {
-        const { data } = await supabase
-          .from('test_whitelist')
-          .select('*')
-          .or(orFilters.join(','))
-          .maybeSingle();
+        const {
+          data
+        } = await supabase.from('test_whitelist').select('*').or(orFilters.join(',')).maybeSingle();
         whitelistCheck = data;
       }
-
       if (whitelistCheck) {
         // Whitelisted user - delete any existing signup records first
         let del = supabase.from('signups').delete();
-
         if (normalizedEmail && normalizedPhone) {
           del = del.or(`email.ilike.${normalizedEmail},phone.eq.${normalizedPhone}`);
         } else if (normalizedEmail) {
@@ -83,30 +71,28 @@ const Index = () => {
         } else if (normalizedPhone) {
           del = del.eq('phone', normalizedPhone);
         }
-
-        const { error: delError } = await del.select('id');
+        const {
+          error: delError
+        } = await del.select('id');
         if (delError) {
           console.warn('Whitelist cleanup failed', delError);
         }
       }
 
       // Insert new signup with normalized values
-      const { error } = await supabase
-        .from('signups')
-        .insert([
-          {
-            email: normalizedEmail,
-            phone: normalizedPhone,
-            contact_preference: preference,
-            source: fromLocation,
-          },
-        ]);
-
+      const {
+        error
+      } = await supabase.from('signups').insert([{
+        email: normalizedEmail,
+        phone: normalizedPhone,
+        contact_preference: preference,
+        source: fromLocation
+      }]);
       if (error) {
         if (error.code === '23505') {
           toast({
             title: "Already signed up!",
-            description: "You're already on our early access list.",
+            description: "You're already on our early access list."
           });
           return;
         }
@@ -116,27 +102,16 @@ const Index = () => {
       // Query SMS logs if SMS was selected
       let smsMessage = "";
       if ((preference === "sms" || preference === "both") && normalizedPhone) {
-        const { data: smsLogs } = await supabase
-          .from('sms_logs')
-          .select('*')
-          .eq('phone', normalizedPhone)
-          .eq('status', 'sent')
-          .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
-
+        const {
+          data: smsLogs
+        } = await supabase.from('sms_logs').select('*').eq('phone', normalizedPhone).eq('status', 'sent').gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
         const smsCount = smsLogs?.length || 0;
         smsMessage = ` You've used ${smsCount}/5 daily SMS.`;
       }
-
       toast({
         title: "You're on the list!",
-        description:
-          preference === "email"
-            ? `We'll send updates to ${normalizedEmail}`
-            : preference === "sms"
-            ? `We'll send updates to ${normalizedPhone}.${smsMessage}`
-            : `We'll send updates via email and SMS.${smsMessage}`,
+        description: preference === "email" ? `We'll send updates to ${normalizedEmail}` : preference === "sms" ? `We'll send updates to ${normalizedPhone}.${smsMessage}` : `We'll send updates via email and SMS.${smsMessage}`
       });
-
       if (fromLocation === "hero") {
         setEmail("");
         setPhone("");
@@ -148,13 +123,12 @@ const Index = () => {
       toast({
         title: "Something went wrong",
         description: "Please try again later.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   return <div className="min-h-screen text-foreground">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass-effect border-b border-primary/20">
@@ -183,31 +157,19 @@ const Index = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Static Background Layer */}
         <div className="absolute inset-0 opacity-40 pointer-events-none">
-          <img 
-            src={heroStaticBackground} 
-            alt=""
-            className="w-full h-full object-cover" 
-            fetchPriority="high" 
-            decoding="async" 
-          />
+          <img src={heroStaticBackground} alt="" className="w-full h-full object-cover" fetchPriority="high" decoding="async" />
         </div>
         
         {/* Animated Duo Figures Layer */}
         <div className="absolute inset-0 pointer-events-none animate-opacity-breathe-orby">
-          <img 
-            src={heroDuoFigures} 
-            alt=""
-            className="w-full h-full object-cover object-[center_30%]"
-            decoding="async" 
-          />
+          <img src={heroDuoFigures} alt="" className="w-full h-full object-cover object-[center_30%]" decoding="async" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-6xl mx-auto">
             {/* Tagline */}
             <div className="mb-8 opacity-0 animate-hero-fade-in">
-              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-effect border border-primary/30 text-sm font-semibold">
-                <Sparkles className="w-4 h-4 text-primary" />
+              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-effect border border-primary/30 text-sm font-semibold">#1 AI-Powered Personal Development Platform<Sparkles className="w-4 h-4 text-primary" />
                 AI-Powered Personal Development Platform
               </span>
             </div>
@@ -233,18 +195,11 @@ const Index = () => {
               </div>
 
               {/* Contact Preference & Form */}
-              <form 
-                onSubmit={(e) => handleEarlyAccessSubmit(e, "hero")} 
-                className="flex flex-col gap-4 w-full max-w-md"
-              >
+              <form onSubmit={e => handleEarlyAccessSubmit(e, "hero")} className="flex flex-col gap-4 w-full max-w-md">
                 {/* Contact Preference Selector */}
                 <div className="glass-effect rounded-lg p-4 border border-primary/20">
                   <Label className="text-sm font-semibold mb-3 block text-center">How would you like to be contacted?</Label>
-                  <RadioGroup 
-                    value={contactPreference} 
-                    onValueChange={(value: "email" | "sms" | "both") => setContactPreference(value)}
-                    className="flex flex-col sm:flex-row gap-3 justify-center"
-                  >
+                  <RadioGroup value={contactPreference} onValueChange={(value: "email" | "sms" | "both") => setContactPreference(value)} className="flex flex-col sm:flex-row gap-3 justify-center">
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="email" id="hero-email" />
                       <Label htmlFor="hero-email" className="cursor-pointer">Email Only</Label>
@@ -262,33 +217,11 @@ const Index = () => {
 
                 {/* Dynamic Input Fields */}
                 <div className="flex flex-col gap-3">
-                  {(contactPreference === "email" || contactPreference === "both") && (
-                    <Input
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="bg-background/50 border-primary/30 focus:border-primary"
-                    />
-                  )}
-                  {(contactPreference === "sms" || contactPreference === "both") && (
-                    <Input
-                      type="tel"
-                      placeholder="Enter your mobile number"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="bg-background/50 border-primary/30 focus:border-primary"
-                    />
-                  )}
+                  {(contactPreference === "email" || contactPreference === "both") && <Input type="email" placeholder="Enter your email" value={email} onChange={e => setEmail(e.target.value)} className="bg-background/50 border-primary/30 focus:border-primary" />}
+                  {(contactPreference === "sms" || contactPreference === "both") && <Input type="tel" placeholder="Enter your mobile number" value={phone} onChange={e => setPhone(e.target.value)} className="bg-background/50 border-primary/30 focus:border-primary" />}
                 </div>
 
-                <Button 
-                  variant="gradient" 
-                  size="lg" 
-                  type="submit" 
-                  className="group w-full"
-                  disabled={isSubmitting}
-                >
+                <Button variant="gradient" size="lg" type="submit" className="group w-full" disabled={isSubmitting}>
                   <Zap className="w-5 h-5" />
                   {isSubmitting ? "Joining..." : "Request Early Access"}
                 </Button>
@@ -324,13 +257,7 @@ const Index = () => {
       <section id="nyx" className="py-32 relative overflow-hidden">
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby pointer-events-none">
-          <img 
-            src={isMobile ? nyxCore : heroStaticBackground}
-            alt="" 
-            className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
-            loading="lazy" 
-            decoding="async" 
-          />
+          <img src={isMobile ? nyxCore : heroStaticBackground} alt="" className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} loading="lazy" decoding="async" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -349,24 +276,12 @@ const Index = () => {
                 <div className="relative w-full max-w-2xl">
                   {/* Breathing DNA Orb Background */}
                   <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby">
-                    <img 
-                      src={nyxCore} 
-                      alt="" 
-                      className="w-[500px] h-[500px] object-contain opacity-40 blur-sm" 
-                      loading="lazy" 
-                      decoding="async" 
-                    />
+                    <img src={nyxCore} alt="" className="w-[500px] h-[500px] object-contain opacity-40 blur-sm" loading="lazy" decoding="async" />
                   </div>
                   
                   {/* Human Duo Profiles - Foreground */}
                   <div className="relative z-10 flex items-center justify-center">
-                    <img 
-                      src="/src/assets/human-duo-profiles.png" 
-                      alt="Human profiles with AI" 
-                      className="w-full max-w-lg object-contain" 
-                      loading="lazy" 
-                      decoding="async" 
-                    />
+                    <img src="/src/assets/human-duo-profiles.png" alt="Human profiles with AI" className="w-full max-w-lg object-contain" loading="lazy" decoding="async" />
                   </div>
                 </div>
               </div>
@@ -423,13 +338,7 @@ const Index = () => {
       <section id="features" className="py-32 relative overflow-hidden">
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <img 
-            src={isMobile ? nyxCore : heroStaticBackground}
-            alt=""
-            className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
-            loading="lazy" 
-            decoding="async" 
-          />
+          <img src={isMobile ? nyxCore : heroStaticBackground} alt="" className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} loading="lazy" decoding="async" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -482,13 +391,7 @@ const Index = () => {
       <section id="how-it-works" className="py-32 relative overflow-hidden">
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <img 
-            src={isMobile ? nyxCore : heroStaticBackground} 
-            alt=""
-            className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
-            loading="lazy" 
-            decoding="async" 
-          />
+          <img src={isMobile ? nyxCore : heroStaticBackground} alt="" className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} loading="lazy" decoding="async" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/30 to-transparent pointer-events-none" />
         <div className="container mx-auto px-6 relative z-10">
@@ -564,18 +467,11 @@ const Index = () => {
             </div>
 
             {/* Contact Preference & Form */}
-            <form 
-              onSubmit={(e) => handleEarlyAccessSubmit(e, "bottom")} 
-              className="flex flex-col gap-4 max-w-md mx-auto mb-6"
-            >
+            <form onSubmit={e => handleEarlyAccessSubmit(e, "bottom")} className="flex flex-col gap-4 max-w-md mx-auto mb-6">
               {/* Contact Preference Selector */}
               <div className="glass-effect rounded-lg p-4 border border-primary/20">
                 <Label className="text-sm font-semibold mb-3 block text-center">How would you like to be contacted?</Label>
-                <RadioGroup 
-                  value={bottomContactPreference} 
-                  onValueChange={(value: "email" | "sms" | "both") => setBottomContactPreference(value)}
-                  className="flex flex-col sm:flex-row gap-3 justify-center"
-                >
+                <RadioGroup value={bottomContactPreference} onValueChange={(value: "email" | "sms" | "both") => setBottomContactPreference(value)} className="flex flex-col sm:flex-row gap-3 justify-center">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="email" id="bottom-email" />
                     <Label htmlFor="bottom-email" className="cursor-pointer">Email Only</Label>
@@ -593,33 +489,11 @@ const Index = () => {
 
               {/* Dynamic Input Fields */}
               <div className="flex flex-col gap-3">
-                {(bottomContactPreference === "email" || bottomContactPreference === "both") && (
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={bottomEmail}
-                    onChange={(e) => setBottomEmail(e.target.value)}
-                    className="bg-background/50 border-primary/30 focus:border-primary"
-                  />
-                )}
-                {(bottomContactPreference === "sms" || bottomContactPreference === "both") && (
-                  <Input
-                    type="tel"
-                    placeholder="Enter your mobile number"
-                    value={bottomPhone}
-                    onChange={(e) => setBottomPhone(e.target.value)}
-                    className="bg-background/50 border-primary/30 focus:border-primary"
-                  />
-                )}
+                {(bottomContactPreference === "email" || bottomContactPreference === "both") && <Input type="email" placeholder="Enter your email" value={bottomEmail} onChange={e => setBottomEmail(e.target.value)} className="bg-background/50 border-primary/30 focus:border-primary" />}
+                {(bottomContactPreference === "sms" || bottomContactPreference === "both") && <Input type="tel" placeholder="Enter your mobile number" value={bottomPhone} onChange={e => setBottomPhone(e.target.value)} className="bg-background/50 border-primary/30 focus:border-primary" />}
               </div>
 
-              <Button 
-                variant="gradient" 
-                size="lg" 
-                type="submit" 
-                className="group w-full"
-                disabled={isSubmitting}
-              >
+              <Button variant="gradient" size="lg" type="submit" className="group w-full" disabled={isSubmitting}>
                 <Zap className="w-5 h-5" />
                 {isSubmitting ? "Joining..." : "Request Early Access"}
               </Button>
