@@ -8,8 +8,10 @@ import orbyCore from "@/assets/orby-dna.png";
 import heroBackground from "@/assets/hero-background.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
+  const isMobile = useIsMobile();
   const [email, setEmail] = useState("");
   const [bottomEmail, setBottomEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -134,9 +136,15 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Faint Background Image */}
-        <div className="absolute inset-0 opacity-40 pointer-events-none">
-          <img src={heroBackground} alt="" className="w-full h-full object-cover" fetchPriority="high" decoding="async" />
+        {/* Responsive Background Image */}
+        <div className="absolute inset-0 opacity-40 pointer-events-none flex items-center justify-center">
+          <img 
+            src={isMobile ? orbyCore : heroBackground} 
+            alt="" 
+            className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-cover"} 
+            fetchPriority="high" 
+            decoding="async" 
+          />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -259,9 +267,15 @@ const Index = () => {
 
       {/* Meet Orby Section */}
       <section id="orby" className="py-32 relative overflow-hidden">
-        {/* Faint Background Image */}
+        {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby pointer-events-none">
-          <img src={heroBackground} alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
+          <img 
+            src={isMobile ? orbyCore : heroBackground} 
+            alt="" 
+            className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
+            loading="lazy" 
+            decoding="async" 
+          />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -314,9 +328,15 @@ const Index = () => {
 
       {/* Features Section */}
       <section id="features" className="py-32 relative overflow-hidden">
-        {/* Faint Background Image */}
+        {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <img src={heroBackground} alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
+          <img 
+            src={isMobile ? orbyCore : heroBackground} 
+            alt="" 
+            className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
+            loading="lazy" 
+            decoding="async" 
+          />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -367,9 +387,15 @@ const Index = () => {
 
       {/* How It Works Section */}
       <section id="how-it-works" className="py-32 relative overflow-hidden">
-        {/* Faint Background Image */}
+        {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <img src={heroBackground} alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
+          <img 
+            src={isMobile ? orbyCore : heroBackground} 
+            alt="" 
+            className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
+            loading="lazy" 
+            decoding="async" 
+          />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/30 to-transparent pointer-events-none" />
         <div className="container mx-auto px-6 relative z-10">
