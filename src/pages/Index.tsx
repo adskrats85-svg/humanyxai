@@ -267,7 +267,7 @@ const Index = () => {
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
                 Meet <span className="glow-text">Nyx</span>
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Your AI companion for emotional, mental, and behavioral growth.Your personal AI coach—a living, breathing intelligence designed to understand, guide, and evolve alongside you on your journey to self-improvement.</p>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Artificial Intelligence's nerve centre. Your very own AI companion for emotional, mental, and behavioral growth. A living, breathing intelligence designed to understand, guide, and evolve alongside you on your journey to self-improvement. There is nothing artificial about it!</p>
             </div>
 
             {/* Nyx Visual */}
