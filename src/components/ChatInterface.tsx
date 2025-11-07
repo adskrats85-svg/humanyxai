@@ -9,6 +9,14 @@ type Message = { role: 'user' | 'assistant'; content: string };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
+const SUGGESTIONS = [
+  "Help me set meaningful goals for the next 6 months",
+  "I'm feeling stuck in my career path",
+  "How can I improve my daily habits and routines?",
+  "I want to work on my self-confidence",
+  "Help me manage stress and anxiety better"
+];
+
 export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -116,8 +124,13 @@ export default function ChatInterface() {
     streamChat(message);
   };
 
+  const handleSuggestionClick = (suggestion: string) => {
+    setInput('');
+    streamChat(suggestion);
+  };
+
   return (
-    <div className="flex flex-col h-[600px] w-full max-w-3xl mx-auto border border-border rounded-lg bg-card">
+    <div className="flex flex-col h-[400px] w-full max-w-3xl mx-auto border border-border rounded-lg bg-card">
       <div className="p-4 border-b border-border">
         <h2 className="text-xl font-semibold text-foreground">AI Chat Assistant</h2>
         <p className="text-sm text-muted-foreground">Powered by google/gemini-2.5-flash</p>
@@ -125,6 +138,26 @@ export default function ChatInterface() {
 
       <ScrollArea className="flex-1 p-4">
         <div className="space-y-4">
+          {messages.length === 0 && (
+            <div className="space-y-3 mb-6">
+              <p className="text-sm text-muted-foreground text-center mb-3">
+                Start with a suggestion or ask your own question:
+              </p>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {SUGGESTIONS.map((suggestion, idx) => (
+                  <Button
+                    key={idx}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    className="text-xs"
+                  >
+                    {suggestion}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
           {messages.map((msg, idx) => (
             <div
               key={idx}

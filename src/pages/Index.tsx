@@ -4,12 +4,13 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import orbyCore from "@/assets/orby-dna.png";
+import nyxCore from "@/assets/nyx-dna.png";
 import heroBackground from "@/assets/hero-background.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ChatInterface from "@/components/ChatInterface";
+import VoiceChat from "@/components/VoiceChat";
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -166,7 +167,7 @@ const Index = () => {
           </div>
           <div className="hidden md:flex gap-8 text-sm font-medium">
             <a href="#features" className="hover:text-primary transition-colors">Features</a>
-            <a href="#orby" className="hover:text-primary transition-colors">Meet Orby</a>
+            <a href="#nyx" className="hover:text-primary transition-colors">Meet Nyx</a>
             <a href="#how-it-works" className="hover:text-primary transition-colors">How It Works</a>
           </div>
           <div className="flex gap-3">
@@ -181,8 +182,8 @@ const Index = () => {
         {/* Responsive Background Image */}
         <div className="absolute inset-0 opacity-40 pointer-events-none flex items-center justify-center">
           <img 
-            src={isMobile ? orbyCore : heroBackground} 
-            alt="" 
+            src={isMobile ? nyxCore : heroBackground} 
+            alt=""
             className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-cover"} 
             fetchPriority="high" 
             decoding="async" 
@@ -307,30 +308,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* AI Chat Section */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Try <span className="glow-text">Orby</span> Now
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Experience the power of AI-powered conversation. Ask questions, get insights, and see how Orby can help you evolve.
-            </p>
-          </div>
-
-          <ChatInterface />
-        </div>
-      </section>
-
-      {/* Meet Orby Section */}
-      <section id="orby" className="py-32 relative overflow-hidden">
+      {/* Meet Nyx Section */}
+      <section id="nyx" className="py-32 relative overflow-hidden">
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby pointer-events-none">
           <img 
-            src={isMobile ? orbyCore : heroBackground} 
+            src={isMobile ? nyxCore : heroBackground} 
             alt="" 
             className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
             loading="lazy" 
@@ -342,20 +325,20 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                Meet <span className="glow-text">Orby</span>
+                Meet <span className="glow-text">Nyx</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Your AI companion for emotional, mental, and behavioral growth.Your personal AI coach—a living, breathing intelligence designed to understand, guide, and evolve alongside you on your journey to self-improvement.</p>
             </div>
 
-            {/* Orby Visual */}
+            {/* Nyx Visual */}
             <div className="relative max-w-4xl mx-auto mb-20">
-              {/* Centered Glowing Orby with Human Profiles */}
+              {/* Centered Glowing Nyx with Human Profiles */}
               <div className="relative flex items-center justify-center py-32">
                 <div className="relative w-full max-w-2xl">
                   {/* Breathing DNA Orb Background */}
                   <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby">
                     <img 
-                      src={orbyCore} 
+                      src={nyxCore} 
                       alt="" 
                       className="w-[500px] h-[500px] object-contain opacity-40 blur-sm" 
                       loading="lazy" 
@@ -377,12 +360,12 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Orby Features */}
+            {/* Nyx Features */}
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {[{
               icon: <Brain className="w-8 h-8" />,
               title: "Context-Aware",
-              description: "Orby remembers your journey, preferences, and goals to provide deeply personalized guidance."
+              description: "Nyx remembers your journey, preferences, and goals to provide deeply personalized guidance."
             }, {
               icon: <Sparkles className="w-8 h-8" />,
               title: "Always Learning",
@@ -390,7 +373,7 @@ const Index = () => {
             }, {
               icon: <MessageCircle className="w-8 h-8" />,
               title: "Natural Conversation",
-              description: "Engage through voice or text—Orby adapts to your preferred communication style."
+              description: "Engage through voice or text—Nyx adapts to your preferred communication style."
             }].map((feature, i) => <div key={i} className="p-8 rounded-2xl glow-card hover:scale-105 transition-all duration-300 group">
                   <div className="text-primary mb-4 group-hover:scale-110 transition-transform">
                     {feature.icon}
@@ -403,13 +386,34 @@ const Index = () => {
         </div>
       </section>
 
+      {/* AI Chat Section */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              Try <span className="glow-text">Nyx</span> Now
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Experience the power of AI-powered conversation. Ask questions, get insights, and see how Nyx can help you evolve.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-7xl mx-auto">
+            <ChatInterface />
+            <VoiceChat />
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section id="features" className="py-32 relative overflow-hidden">
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
           <img 
-            src={isMobile ? orbyCore : heroBackground} 
-            alt="" 
+            src={isMobile ? nyxCore : heroBackground} 
+            alt=""
             className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
             loading="lazy" 
             decoding="async" 
@@ -429,7 +433,7 @@ const Index = () => {
               {[{
               icon: <Mic className="w-8 h-8" />,
               title: "Voice-First Coaching",
-              description: "Natural conversations with your AI coach. Just speak—Orby listens, understands, and guides you forward."
+              description: "Natural conversations with your AI coach. Just speak—Nyx listens, understands, and guides you forward."
             }, {
               icon: <Target className="w-8 h-8" />,
               title: "Personalized Plans",
@@ -467,8 +471,8 @@ const Index = () => {
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
           <img 
-            src={isMobile ? orbyCore : heroBackground} 
-            alt="" 
+            src={isMobile ? nyxCore : heroBackground} 
+            alt=""
             className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
             loading="lazy" 
             decoding="async" 
@@ -490,7 +494,7 @@ const Index = () => {
               {[{
               step: "01",
               title: "Share Your Vision",
-              description: "Tell Orby about your goals, challenges, and aspirations through natural conversation. Your AI coach learns what drives you."
+              description: "Tell Nyx about your goals, challenges, and aspirations through natural conversation. Your AI coach learns what drives you."
             }, {
               step: "02",
               title: "Receive Your Plan",
@@ -498,11 +502,11 @@ const Index = () => {
             }, {
               step: "03",
               title: "Engage Daily",
-              description: "Connect with Orby via voice, text, or app. Ask questions, share wins, work through challenges—your coach is always available."
+              description: "Connect with Nyx via voice, text, or app. Ask questions, share wins, work through challenges—your coach is always available."
             }, {
               step: "04",
               title: "Evolve Together",
-              description: "Regular check-ins keep you accountable. As you grow, Orby adapts—your plan evolves with your changing needs and AI capabilities."
+              description: "Regular check-ins keep you accountable. As you grow, Nyx adapts—your plan evolves with your changing needs and AI capabilities."
             }].map((item, i) => <div key={i} className="flex flex-col md:flex-row gap-8 items-start group">
                   <div className="flex-shrink-0">
                     <div className="w-24 h-24 rounded-2xl glass-effect flex items-center justify-center text-4xl font-bold glow-text group-hover:scale-110 transition-all duration-300 border border-primary/30">
