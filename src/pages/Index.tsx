@@ -5,7 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import nyxCore from "@/assets/nyx-dna.png";
-import heroBackground from "@/assets/hero-background.png";
+import heroStaticBackground from "@/assets/hero-static-background.png";
+import heroDuoFigures from "@/assets/hero-duo-figures.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -179,13 +180,23 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Responsive Background Image */}
-        <div className="absolute inset-0 opacity-40 pointer-events-none flex items-center justify-center">
+        {/* Static Background Layer */}
+        <div className="absolute inset-0 opacity-40 pointer-events-none">
           <img 
-            src={isMobile ? nyxCore : heroBackground} 
+            src={heroStaticBackground} 
             alt=""
-            className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-cover"} 
+            className="w-full h-full object-cover" 
             fetchPriority="high" 
+            decoding="async" 
+          />
+        </div>
+        
+        {/* Animated Duo Figures Layer */}
+        <div className="absolute inset-0 pointer-events-none animate-opacity-breathe-orby">
+          <img 
+            src={heroDuoFigures} 
+            alt=""
+            className="w-full h-full object-cover" 
             decoding="async" 
           />
         </div>
@@ -313,7 +324,7 @@ const Index = () => {
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby pointer-events-none">
           <img 
-            src={isMobile ? nyxCore : heroBackground} 
+            src={isMobile ? nyxCore : heroStaticBackground}
             alt="" 
             className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
             loading="lazy" 
@@ -412,7 +423,7 @@ const Index = () => {
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
           <img 
-            src={isMobile ? nyxCore : heroBackground} 
+            src={isMobile ? nyxCore : heroStaticBackground}
             alt=""
             className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
             loading="lazy" 
@@ -471,7 +482,7 @@ const Index = () => {
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
           <img 
-            src={isMobile ? nyxCore : heroBackground} 
+            src={isMobile ? nyxCore : heroStaticBackground} 
             alt=""
             className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} 
             loading="lazy" 
@@ -527,7 +538,7 @@ const Index = () => {
       <section className="py-32 relative overflow-hidden">
         {/* Faint Background Image */}
         <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-          <img src={heroBackground} alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
+          <img src={heroStaticBackground} alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
         </div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-[150px]" />
