@@ -19,6 +19,9 @@ import alexThompson from "@/assets/reviews/alex-thompson.jpg";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap, Star } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import UserMenu from "@/components/UserMenu";
 
 // Zod validation schema for signup form
 const signupSchema = z.object({
@@ -58,6 +61,8 @@ const signupSchema = z.object({
 
 const Index = () => {
   const isMobile = useIsMobile();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [bottomEmail, setBottomEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -227,8 +232,18 @@ const Index = () => {
             <a href="#how-it-works" className="hover:text-primary transition-colors">How It Works</a>
           </div>
           <div className="flex gap-3">
-            <Button variant="glass" size="sm">Log In</Button>
-            <Button variant="gradient" size="sm">Get Started</Button>
+            {user ? (
+              <UserMenu />
+            ) : (
+              <>
+                <Button variant="glass" size="sm" onClick={() => navigate('/auth')}>
+                  Log In
+                </Button>
+                <Button variant="gradient" size="sm" onClick={() => navigate('/auth')}>
+                  Get Started
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </nav>
