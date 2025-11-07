@@ -352,6 +352,191 @@ const Index = () => {
       </section>
 
 
+      {/* Nyx Demo Section */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              See <span className="glow-text">Nyx</span> in Action
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Experience the power of AI-powered personal development. Here's how Nyx adapts to your unique journey.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {/* Demo Card 1: Goal Setting */}
+            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-primary mb-2">You</div>
+                  <div className="text-sm text-muted-foreground">
+                    "I want to improve my public speaking skills for work presentations."
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                  <div className="text-sm bg-accent/10 rounded-lg p-3">
+                    "I'll create a personalized 30-day plan. We'll start with breathing techniques, progress to mirror practice, and build up to recorded presentations. I'll check in weekly to adjust based on your confidence levels."
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-primary/10">
+                <div className="text-xs text-primary font-semibold">Adaptive Goal Planning</div>
+              </div>
+            </div>
+
+            {/* Demo Card 2: Emotional Intelligence */}
+            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.1s' }}>
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Brain className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-primary mb-2">You</div>
+                  <div className="text-sm text-muted-foreground">
+                    "I had a tough conversation with my team today. Feeling frustrated."
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                  <div className="text-sm bg-accent/10 rounded-lg p-3">
+                    "I hear your frustration. Let's unpack this. What specific moment triggered the strongest reaction? Understanding this can help you navigate similar situations better."
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-primary/10">
+                <div className="text-xs text-primary font-semibold">Emotional Processing</div>
+              </div>
+            </div>
+
+            {/* Demo Card 3: Progress Tracking */}
+            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.2s' }}>
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <TrendingUp className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-primary mb-2">You</div>
+                  <div className="text-sm text-muted-foreground">
+                    "Show me my progress this month."
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                  <div className="text-sm bg-accent/10 rounded-lg p-3">
+                    "Great momentum! You've completed 12 personal development sessions, maintained an 85% consistency rate, and showed significant improvement in confidence metrics. Your focus areas are evolving nicely."
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-primary/10">
+                <div className="text-xs text-primary font-semibold">Intelligent Insights</div>
+              </div>
+            </div>
+
+            {/* Demo Card 4: Personalized Coaching */}
+            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.15s' }}>
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-primary mb-2">You</div>
+                  <div className="text-sm text-muted-foreground">
+                    "I'm not sure what to focus on next."
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.35s' }}>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                  <div className="text-sm bg-accent/10 rounded-lg p-3">
+                    "Based on your recent interactions, I notice you're excelling at time management but struggling with delegation. Let's explore building trust with your team - it aligns perfectly with your leadership goals."
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-primary/10">
+                <div className="text-xs text-primary font-semibold">Adaptive Guidance</div>
+              </div>
+            </div>
+
+            {/* Demo Card 5: 24/7 Support */}
+            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.25s' }}>
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-primary mb-2">You</div>
+                  <div className="text-sm text-muted-foreground">
+                    "Quick question - best way to start a difficult conversation?"
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.45s' }}>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                  <div className="text-sm bg-accent/10 rounded-lg p-3">
+                    "Start with context and empathy: 'I value our working relationship and want to discuss something important.' Then be specific and focus on impact rather than blame. Want to practice together?"
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-primary/10">
+                <div className="text-xs text-primary font-semibold">Always Available</div>
+              </div>
+            </div>
+
+            {/* Demo Card 6: Learning Style */}
+            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.3s' }}>
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-primary mb-2">You</div>
+                  <div className="text-sm text-muted-foreground">
+                    "I learn better with real examples."
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+                <div className="flex-1">
+                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                  <div className="text-sm bg-accent/10 rounded-lg p-3">
+                    "Got it! I've adapted to your learning style. From now on, I'll use case studies and real-world scenarios. For instance, let's look at how Steve Jobs handled difficult product decisions..."
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-primary/10">
+                <div className="text-xs text-primary font-semibold">Personalized Learning</div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-16">
+            <p className="text-lg text-muted-foreground mb-6">
+              Ready to experience your own personalized AI companion?
+            </p>
+            <Button variant="gradient" size="lg" className="group">
+              <Sparkles className="w-5 h-5" />
+              Get Early Access
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section id="features" className="py-32 relative overflow-hidden">
         {/* Responsive Background Image */}
