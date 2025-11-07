@@ -92,6 +92,30 @@ export type Database = {
         }
         Relationships: []
       }
+      test_whitelist: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          id: string
+          notes: string | null
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          notes?: string | null
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          notes?: string | null
+          phone?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

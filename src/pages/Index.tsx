@@ -49,6 +49,22 @@ const Index = () => {
     setIsSubmitting(true);
 
     try {
+      // Check if email/phone is whitelisted for testing
+      const { data: whitelistCheck } = await supabase
+        .from('test_whitelist')
+        .select('*')
+        .or(`email.eq.${submittedEmail || 'null'},phone.eq.${submittedPhone || 'null'}`)
+        .maybeSingle();
+
+      if (whitelistCheck) {
+        // Whitelisted user - delete any existing signup records first
+        await supabase
+          .from('signups')
+          .delete()
+          .or(`email.eq.${submittedEmail},phone.eq.${submittedPhone}`);
+      }
+
+      // Insert new signup
       const { error } = await supabase
         .from('signups')
         .insert([{ 
