@@ -13,6 +13,7 @@ const corsHeaders = {
 interface VerifyOTPRequest {
   phone: string;
   code: string;
+  verificationSid?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -21,9 +22,20 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { phone, code }: VerifyOTPRequest = await req.json();
+    const { phone, code, verificationSid }: VerifyOTPRequest = await req.json();
     
-    console.log(`Verifying OTP for phone:`, phone);
+    console.log(`Verifying OTP for phone:`, phone, verificationSid ? `with SID: ${verificationSid}` : '');
+
+    // Build verification params - prefer VerificationSid if provided
+    const verifyParams: Record<string, string> = {
+      Code: code,
+    };
+    
+    if (verificationSid) {
+      verifyParams.VerificationSid = verificationSid;
+    } else {
+      verifyParams.To = phone;
+    }
 
     // Verify OTP using Twilio Verify API
     const verifyResponse = await fetch(
@@ -34,10 +46,7 @@ const handler = async (req: Request): Promise<Response> => {
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization': 'Basic ' + btoa(`${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`),
         },
-        body: new URLSearchParams({
-          To: phone,
-          Code: code,
-        }),
+        body: new URLSearchParams(verifyParams),
       }
     );
 
@@ -56,78 +65,33 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("OTP verified successfully");
 
-    // Create/sign in user with Supabase
+    // Create/sign in user with Supabase using magic link
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    let userId: string;
-
-    // Try to create the user
-    const { data: createData, error: createError } = await supabase.auth.admin.createUser({
-      phone,
-      phone_confirm: true,
-    });
-
-    if (createError) {
-      // If user already exists, get their ID
-      if (createError.message.includes('already registered')) {
-        console.log("User already exists, fetching user ID");
-        
-        const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
-        if (listError) {
-          throw listError;
-        }
-        
-        const existingUser = users.find(u => u.phone === phone);
-        if (existingUser) {
-          userId = existingUser.id;
-          console.log("Found existing user:", userId);
-        } else {
-          console.warn("Existing user with this phone not found in current page; proceeding without userId");
-        }
-      } else {
-        console.error("Supabase auth error:", createError);
-        throw createError;
-      }
-    } else {
-      userId = createData.user.id;
-      console.log("Created new user:", userId);
-    }
-
-    // Generate a session using admin API
-    // Note: generateLink doesn't directly return session tokens, so we'll use the hashed_token
+    // Generate a magic link for phone-based authentication
     const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
       type: 'magiclink',
-      email: `${phone.replace(/\+/g, '')}@phone.user`, // Use phone as email identifier
+      email: `${phone.replace(/\+/g, '')}@phone.user`,
     });
 
     if (linkError) {
-      console.error("Error generating link:", linkError);
+      console.error("Error generating magic link:", linkError);
       throw linkError;
     }
 
     console.log("Magic link generated successfully");
 
-    // Extract tokens from the action link
+    // Return the action link for client-side redirect
     const actionLink = linkData.properties.action_link;
-    const url = new URL(actionLink);
-    const accessToken = url.searchParams.get('access_token');
-    const refreshToken = url.searchParams.get('refresh_token');
-
-    if (!accessToken || !refreshToken) {
-      throw new Error('Failed to extract session tokens');
-    }
 
     return new Response(
       JSON.stringify({ 
         success: true,
         message: 'Phone number verified successfully',
-        session: {
-          access_token: accessToken,
-          refresh_token: refreshToken,
-        }
+        redirectUrl: actionLink
       }),
       {
         status: 200,

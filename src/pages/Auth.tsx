@@ -21,6 +21,8 @@ export default function Auth() {
   const [phone, setPhone] = useState('');
   const [emailOTP, setEmailOTP] = useState('');
   const [phoneOTP, setPhoneOTP] = useState('');
+  const [verificationSid, setVerificationSid] = useState('');
+  const [canResend, setCanResend] = useState(true);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -88,22 +90,35 @@ export default function Auth() {
 
   const handlePhoneSend = async (e: React.FormEvent, channel: 'sms' | 'call' = 'sms') => {
     e.preventDefault();
+    if (!canResend) return;
+    
     setLoading(true);
 
     try {
+      // Normalize phone to E.164
+      const normalizedPhone = phone.trim().replace(/\s/g, '');
+      
       const response = await fetch(`${PUBLIC_ENV.SUPABASE_URL}/functions/v1/send-auth-otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${PUBLIC_ENV.SUPABASE_PUBLISHABLE_KEY}`,
         },
-        body: JSON.stringify({ phone, channel }),
+        body: JSON.stringify({ phone: normalizedPhone, channel }),
       });
 
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
 
+      // Store the verification SID for later use
+      if (data.verificationSid) {
+        setVerificationSid(data.verificationSid);
+      }
+
       setPhoneStep('verify');
+      setCanResend(false);
+      setTimeout(() => setCanResend(true), 30000); // 30s cooldown
+      
       toast({
         title: channel === 'sms' ? 'SMS sent' : 'Call initiated',
         description: 'Enter the 6-digit code you received.',
@@ -125,34 +140,36 @@ export default function Auth() {
     
     setLoading(true);
     try {
-    const response = await fetch(`${PUBLIC_ENV.SUPABASE_URL}/functions/v1/verify-phone-otp`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${PUBLIC_ENV.SUPABASE_PUBLISHABLE_KEY}`,
-      },
-      body: JSON.stringify({ phone, code: phoneOTP }),
-    });
-
-    const data = await response.json();
-    if (!response.ok || !data.success) throw new Error(data.error || 'Verification failed');
-
-    // Set the session returned from the edge function
-    if (data.session) {
-      const { error: sessionError } = await supabase.auth.setSession({
-        access_token: data.session.access_token,
-        refresh_token: data.session.refresh_token,
-      });
+      const normalizedPhone = phone.trim().replace(/\s/g, '');
       
-      if (sessionError) throw sessionError;
-    }
+      const response = await fetch(`${PUBLIC_ENV.SUPABASE_URL}/functions/v1/verify-phone-otp`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${PUBLIC_ENV.SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({ 
+          phone: normalizedPhone, 
+          code: phoneOTP,
+          verificationSid: verificationSid || undefined
+        }),
+      });
 
-    toast({ title: 'Success!', description: 'You are now signed in.' });
-    navigate('/dashboard');
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Verification failed');
+      }
+
+      // Redirect to the magic link to complete sign-in
+      if (data.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      } else {
+        throw new Error('No redirect URL received');
+      }
     } catch (error: any) {
       toast({
         title: 'Invalid code',
-        description: 'Please check your code and try again.',
+        description: error.message || 'Please check your code and try again.',
         variant: 'destructive',
       });
     } finally {
@@ -284,9 +301,27 @@ export default function Auth() {
                     {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                     Verify Code
                   </Button>
-                  <Button onClick={() => setPhoneStep('input')} variant="ghost" className="w-full" type="button">
-                    Use a different phone
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button 
+                      onClick={(e) => {
+                        setPhoneOTP('');
+                        handlePhoneSend(e, 'sms');
+                      }} 
+                      variant="outline" 
+                      className="flex-1" 
+                      type="button"
+                      disabled={!canResend || loading}
+                    >
+                      {canResend ? 'Resend Code' : 'Wait 30s'}
+                    </Button>
+                    <Button onClick={() => {
+                      setPhoneStep('input');
+                      setPhoneOTP('');
+                      setVerificationSid('');
+                    }} variant="ghost" className="flex-1" type="button">
+                      Different Phone
+                    </Button>
+                  </div>
                 </form>
               )}
             </TabsContent>
