@@ -193,6 +193,16 @@ export default {
             transform: "translate(-1px, 1px) scale(1)" 
           }
         },
+        "orb-glow-pulse": {
+          "0%, 100%": { 
+            opacity: "0.1",
+            transform: "scale(0.8)"
+          },
+          "50%": { 
+            opacity: "0.6",
+            transform: "scale(1.2)"
+          }
+        },
         "scroll": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" }
@@ -216,6 +226,7 @@ export default {
         "hero-fade-in-delay-4": "hero-fade-in-delay-4 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "opacity-breathe-orby": "opacity-breathe-orby 8s ease-in-out infinite",
         "energy-shake": "energy-shake 8s ease-in-out infinite",
+        "orb-glow-pulse": "orb-glow-pulse 8s ease-in-out infinite",
         "scroll": "scroll 30s linear infinite",
       },
     },

@@ -278,7 +278,10 @@ const Index = () => {
                 <div className="relative w-full max-w-2xl">
                   {/* Breathing DNA Orb Background */}
                   <div className="absolute inset-0 flex items-center justify-center -z-10">
-                    <img src={nyxCore} alt="" className="w-[500px] h-[500px] object-contain animate-opacity-breathe-orby animate-energy-shake" loading="lazy" decoding="async" />
+                    {/* Glowing Aura */}
+                    <div className="absolute w-[600px] h-[600px] rounded-full bg-gradient-orb-aura blur-3xl animate-orb-glow-pulse" />
+                    {/* Orb */}
+                    <img src={nyxCore} alt="" className="w-[500px] h-[500px] object-contain animate-opacity-breathe-orby animate-energy-shake relative z-10" loading="lazy" decoding="async" />
                   </div>
                 </div>
               </div>
