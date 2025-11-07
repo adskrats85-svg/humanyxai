@@ -241,14 +241,9 @@ const Index = () => {
             {user ? (
               <UserMenu />
             ) : (
-              <>
-                <Button variant="glass" size="sm" onClick={() => navigate('/auth')}>
-                  Log In
-                </Button>
-                <Button variant="gradient" size="sm" onClick={() => navigate('/auth')}>
-                  Get Started
-                </Button>
-              </>
+              <Button variant="gradient" size="sm" onClick={() => navigate('/auth')}>
+                Log In
+              </Button>
             )}
           </div>
         </div>
