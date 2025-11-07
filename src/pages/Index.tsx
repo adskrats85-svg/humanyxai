@@ -277,7 +277,7 @@ const Index = () => {
               <div className="relative flex items-center justify-center py-32">
                 <div className="relative w-full max-w-2xl">
                   {/* Breathing DNA Orb Background */}
-                  <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby">
+                  <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby -z-10">
                     <img src={nyxCore} alt="" className="w-[500px] h-[500px] object-contain opacity-90" loading="lazy" decoding="async" />
                   </div>
                 </div>
