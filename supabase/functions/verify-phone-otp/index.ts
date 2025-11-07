@@ -62,20 +62,56 @@ const handler = async (req: Request): Promise<Response> => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    const { data, error } = await supabase.auth.admin.createUser({
+    let userId: string;
+
+    // Try to create the user
+    const { data: createData, error: createError } = await supabase.auth.admin.createUser({
       phone,
       phone_confirm: true,
     });
 
-    if (error && !error.message.includes('already exists')) {
-      console.error("Supabase auth error:", error);
-      throw error;
+    if (createError) {
+      // If user already exists, get their ID
+      if (createError.message.includes('already registered')) {
+        console.log("User already exists, fetching user...");
+        const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
+        
+        if (listError) {
+          console.error("Error listing users:", listError);
+          throw listError;
+        }
+
+        const existingUser = users.find(u => u.phone === phone);
+        if (!existingUser) {
+          throw new Error('User not found after creation failed');
+        }
+        
+        userId = existingUser.id;
+        console.log("Found existing user:", userId);
+      } else {
+        console.error("Supabase auth error:", createError);
+        throw createError;
+      }
+    } else {
+      userId = createData.user.id;
+      console.log("Created new user:", userId);
+    }
+
+    // Generate a session for the user
+    const { data: sessionData, error: sessionError } = await supabase.auth.admin.generateLink({
+      type: 'magiclink',
+      phone,
+    });
+
+    if (sessionError) {
+      console.error("Error generating session:", sessionError);
+      throw sessionError;
     }
 
     return new Response(
       JSON.stringify({ 
         success: true,
-        user: data?.user
+        session: sessionData.properties,
       }),
       {
         status: 200,

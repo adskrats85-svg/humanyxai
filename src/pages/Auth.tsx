@@ -116,24 +116,30 @@ export default function Auth() {
     
     setLoading(true);
     try {
-      const response = await fetch(`${PUBLIC_ENV.SUPABASE_URL}/functions/v1/verify-phone-otp`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${PUBLIC_ENV.SUPABASE_PUBLISHABLE_KEY}`,
-        },
-        body: JSON.stringify({ phone, code: phoneOTP }),
+    const response = await fetch(`${PUBLIC_ENV.SUPABASE_URL}/functions/v1/verify-phone-otp`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${PUBLIC_ENV.SUPABASE_PUBLISHABLE_KEY}`,
+      },
+      body: JSON.stringify({ phone, code: phoneOTP }),
+    });
+
+    const data = await response.json();
+    if (!response.ok || !data.success) throw new Error(data.error || 'Verification failed');
+
+    // Set the session returned from the edge function
+    if (data.session) {
+      const { error: sessionError } = await supabase.auth.setSession({
+        access_token: data.session.access_token,
+        refresh_token: data.session.refresh_token,
       });
+      
+      if (sessionError) throw sessionError;
+    }
 
-      const data = await response.json();
-      if (!response.ok || !data.success) throw new Error(data.error || 'Verification failed');
-
-      // Sign in with phone
-      const { error } = await supabase.auth.signInWithOtp({ phone });
-      if (error) throw error;
-
-      toast({ title: 'Success!', description: 'You are now signed in.' });
-      navigate('/');
+    toast({ title: 'Success!', description: 'You are now signed in.' });
+    navigate('/');
     } catch (error: any) {
       toast({
         title: 'Invalid code',
