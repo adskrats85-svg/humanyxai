@@ -196,7 +196,7 @@ const Index = () => {
           <img 
             src={heroDuoFigures} 
             alt=""
-            className="w-full h-full object-cover object-[center_65%]"
+            className="w-full h-full object-cover object-[center_35%]"
             decoding="async" 
           />
         </div>
