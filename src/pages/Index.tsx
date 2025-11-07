@@ -398,168 +398,168 @@ const Index = () => {
             <CarouselContent>
               {/* Demo Card 1: Goal Setting */}
               <CarouselItem className="md:basis-1/2 lg:basis-1/2">
-                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full font-jakarta">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 h-full font-jakarta transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/10 hover:border-primary/40 group cursor-pointer">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <Target className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary/30 group-hover:scale-110">
+                      <Target className="w-5 h-5 text-primary transition-transform duration-300 group-hover:rotate-12" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider">You</div>
-                      <div className="text-sm text-foreground/80 leading-relaxed">
+                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider transition-colors duration-300">You</div>
+                      <div className="text-sm text-foreground/80 leading-relaxed transition-colors duration-300 group-hover:text-foreground">
                         "I want to improve my public speaking skills for work presentations."
                       </div>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 pl-14">
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider">Nyx</div>
-                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90">
+                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider transition-colors duration-300">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90 transition-all duration-300 group-hover:bg-accent/15 group-hover:text-foreground">
                         "I'll create a personalized 30-day plan. We'll start with breathing techniques, progress to mirror practice, and build up to recorded presentations. I'll check in weekly to adjust based on your confidence levels."
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-primary/10">
-                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest">Adaptive Goal Planning</div>
+                  <div className="mt-4 pt-4 border-t border-primary/10 transition-colors duration-300 group-hover:border-primary/20">
+                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest transition-all duration-300 group-hover:tracking-[0.2em]">Adaptive Goal Planning</div>
                   </div>
                 </div>
               </CarouselItem>
 
               {/* Demo Card 2: Emotional Intelligence */}
               <CarouselItem className="md:basis-1/2 lg:basis-1/2">
-                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full font-jakarta">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 h-full font-jakarta transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/10 hover:border-primary/40 group cursor-pointer">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <Brain className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary/30 group-hover:scale-110">
+                      <Brain className="w-5 h-5 text-primary transition-transform duration-300 group-hover:rotate-12" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider">You</div>
-                      <div className="text-sm text-foreground/80 leading-relaxed">
+                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider transition-colors duration-300">You</div>
+                      <div className="text-sm text-foreground/80 leading-relaxed transition-colors duration-300 group-hover:text-foreground">
                         "I had a tough conversation with my team today. Feeling frustrated."
                       </div>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 pl-14">
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider">Nyx</div>
-                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90">
+                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider transition-colors duration-300">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90 transition-all duration-300 group-hover:bg-accent/15 group-hover:text-foreground">
                         "I hear your frustration. Let's unpack this. What specific moment triggered the strongest reaction? Understanding this can help you navigate similar situations better."
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-primary/10">
-                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest">Emotional Processing</div>
+                  <div className="mt-4 pt-4 border-t border-primary/10 transition-colors duration-300 group-hover:border-primary/20">
+                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest transition-all duration-300 group-hover:tracking-[0.2em]">Emotional Processing</div>
                   </div>
                 </div>
               </CarouselItem>
 
               {/* Demo Card 3: Progress Tracking */}
               <CarouselItem className="md:basis-1/2 lg:basis-1/2">
-                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full font-jakarta">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 h-full font-jakarta transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/10 hover:border-primary/40 group cursor-pointer">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <TrendingUp className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary/30 group-hover:scale-110">
+                      <TrendingUp className="w-5 h-5 text-primary transition-transform duration-300 group-hover:rotate-12" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider">You</div>
-                      <div className="text-sm text-foreground/80 leading-relaxed">
+                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider transition-colors duration-300">You</div>
+                      <div className="text-sm text-foreground/80 leading-relaxed transition-colors duration-300 group-hover:text-foreground">
                         "Show me my progress this month."
                       </div>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 pl-14">
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider">Nyx</div>
-                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90">
+                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider transition-colors duration-300">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90 transition-all duration-300 group-hover:bg-accent/15 group-hover:text-foreground">
                         "Great momentum! You've completed 12 personal development sessions, maintained an 85% consistency rate, and showed significant improvement in confidence metrics. Your focus areas are evolving nicely."
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-primary/10">
-                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest">Intelligent Insights</div>
+                  <div className="mt-4 pt-4 border-t border-primary/10 transition-colors duration-300 group-hover:border-primary/20">
+                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest transition-all duration-300 group-hover:tracking-[0.2em]">Intelligent Insights</div>
                   </div>
                 </div>
               </CarouselItem>
 
               {/* Demo Card 4: Personalized Coaching */}
               <CarouselItem className="md:basis-1/2 lg:basis-1/2">
-                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full font-jakarta">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 h-full font-jakarta transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/10 hover:border-primary/40 group cursor-pointer">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <Sparkles className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary/30 group-hover:scale-110">
+                      <Sparkles className="w-5 h-5 text-primary transition-transform duration-300 group-hover:rotate-12" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider">You</div>
-                      <div className="text-sm text-foreground/80 leading-relaxed">
+                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider transition-colors duration-300">You</div>
+                      <div className="text-sm text-foreground/80 leading-relaxed transition-colors duration-300 group-hover:text-foreground">
                         "I'm not sure what to focus on next."
                       </div>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 pl-14">
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider">Nyx</div>
-                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90">
+                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider transition-colors duration-300">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90 transition-all duration-300 group-hover:bg-accent/15 group-hover:text-foreground">
                         "Based on your recent interactions, I notice you're excelling at time management but struggling with delegation. Let's explore building trust with your team - it aligns perfectly with your leadership goals."
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-primary/10">
-                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest">Adaptive Guidance</div>
+                  <div className="mt-4 pt-4 border-t border-primary/10 transition-colors duration-300 group-hover:border-primary/20">
+                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest transition-all duration-300 group-hover:tracking-[0.2em]">Adaptive Guidance</div>
                   </div>
                 </div>
               </CarouselItem>
 
               {/* Demo Card 5: 24/7 Support */}
               <CarouselItem className="md:basis-1/2 lg:basis-1/2">
-                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full font-jakarta">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 h-full font-jakarta transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/10 hover:border-primary/40 group cursor-pointer">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <MessageCircle className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary/30 group-hover:scale-110">
+                      <MessageCircle className="w-5 h-5 text-primary transition-transform duration-300 group-hover:rotate-12" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider">You</div>
-                      <div className="text-sm text-foreground/80 leading-relaxed">
+                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider transition-colors duration-300">You</div>
+                      <div className="text-sm text-foreground/80 leading-relaxed transition-colors duration-300 group-hover:text-foreground">
                         "Quick question - best way to start a difficult conversation?"
                       </div>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 pl-14">
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider">Nyx</div>
-                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90">
+                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider transition-colors duration-300">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90 transition-all duration-300 group-hover:bg-accent/15 group-hover:text-foreground">
                         "Start with context and empathy: 'I value our working relationship and want to discuss something important.' Then be specific and focus on impact rather than blame. Want to practice together?"
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-primary/10">
-                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest">Always Available</div>
+                  <div className="mt-4 pt-4 border-t border-primary/10 transition-colors duration-300 group-hover:border-primary/20">
+                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest transition-all duration-300 group-hover:tracking-[0.2em]">Always Available</div>
                   </div>
                 </div>
               </CarouselItem>
 
               {/* Demo Card 6: Learning Style */}
               <CarouselItem className="md:basis-1/2 lg:basis-1/2">
-                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full font-jakarta">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 h-full font-jakarta transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/10 hover:border-primary/40 group cursor-pointer">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <Zap className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary/30 group-hover:scale-110">
+                      <Zap className="w-5 h-5 text-primary transition-transform duration-300 group-hover:rotate-12" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider">You</div>
-                      <div className="text-sm text-foreground/80 leading-relaxed">
+                      <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider transition-colors duration-300">You</div>
+                      <div className="text-sm text-foreground/80 leading-relaxed transition-colors duration-300 group-hover:text-foreground">
                         "I learn better with real examples."
                       </div>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 pl-14">
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider">Nyx</div>
-                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90">
+                      <div className="text-xs font-bold text-accent mb-2 uppercase tracking-wider transition-colors duration-300">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3 leading-relaxed text-foreground/90 transition-all duration-300 group-hover:bg-accent/15 group-hover:text-foreground">
                         "Got it! I've adapted to your learning style. From now on, I'll use case studies and real-world scenarios. For instance, let's look at how Steve Jobs handled difficult product decisions..."
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-primary/10">
-                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest">Personalized Learning</div>
+                  <div className="mt-4 pt-4 border-t border-primary/10 transition-colors duration-300 group-hover:border-primary/20">
+                    <div className="text-[11px] text-primary font-bold uppercase tracking-widest transition-all duration-300 group-hover:tracking-[0.2em]">Personalized Learning</div>
                   </div>
                 </div>
               </CarouselItem>
