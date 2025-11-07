@@ -169,7 +169,7 @@ const Index = () => {
           <div className="text-center max-w-6xl mx-auto">
             {/* Tagline */}
             <div className="mb-8 opacity-0 animate-hero-fade-in">
-              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-effect border border-primary/30 text-sm font-semibold">#1 AI-Powered Personal Development Platform<Sparkles className="w-4 h-4 text-primary" />
+              <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-effect border border-primary/30 text-sm font-semibold">The Worlds # 1 AI-Powered Personal Development Platform<Sparkles className="w-4 h-4 text-primary" />
                 AI-Powered Personal Development Platform
               </span>
             </div>
