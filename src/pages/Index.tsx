@@ -8,7 +8,7 @@ import nyxCore from "@/assets/nyx-dna.png";
 import heroStaticBackground from "@/assets/hero-static-background.png";
 import heroDuoFigures from "@/assets/hero-duo-figures.png";
 import meetNyxBackground from "@/assets/meet-nyx-background.png";
-import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
+import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap, Star } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ChatInterface from "@/components/ChatInterface";
@@ -433,6 +433,87 @@ const Index = () => {
                     <p className="text-lg text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
                 </div>)}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+          <img src={isMobile ? nyxCore : heroStaticBackground} alt="" className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} loading="lazy" decoding="async" />
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                What People Are <span className="glow-text">Saying</span>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Join thousands who are already transforming their lives with Nyx
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  name: "Sarah Chen",
+                  role: "Product Manager",
+                  rating: 5,
+                  review: "Nyx has completely transformed how I approach personal development. The AI understands my goals and provides incredibly relevant guidance every single day."
+                },
+                {
+                  name: "Marcus Johnson",
+                  role: "Entrepreneur",
+                  rating: 5,
+                  review: "I've tried countless coaching apps, but Nyx is different. It feels like having a real coach who knows me, available 24/7. Game changer for my mental health journey."
+                },
+                {
+                  name: "Emily Rodriguez",
+                  role: "Software Engineer",
+                  rating: 5,
+                  review: "The voice interface is incredible. I can talk to Nyx during my morning walks, and it feels natural. It's like having a supportive friend who actually helps you grow."
+                },
+                {
+                  name: "David Kim",
+                  role: "Creative Director",
+                  rating: 5,
+                  review: "What impresses me most is how Nyx adapts. As I've evolved over the past months, the guidance has evolved with me. It's truly intelligent."
+                },
+                {
+                  name: "Jessica Patel",
+                  role: "Fitness Coach",
+                  rating: 5,
+                  review: "As someone who coaches others, I was skeptical. But Nyx has helped me work through my own challenges in ways I didn't expect. The accountability features are brilliant."
+                },
+                {
+                  name: "Alex Thompson",
+                  role: "Student",
+                  rating: 5,
+                  review: "Affordable, accessible, and actually effective. Nyx helped me develop better habits and manage stress during finals. Couldn't have done it without this AI companion."
+                }
+              ].map((review, i) => (
+                <div key={i} className="p-8 rounded-2xl glow-card hover:scale-105 transition-all duration-300 group">
+                  {/* Star Rating */}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(review.rating)].map((_, starIndex) => (
+                      <Star key={starIndex} className="w-5 h-5 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  
+                  {/* Review Text */}
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    "{review.review}"
+                  </p>
+                  
+                  {/* Reviewer Info */}
+                  <div className="border-t border-border pt-4">
+                    <p className="font-bold text-foreground">{review.name}</p>
+                    <p className="text-sm text-muted-foreground">{review.role}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
