@@ -8,6 +8,12 @@ import nyxCore from "@/assets/nyx-dna.png";
 import heroStaticBackground from "@/assets/hero-static-background.png";
 import heroDuoFigures from "@/assets/hero-duo-figures.png";
 import meetNyxBackground from "@/assets/meet-nyx-background.png";
+import sarahChen from "@/assets/reviews/sarah-chen.jpg";
+import marcusJohnson from "@/assets/reviews/marcus-johnson.jpg";
+import emilyRodriguez from "@/assets/reviews/emily-rodriguez.jpg";
+import davidKim from "@/assets/reviews/david-kim.jpg";
+import jessicaPatel from "@/assets/reviews/jessica-patel.jpg";
+import alexThompson from "@/assets/reviews/alex-thompson.jpg";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap, Star } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -461,36 +467,42 @@ const Index = () => {
                   name: "Sarah Chen",
                   role: "Product Manager",
                   rating: 5,
+                  avatar: sarahChen,
                   review: "Nyx has completely transformed how I approach personal development. The AI understands my goals and provides incredibly relevant guidance every single day."
                 },
                 {
                   name: "Marcus Johnson",
                   role: "Entrepreneur",
                   rating: 5,
+                  avatar: marcusJohnson,
                   review: "I've tried countless coaching apps, but Nyx is different. It feels like having a real coach who knows me, available 24/7. Game changer for my mental health journey."
                 },
                 {
                   name: "Emily Rodriguez",
                   role: "Software Engineer",
                   rating: 5,
+                  avatar: emilyRodriguez,
                   review: "The voice interface is incredible. I can talk to Nyx during my morning walks, and it feels natural. It's like having a supportive friend who actually helps you grow."
                 },
                 {
                   name: "David Kim",
                   role: "Creative Director",
                   rating: 5,
+                  avatar: davidKim,
                   review: "What impresses me most is how Nyx adapts. As I've evolved over the past months, the guidance has evolved with me. It's truly intelligent."
                 },
                 {
                   name: "Jessica Patel",
                   role: "Fitness Coach",
                   rating: 5,
+                  avatar: jessicaPatel,
                   review: "As someone who coaches others, I was skeptical. But Nyx has helped me work through my own challenges in ways I didn't expect. The accountability features are brilliant."
                 },
                 {
                   name: "Alex Thompson",
                   role: "Student",
                   rating: 5,
+                  avatar: alexThompson,
                   review: "Affordable, accessible, and actually effective. Nyx helped me develop better habits and manage stress during finals. Couldn't have done it without this AI companion."
                 }
               ].map((review, i) => (
@@ -507,10 +519,17 @@ const Index = () => {
                     "{review.review}"
                   </p>
                   
-                  {/* Reviewer Info */}
-                  <div className="border-t border-border pt-4">
-                    <p className="font-bold text-foreground">{review.name}</p>
-                    <p className="text-sm text-muted-foreground">{review.role}</p>
+                  {/* Reviewer Info with Avatar */}
+                  <div className="flex items-center gap-4 border-t border-border pt-4">
+                    <img 
+                      src={review.avatar} 
+                      alt={review.name}
+                      className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20"
+                    />
+                    <div>
+                      <p className="font-bold text-foreground">{review.name}</p>
+                      <p className="text-sm text-muted-foreground">{review.role}</p>
+                    </div>
                   </div>
                 </div>
               ))}
