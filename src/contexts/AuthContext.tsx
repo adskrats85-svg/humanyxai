@@ -23,7 +23,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setSession(session);
         setUser(session?.user ?? null);
         
-        console.log('Auth state changed:', event, session?.user?.email || session?.user?.phone);
+        console.log('Auth state changed:', event, session?.user ? 'authenticated' : 'unauthenticated');
       }
     );
 
