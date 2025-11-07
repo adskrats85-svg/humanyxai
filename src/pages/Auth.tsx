@@ -50,7 +50,8 @@ export default function Auth() {
     }
   };
 
-  const handleEmailVerify = async () => {
+  const handleEmailVerify = async (e?: React.FormEvent) => {
+    e?.preventDefault();
     if (emailOTP.length !== 6) return;
     
     setLoading(true);
@@ -109,7 +110,8 @@ export default function Auth() {
     }
   };
 
-  const handlePhoneVerify = async () => {
+  const handlePhoneVerify = async (e?: React.FormEvent) => {
+    e?.preventDefault();
     if (phoneOTP.length !== 6) return;
     
     setLoading(true);
@@ -184,7 +186,7 @@ export default function Auth() {
                   </Button>
                 </form>
               ) : (
-                <div className="space-y-4">
+                <form onSubmit={handleEmailVerify} className="space-y-4">
                   <div className="space-y-2">
                     <Label>Enter the code sent to {email}</Label>
                     <InputOTP value={emailOTP} onChange={setEmailOTP} maxLength={6} onComplete={handleEmailVerify}>
@@ -198,10 +200,18 @@ export default function Auth() {
                       </InputOTPGroup>
                     </InputOTP>
                   </div>
-                  <Button onClick={() => setEmailStep('input')} variant="ghost" className="w-full">
+                  <Button 
+                    type="submit" 
+                    className="w-full" 
+                    disabled={emailOTP.length !== 6 || loading}
+                  >
+                    {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                    Verify Code
+                  </Button>
+                  <Button onClick={() => setEmailStep('input')} variant="ghost" className="w-full" type="button">
                     Use a different email
                   </Button>
-                </div>
+                </form>
               )}
             </TabsContent>
 
@@ -237,7 +247,7 @@ export default function Auth() {
                   </div>
                 </form>
               ) : (
-                <div className="space-y-4">
+                <form onSubmit={handlePhoneVerify} className="space-y-4">
                   <div className="space-y-2">
                     <Label>Enter the code sent to {phone}</Label>
                     <InputOTP value={phoneOTP} onChange={setPhoneOTP} maxLength={6} onComplete={handlePhoneVerify}>
@@ -251,10 +261,18 @@ export default function Auth() {
                       </InputOTPGroup>
                     </InputOTP>
                   </div>
-                  <Button onClick={() => setPhoneStep('input')} variant="ghost" className="w-full">
+                  <Button 
+                    type="submit" 
+                    className="w-full" 
+                    disabled={phoneOTP.length !== 6 || loading}
+                  >
+                    {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                    Verify Code
+                  </Button>
+                  <Button onClick={() => setPhoneStep('input')} variant="ghost" className="w-full" type="button">
                     Use a different phone
                   </Button>
-                </div>
+                </form>
               )}
             </TabsContent>
           </Tabs>
