@@ -7,7 +7,7 @@ interface PasswordGateProps {
   children: React.ReactNode;
 }
 
-const SITE_PASSWORD = 'AK200130!'; // Change this to your preferred password
+const SITE_PASSWORD = 'humanyx2025'; // Change this to your preferred password
 
 export function PasswordGate({ children }: PasswordGateProps) {
   const [password, setPassword] = useState('');
