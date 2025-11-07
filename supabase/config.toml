@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.send-welcome-sms]
 verify_jwt = false
+
+[functions.chat]
+verify_jwt = false

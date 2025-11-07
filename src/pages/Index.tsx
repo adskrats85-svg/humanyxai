@@ -9,6 +9,7 @@ import heroBackground from "@/assets/hero-background.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import ChatInterface from "@/components/ChatInterface";
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -303,6 +304,24 @@ const Index = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* AI Chat Section */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              Try <span className="glow-text">Orby</span> Now
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Experience the power of AI-powered conversation. Ask questions, get insights, and see how Orby can help you evolve.
+            </p>
+          </div>
+
+          <ChatInterface />
         </div>
       </section>
 
