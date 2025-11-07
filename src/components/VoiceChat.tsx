@@ -2,8 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { PUBLIC_ENV } from '@/lib/env';
 
-const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
+const CHAT_URL = `${PUBLIC_ENV.SUPABASE_URL}/functions/v1/chat`;
 
 export default function VoiceChat() {
   const [isListening, setIsListening] = useState(false);
@@ -56,7 +57,7 @@ export default function VoiceChat() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${PUBLIC_ENV.SUPABASE_PUBLISHABLE_KEY}`,
         },
         body: JSON.stringify({
           messages: [{ role: 'user', content: text }],
