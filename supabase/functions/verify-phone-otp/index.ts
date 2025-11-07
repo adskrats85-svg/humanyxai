@@ -62,56 +62,42 @@ const handler = async (req: Request): Promise<Response> => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    let userId: string;
-
-    // Try to create the user
+    // Try to create the user with a temporary password for session creation
+    const tempPassword = crypto.randomUUID();
     const { data: createData, error: createError } = await supabase.auth.admin.createUser({
       phone,
       phone_confirm: true,
+      password: tempPassword,
     });
 
     if (createError) {
-      // If user already exists, get their ID
+      // If user already exists, that's fine - they're verified
       if (createError.message.includes('already registered')) {
-        console.log("User already exists, fetching user...");
+        console.log("User already exists and is verified");
+        
+        // Update existing user's password
         const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
-        
-        if (listError) {
-          console.error("Error listing users:", listError);
-          throw listError;
+        if (!listError) {
+          const existingUser = users.find(u => u.phone === phone);
+          if (existingUser) {
+            await supabase.auth.admin.updateUserById(existingUser.id, {
+              password: tempPassword,
+            });
+          }
         }
-
-        const existingUser = users.find(u => u.phone === phone);
-        if (!existingUser) {
-          throw new Error('User not found after creation failed');
-        }
-        
-        userId = existingUser.id;
-        console.log("Found existing user:", userId);
       } else {
         console.error("Supabase auth error:", createError);
         throw createError;
       }
     } else {
-      userId = createData.user.id;
-      console.log("Created new user:", userId);
-    }
-
-    // Generate a session for the user
-    const { data: sessionData, error: sessionError } = await supabase.auth.admin.generateLink({
-      type: 'magiclink',
-      phone,
-    });
-
-    if (sessionError) {
-      console.error("Error generating session:", sessionError);
-      throw sessionError;
+      console.log("Created new user:", createData.user.id);
     }
 
     return new Response(
       JSON.stringify({ 
         success: true,
-        session: sessionData.properties,
+        message: 'Phone number verified successfully',
+        tempPassword, // Send back to client for auto sign-in
       }),
       {
         status: 200,
