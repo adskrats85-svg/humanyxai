@@ -225,11 +225,11 @@ const Index = () => {
               >
                 {/* Contact Preference Selector */}
                 <div className="glass-effect rounded-lg p-4 border border-primary/20">
-                  <Label className="text-sm font-semibold mb-3 block">How would you like to be contacted?</Label>
+                  <Label className="text-sm font-semibold mb-3 block text-center">How would you like to be contacted?</Label>
                   <RadioGroup 
                     value={contactPreference} 
                     onValueChange={(value: "email" | "sms" | "both") => setContactPreference(value)}
-                    className="flex flex-col sm:flex-row gap-3"
+                    className="flex flex-col sm:flex-row gap-3 justify-center"
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="email" id="hero-email" />
@@ -518,11 +518,11 @@ const Index = () => {
             >
               {/* Contact Preference Selector */}
               <div className="glass-effect rounded-lg p-4 border border-primary/20">
-                <Label className="text-sm font-semibold mb-3 block">How would you like to be contacted?</Label>
+                <Label className="text-sm font-semibold mb-3 block text-center">How would you like to be contacted?</Label>
                 <RadioGroup 
                   value={bottomContactPreference} 
                   onValueChange={(value: "email" | "sms" | "both") => setBottomContactPreference(value)}
-                  className="flex flex-col sm:flex-row gap-3"
+                  className="flex flex-col sm:flex-row gap-3 justify-center"
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="email" id="bottom-email" />
