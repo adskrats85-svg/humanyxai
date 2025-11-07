@@ -330,12 +330,29 @@ const Index = () => {
 
             {/* Orby Visual */}
             <div className="relative max-w-4xl mx-auto mb-20">
-              {/* Centered Glowing Orby */}
+              {/* Centered Glowing Orby with Human Profiles */}
               <div className="relative flex items-center justify-center py-32">
-                <div className="relative">
-                  {/* Rotating Background Orby */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <img src={orbyCore} alt="Orby AI Core" className="w-[600px] h-[600px] object-contain animate-spin-slow opacity-30" loading="lazy" decoding="async" />
+                <div className="relative w-full max-w-2xl">
+                  {/* Breathing DNA Orb Background */}
+                  <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby">
+                    <img 
+                      src={orbyCore} 
+                      alt="" 
+                      className="w-[500px] h-[500px] object-contain opacity-40 blur-sm" 
+                      loading="lazy" 
+                      decoding="async" 
+                    />
+                  </div>
+                  
+                  {/* Human Duo Profiles - Foreground */}
+                  <div className="relative z-10 flex items-center justify-center">
+                    <img 
+                      src="/src/assets/human-duo-profiles.png" 
+                      alt="Human profiles with AI" 
+                      className="w-full max-w-lg object-contain" 
+                      loading="lazy" 
+                      decoding="async" 
+                    />
                   </div>
                 </div>
               </div>
