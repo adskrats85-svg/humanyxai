@@ -19,7 +19,6 @@ import alexThompson from "@/assets/reviews/alex-thompson.jpg";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap, Star } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import Autoplay from "embla-carousel-autoplay";
 
 // Zod validation schema for signup form
 const signupSchema = z.object({
@@ -67,13 +66,14 @@ const Index = () => {
   const [bottomContactPreference, setBottomContactPreference] = useState<"email" | "sms" | "both">("email");
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  const autoplayPlugin = useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true })
-  );
-  
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const totalSlides = 6;
+  const autoplayTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Random interval between 3-7 seconds
+  const getRandomInterval = () => Math.floor(Math.random() * 4000) + 3000;
 
   useEffect(() => {
     if (!carouselApi) return;
@@ -82,6 +82,29 @@ const Index = () => {
       setCurrentSlide(carouselApi.selectedScrollSnap());
     });
   }, [carouselApi]);
+
+  // Custom random autoplay logic
+  useEffect(() => {
+    if (!carouselApi || isPaused) return;
+
+    const scheduleNext = () => {
+      autoplayTimerRef.current = setTimeout(() => {
+        carouselApi.scrollNext();
+        scheduleNext();
+      }, getRandomInterval());
+    };
+
+    scheduleNext();
+
+    return () => {
+      if (autoplayTimerRef.current) {
+        clearTimeout(autoplayTimerRef.current);
+      }
+    };
+  }, [carouselApi, isPaused]);
+
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
   const handleEarlyAccessSubmit = async (e: React.FormEvent, fromLocation: string) => {
     e.preventDefault();
     const rawEmail = fromLocation === "hero" ? email : bottomEmail;
@@ -389,11 +412,10 @@ const Index = () => {
               align: "start",
               loop: true,
             }}
-            plugins={[autoplayPlugin.current]}
             setApi={setCarouselApi}
             className="w-full max-w-5xl mx-auto"
-            onMouseEnter={autoplayPlugin.current.stop}
-            onMouseLeave={autoplayPlugin.current.reset}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <CarouselContent>
               {/* Demo Card 1: Goal Setting */}
