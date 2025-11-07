@@ -17,8 +17,9 @@ import davidKim from "@/assets/reviews/david-kim.jpg";
 import jessicaPatel from "@/assets/reviews/jessica-patel.jpg";
 import alexThompson from "@/assets/reviews/alex-thompson.jpg";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap, Star } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Autoplay from "embla-carousel-autoplay";
 
 // Zod validation schema for signup form
 const signupSchema = z.object({
@@ -65,6 +66,10 @@ const Index = () => {
   const [contactPreference, setContactPreference] = useState<"email" | "sms" | "both">("email");
   const [bottomContactPreference, setBottomContactPreference] = useState<"email" | "sms" | "both">("email");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true })
+  );
   const handleEarlyAccessSubmit = async (e: React.FormEvent, fromLocation: string) => {
     e.preventDefault();
     const rawEmail = fromLocation === "hero" ? email : bottomEmail;
@@ -372,7 +377,10 @@ const Index = () => {
               align: "start",
               loop: true,
             }}
+            plugins={[autoplayPlugin.current]}
             className="w-full max-w-5xl mx-auto"
+            onMouseEnter={autoplayPlugin.current.stop}
+            onMouseLeave={autoplayPlugin.current.reset}
           >
             <CarouselContent>
               {/* Demo Card 1: Goal Setting */}
