@@ -14,6 +14,7 @@ interface VerifyOTPRequest {
   phone: string;
   code: string;
   verificationSid?: string;
+  redirectTo?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -22,7 +23,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { phone, code, verificationSid }: VerifyOTPRequest = await req.json();
+    const { phone, code, verificationSid, redirectTo }: VerifyOTPRequest = await req.json();
     
     console.log(`Verifying OTP for phone:`, phone, verificationSid ? `with SID: ${verificationSid}` : '');
 
@@ -75,9 +76,7 @@ const handler = async (req: Request): Promise<Response> => {
     const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
       type: 'magiclink',
       email: `${phone.replace(/\+/g, '')}@phone.user`,
-      options: {
-        redirectTo: `${Deno.env.get('SUPABASE_URL')?.replace('.supabase.co', '.lovable.app')}/dashboard`
-      }
+      options: redirectTo ? { redirectTo } : undefined
     });
 
     if (linkError) {

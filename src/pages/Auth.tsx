@@ -40,7 +40,7 @@ export default function Auth() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/`,
+          emailRedirectTo: `${window.location.origin}/dashboard`,
         },
       });
 
@@ -153,7 +153,8 @@ export default function Auth() {
         body: JSON.stringify({ 
           phone: normalizedPhone, 
           code: phoneOTP,
-          verificationSid: verificationSid || undefined
+          verificationSid: verificationSid || undefined,
+          redirectTo: `${window.location.origin}/dashboard`
         }),
       });
 
