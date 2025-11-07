@@ -63,6 +63,12 @@ const Index = () => {
   const isMobile = useIsMobile();
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  // If already authenticated, send to Dashboard
+  useEffect(() => {
+    if (user) navigate('/dashboard');
+  }, [user, navigate]);
+
   const [email, setEmail] = useState("");
   const [bottomEmail, setBottomEmail] = useState("");
   const [phone, setPhone] = useState("");
