@@ -158,8 +158,40 @@ export default {
           }
         },
         "opacity-breathe-orby": {
-          "0%, 100%": { opacity: "0.1" },
-          "50%": { opacity: "0.8" }
+          "0%, 100%": { opacity: "0.2" },
+          "50%": { opacity: "1" }
+        },
+        "energy-shake": {
+          "0%, 100%": { 
+            transform: "translate(0, 0) scale(1)" 
+          },
+          "10%": { 
+            transform: "translate(-2px, 2px) scale(1.01)" 
+          },
+          "20%": { 
+            transform: "translate(2px, -2px) scale(0.99)" 
+          },
+          "30%": { 
+            transform: "translate(-2px, -2px) scale(1.01)" 
+          },
+          "40%": { 
+            transform: "translate(2px, 2px) scale(0.99)" 
+          },
+          "50%": { 
+            transform: "translate(-1px, 1px) scale(1.02)" 
+          },
+          "60%": { 
+            transform: "translate(1px, -1px) scale(0.98)" 
+          },
+          "70%": { 
+            transform: "translate(-1px, -1px) scale(1.01)" 
+          },
+          "80%": { 
+            transform: "translate(1px, 1px) scale(0.99)" 
+          },
+          "90%": { 
+            transform: "translate(-1px, 1px) scale(1)" 
+          }
         },
         "scroll": {
           "0%": { transform: "translateX(0)" },
@@ -183,6 +215,7 @@ export default {
         "hero-fade-in-delay-3": "hero-fade-in-delay-3 2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "hero-fade-in-delay-4": "hero-fade-in-delay-4 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "opacity-breathe-orby": "opacity-breathe-orby 8s ease-in-out infinite",
+        "energy-shake": "energy-shake 8s ease-in-out infinite",
         "scroll": "scroll 30s linear infinite",
       },
     },
