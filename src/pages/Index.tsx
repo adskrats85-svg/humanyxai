@@ -18,8 +18,6 @@ import alexThompson from "@/assets/reviews/alex-thompson.jpg";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap, Star } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import ChatInterface from "@/components/ChatInterface";
-import VoiceChat from "@/components/VoiceChat";
 
 // Zod validation schema for signup form
 const signupSchema = z.object({
@@ -353,26 +351,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* AI Chat Section */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Try <span className="glow-text">Nyx</span> Now
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Experience the power of AI-powered conversation. Ask questions, get insights, and see how Nyx can help you evolve.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-7xl mx-auto">
-            <ChatInterface />
-            <VoiceChat />
-          </div>
-        </div>
-      </section>
 
       {/* Features Section */}
       <section id="features" className="py-32 relative overflow-hidden">
