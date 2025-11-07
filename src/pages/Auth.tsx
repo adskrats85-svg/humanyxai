@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,6 +13,7 @@ import { Loader2, Mail, Phone } from 'lucide-react';
 
 export default function Auth() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [emailStep, setEmailStep] = useState<'input' | 'verify'>('input');
   const [phoneStep, setPhoneStep] = useState<'input' | 'verify'>('input');
@@ -19,6 +21,13 @@ export default function Auth() {
   const [phone, setPhone] = useState('');
   const [emailOTP, setEmailOTP] = useState('');
   const [phoneOTP, setPhoneOTP] = useState('');
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
 
   const handleEmailSend = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,7 +74,7 @@ export default function Auth() {
       if (error) throw error;
 
       toast({ title: 'Success!', description: 'You are now signed in.' });
-      navigate('/');
+      navigate('/dashboard');
     } catch (error: any) {
       toast({
         title: 'Invalid code',
@@ -139,7 +148,7 @@ export default function Auth() {
     }
 
     toast({ title: 'Success!', description: 'You are now signed in.' });
-    navigate('/');
+    navigate('/dashboard');
     } catch (error: any) {
       toast({
         title: 'Invalid code',
