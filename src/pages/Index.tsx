@@ -160,7 +160,7 @@ const Index = () => {
               <Sparkles className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold tracking-tight">
-              HUMAN<span className="text-primary">Y</span>X
+              HUMANYX<span className="text-primary">AI</span>
             </span>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-medium">
@@ -386,7 +386,7 @@ const Index = () => {
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
                 Your Coach, <span className="glow-text-accent">Your Way</span>
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Your AI companion for emotional, mental, and behavioral growth.Multimodal access meets personalized intelligence. HumanYX adapts to your life, not the other way around.</p>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Your AI companion for emotional, mental, and behavioral growth.Multimodal access meets personalized intelligence. HumanyxAI adapts to your life, not the other way around.</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

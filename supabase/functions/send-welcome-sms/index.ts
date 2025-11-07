@@ -90,7 +90,7 @@ const handler = async (req: Request): Promise<Response> => {
       body: new URLSearchParams({
         To: phone,
         From: twilioPhone,
-        Body: "Welcome to HumanYX! Thanks for expressing interest to become an evolution pioneer....the gene pool is better already! We'll keep you updated on our progress. Reply STOP to unsubscribe.",
+        Body: "Welcome to HumanyxAI! Thanks for expressing interest to become an evolution pioneer....the gene pool is better already! We'll keep you updated on our progress. Reply STOP to unsubscribe.",
       }),
     });
 

@@ -69,16 +69,16 @@ const handler = async (req: Request): Promise<Response> => {
       : "Thanks for scrolling all the way down! That dedication? That's evolution pioneer material right there. 💫";
 
     const emailResponse = await resend.emails.send({
-      from: "HumanYX <onboarding@resend.dev>",
+      from: "HumanyxAI <onboarding@resend.dev>",
       to: [email],
-      subject: "✨ Welcome to HumanYX - Evolution Pioneer",
+      subject: "✨ Welcome to HumanyxAI - Evolution Pioneer",
       html: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Welcome to HumanYX</title>
+          <title>Welcome to HumanyxAI</title>
         </head>
         <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;">
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background: linear-gradient(180deg, #050814 0%, #0f0a1f 100%);">
@@ -102,7 +102,7 @@ const handler = async (req: Request): Promise<Response> => {
                           <td align="center">
                             <!-- Brand Name -->
                             <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: 2px; color: #fafafa;">
-                              HUMAN<span style="color: #00d4ff;">Y</span>X
+                              HUMANYX<span style="color: #00d4ff;">AI</span>
                             </h1>
                           </td>
                         </tr>
@@ -206,7 +206,7 @@ const handler = async (req: Request): Promise<Response> => {
                           <td align="center">
                             <p style="margin: 0 0 8px 0; font-size: 16px; color: #e0e0e0;">
                               Best regards,<br>
-                              <strong>The HumanYX Team</strong>
+                              <strong>The HumanyxAI Team</strong>
                             </p>
                             <p style="margin: 0; font-size: 13px; color: #888; font-style: italic;">
                               Evolving humanity, one conversation at a time. ✨
