@@ -280,7 +280,7 @@ const Index = () => {
             {/* Nyx Visual */}
             <div className="relative max-w-4xl mx-auto mb-20">
               {/* Centered Glowing Nyx with Human Profiles */}
-              <div className="relative flex items-center justify-center py-32 mt-20">
+              <div className="relative flex items-center justify-center py-32 mt-40">
                 <div className="relative w-full max-w-2xl">
                   {/* Breathing DNA Orb Background */}
                   <div className="absolute inset-0 flex items-center justify-center -z-10">
