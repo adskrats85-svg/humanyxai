@@ -4,7 +4,7 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import { z } from 'zod';
 import nyxCore from "@/assets/nyx-dna.png";
 import heroStaticBackground from "@/assets/hero-static-background.png";
@@ -17,7 +17,7 @@ import davidKim from "@/assets/reviews/david-kim.jpg";
 import jessicaPatel from "@/assets/reviews/jessica-patel.jpg";
 import alexThompson from "@/assets/reviews/alex-thompson.jpg";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap, Star } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -70,6 +70,18 @@ const Index = () => {
   const autoplayPlugin = useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
+  
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const totalSlides = 6;
+
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    carouselApi.on("select", () => {
+      setCurrentSlide(carouselApi.selectedScrollSnap());
+    });
+  }, [carouselApi]);
   const handleEarlyAccessSubmit = async (e: React.FormEvent, fromLocation: string) => {
     e.preventDefault();
     const rawEmail = fromLocation === "hero" ? email : bottomEmail;
@@ -378,6 +390,7 @@ const Index = () => {
               loop: true,
             }}
             plugins={[autoplayPlugin.current]}
+            setApi={setCarouselApi}
             className="w-full max-w-5xl mx-auto"
             onMouseEnter={autoplayPlugin.current.stop}
             onMouseLeave={autoplayPlugin.current.reset}
@@ -555,6 +568,22 @@ const Index = () => {
             <CarouselPrevious className="hidden md:flex" />
             <CarouselNext className="hidden md:flex" />
           </Carousel>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-2 mt-8">
+            {Array.from({ length: totalSlides }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => carouselApi?.scrollTo(index)}
+                className={`h-2 rounded-full transition-all ${
+                  currentSlide === index 
+                    ? "w-8 bg-primary" 
+                    : "w-2 bg-primary/30 hover:bg-primary/50"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
 
           {/* CTA */}
           <div className="text-center mt-16">
