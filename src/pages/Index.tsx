@@ -4,10 +4,10 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import nyxCore from "@/assets/nyx-dna.png";
-import heroStaticBackground from "@/assets/hero-static-background.png";
-import heroDuoFigures from "@/assets/hero-duo-figures.png";
-import meetNyxBackground from "@/assets/meet-nyx-background.png";
+import nyxCore from "@/assets/nyx-dna.webp";
+import heroStaticBackground from "@/assets/hero-static-background.webp";
+import heroDuoFigures from "@/assets/hero-duo-figures.webp";
+import meetNyxBackground from "@/assets/meet-nyx-background.webp";
 import sarahChen from "@/assets/reviews/sarah-chen.jpg";
 import marcusJohnson from "@/assets/reviews/marcus-johnson.jpg";
 import emilyRodriguez from "@/assets/reviews/emily-rodriguez.jpg";
@@ -541,7 +541,11 @@ const Index = () => {
                     <img 
                       src={review.avatar} 
                       alt={review.name}
+                      width="48"
+                      height="48"
                       className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div>
                       <p className="font-bold text-foreground">{review.name}</p>
