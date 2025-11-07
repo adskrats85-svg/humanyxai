@@ -22,13 +22,17 @@ const Index = () => {
 
   const handleEarlyAccessSubmit = async (e: React.FormEvent, fromLocation: string) => {
     e.preventDefault();
-    
-    const submittedEmail = fromLocation === "hero" ? email : bottomEmail;
-    const submittedPhone = fromLocation === "hero" ? phone : bottomPhone;
+
+    const rawEmail = fromLocation === "hero" ? email : bottomEmail;
+    const rawPhone = fromLocation === "hero" ? phone : bottomPhone;
     const preference = fromLocation === "hero" ? contactPreference : bottomContactPreference;
-    
+
+    // Normalize inputs
+    const normalizedEmail = rawEmail ? rawEmail.trim().toLowerCase() : null;
+    const normalizedPhone = rawPhone ? rawPhone.trim().replace(/\s+/g, "") : null;
+
     // Validation
-    if ((preference === "email" || preference === "both") && !submittedEmail) {
+    if ((preference === "email" || preference === "both") && !normalizedEmail) {
       toast({
         title: "Email required",
         description: "Please enter your email address.",
@@ -36,8 +40,8 @@ const Index = () => {
       });
       return;
     }
-    
-    if ((preference === "sms" || preference === "both") && !submittedPhone) {
+
+    if ((preference === "sms" || preference === "both") && !normalizedPhone) {
       toast({
         title: "Phone required",
         description: "Please enter your mobile number.",
@@ -45,34 +49,54 @@ const Index = () => {
       });
       return;
     }
-    
+
     setIsSubmitting(true);
 
     try {
-      // Check if email/phone is whitelisted for testing
-      const { data: whitelistCheck } = await supabase
-        .from('test_whitelist')
-        .select('*')
-        .or(`email.eq.${submittedEmail || 'null'},phone.eq.${submittedPhone || 'null'}`)
-        .maybeSingle();
+      // Check if email/phone is whitelisted for testing (build OR only for present values)
+      const orFilters: string[] = [];
+      if (normalizedEmail) orFilters.push(`email.eq.${normalizedEmail}`);
+      if (normalizedPhone) orFilters.push(`phone.eq.${normalizedPhone}`);
+
+      let whitelistCheck: any = null;
+      if (orFilters.length > 0) {
+        const { data } = await supabase
+          .from('test_whitelist')
+          .select('*')
+          .or(orFilters.join(','))
+          .maybeSingle();
+        whitelistCheck = data;
+      }
 
       if (whitelistCheck) {
         // Whitelisted user - delete any existing signup records first
-        await supabase
-          .from('signups')
-          .delete()
-          .or(`email.eq.${submittedEmail},phone.eq.${submittedPhone}`);
+        let del = supabase.from('signups').delete();
+
+        if (normalizedEmail && normalizedPhone) {
+          del = del.or(`email.ilike.${normalizedEmail},phone.eq.${normalizedPhone}`);
+        } else if (normalizedEmail) {
+          del = del.ilike('email', normalizedEmail);
+        } else if (normalizedPhone) {
+          del = del.eq('phone', normalizedPhone);
+        }
+
+        const { error: delError } = await del.select('id');
+        if (delError) {
+          console.warn('Whitelist cleanup failed', delError);
+        }
       }
 
-      // Insert new signup
+      // Insert new signup with normalized values
       const { error } = await supabase
         .from('signups')
-        .insert([{ 
-          email: submittedEmail || null,
-          phone: submittedPhone || null,
-          contact_preference: preference,
-          source: fromLocation 
-        }]);
+        .insert([
+          {
+            email: normalizedEmail,
+            phone: normalizedPhone,
+            contact_preference: preference,
+            source: fromLocation,
+          },
+        ]);
 
       if (error) {
         if (error.code === '23505') {
@@ -80,40 +104,41 @@ const Index = () => {
             title: "Already signed up!",
             description: "You're already on our early access list.",
           });
-        } else {
-          throw error;
+          return;
         }
-      } else {
-        // Query SMS logs if SMS was selected
-        let smsMessage = "";
-        if (preference === "sms" || preference === "both") {
-          const { data: smsLogs } = await supabase
-            .from('sms_logs')
-            .select('*')
-            .eq('phone', submittedPhone)
-            .eq('status', 'sent')
-            .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
-          
-          const smsCount = smsLogs?.length || 0;
-          smsMessage = ` You've used ${smsCount}/5 daily SMS.`;
-        }
-        
-        toast({
-          title: "You're on the list!",
-          description: preference === "email" 
-            ? `We'll send updates to ${submittedEmail}` 
+        throw error;
+      }
+
+      // Query SMS logs if SMS was selected
+      let smsMessage = "";
+      if ((preference === "sms" || preference === "both") && normalizedPhone) {
+        const { data: smsLogs } = await supabase
+          .from('sms_logs')
+          .select('*')
+          .eq('phone', normalizedPhone)
+          .eq('status', 'sent')
+          .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
+
+        const smsCount = smsLogs?.length || 0;
+        smsMessage = ` You've used ${smsCount}/5 daily SMS.`;
+      }
+
+      toast({
+        title: "You're on the list!",
+        description:
+          preference === "email"
+            ? `We'll send updates to ${normalizedEmail}`
             : preference === "sms"
-            ? `We'll send updates to ${submittedPhone}.${smsMessage}`
+            ? `We'll send updates to ${normalizedPhone}.${smsMessage}`
             : `We'll send updates via email and SMS.${smsMessage}`,
-        });
-        
-        if (fromLocation === "hero") {
-          setEmail("");
-          setPhone("");
-        } else {
-          setBottomEmail("");
-          setBottomPhone("");
-        }
+      });
+
+      if (fromLocation === "hero") {
+        setEmail("");
+        setPhone("");
+      } else {
+        setBottomEmail("");
+        setBottomPhone("");
       }
     } catch (error) {
       toast({
