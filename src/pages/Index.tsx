@@ -263,7 +263,7 @@ const Index = () => {
         
         {/* Animated Duo Figures Layer */}
         <div className="absolute inset-0 pointer-events-none animate-opacity-breathe-orby">
-          <img src={heroDuoFigures} alt="" className="w-full h-full object-cover object-[center_30%]" decoding="async" />
+          <img src={heroDuoFigures} alt="" className="w-full h-full object-contain md:object-cover object-[center_30%]" decoding="async" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
