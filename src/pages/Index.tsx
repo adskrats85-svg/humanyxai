@@ -456,9 +456,26 @@ const Index = () => {
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
                 What People Are <span className="glow-text">Saying</span>
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
                 Join thousands who are already transforming their lives with Nyx
               </p>
+              
+              {/* Aggregate Rating Summary */}
+              <div className="flex flex-col items-center gap-4 max-w-md mx-auto p-6 rounded-2xl glass-effect border border-primary/20">
+                <div className="flex items-center gap-4">
+                  <div className="text-5xl font-bold glow-text">4.92</div>
+                  <div className="flex flex-col items-start">
+                    <div className="flex gap-1 mb-1">
+                      <Star className="w-6 h-6 fill-primary text-primary" />
+                      <Star className="w-6 h-6 fill-primary text-primary" />
+                      <Star className="w-6 h-6 fill-primary text-primary" />
+                      <Star className="w-6 h-6 fill-primary text-primary" />
+                      <Star className="w-6 h-6 fill-primary text-primary opacity-90" />
+                    </div>
+                    <p className="text-sm text-muted-foreground">Based on 378 ratings</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
