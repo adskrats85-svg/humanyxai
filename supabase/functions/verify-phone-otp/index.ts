@@ -75,6 +75,9 @@ const handler = async (req: Request): Promise<Response> => {
     const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
       type: 'magiclink',
       email: `${phone.replace(/\+/g, '')}@phone.user`,
+      options: {
+        redirectTo: `${Deno.env.get('SUPABASE_URL')?.replace('.supabase.co', '.lovable.app')}/dashboard`
+      }
     });
 
     if (linkError) {
