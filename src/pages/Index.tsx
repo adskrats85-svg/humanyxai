@@ -4,6 +4,7 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { z } from 'zod';
 import nyxCore from "@/assets/nyx-dna.png";
 import heroStaticBackground from "@/assets/hero-static-background.png";
@@ -366,163 +367,186 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {/* Demo Card 1: Goal Setting */}
-            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Target className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-primary mb-2">You</div>
-                  <div className="text-sm text-muted-foreground">
-                    "I want to improve my public speaking skills for work presentations."
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-5xl mx-auto"
+          >
+            <CarouselContent>
+              {/* Demo Card 1: Goal Setting */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/2">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                      <Target className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-primary mb-2">You</div>
+                      <div className="text-sm text-muted-foreground">
+                        "I want to improve my public speaking skills for work presentations."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 pl-14">
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3">
+                        "I'll create a personalized 30-day plan. We'll start with breathing techniques, progress to mirror practice, and build up to recorded presentations. I'll check in weekly to adjust based on your confidence levels."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-primary/10">
+                    <div className="text-xs text-primary font-semibold">Adaptive Goal Planning</div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
-                  <div className="text-sm bg-accent/10 rounded-lg p-3">
-                    "I'll create a personalized 30-day plan. We'll start with breathing techniques, progress to mirror practice, and build up to recorded presentations. I'll check in weekly to adjust based on your confidence levels."
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-primary/10">
-                <div className="text-xs text-primary font-semibold">Adaptive Goal Planning</div>
-              </div>
-            </div>
+              </CarouselItem>
 
-            {/* Demo Card 2: Emotional Intelligence */}
-            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.1s' }}>
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Brain className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-primary mb-2">You</div>
-                  <div className="text-sm text-muted-foreground">
-                    "I had a tough conversation with my team today. Feeling frustrated."
+              {/* Demo Card 2: Emotional Intelligence */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/2">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                      <Brain className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-primary mb-2">You</div>
+                      <div className="text-sm text-muted-foreground">
+                        "I had a tough conversation with my team today. Feeling frustrated."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 pl-14">
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3">
+                        "I hear your frustration. Let's unpack this. What specific moment triggered the strongest reaction? Understanding this can help you navigate similar situations better."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-primary/10">
+                    <div className="text-xs text-primary font-semibold">Emotional Processing</div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
-                  <div className="text-sm bg-accent/10 rounded-lg p-3">
-                    "I hear your frustration. Let's unpack this. What specific moment triggered the strongest reaction? Understanding this can help you navigate similar situations better."
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-primary/10">
-                <div className="text-xs text-primary font-semibold">Emotional Processing</div>
-              </div>
-            </div>
+              </CarouselItem>
 
-            {/* Demo Card 3: Progress Tracking */}
-            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-primary mb-2">You</div>
-                  <div className="text-sm text-muted-foreground">
-                    "Show me my progress this month."
+              {/* Demo Card 3: Progress Tracking */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/2">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                      <TrendingUp className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-primary mb-2">You</div>
+                      <div className="text-sm text-muted-foreground">
+                        "Show me my progress this month."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 pl-14">
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3">
+                        "Great momentum! You've completed 12 personal development sessions, maintained an 85% consistency rate, and showed significant improvement in confidence metrics. Your focus areas are evolving nicely."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-primary/10">
+                    <div className="text-xs text-primary font-semibold">Intelligent Insights</div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
-                  <div className="text-sm bg-accent/10 rounded-lg p-3">
-                    "Great momentum! You've completed 12 personal development sessions, maintained an 85% consistency rate, and showed significant improvement in confidence metrics. Your focus areas are evolving nicely."
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-primary/10">
-                <div className="text-xs text-primary font-semibold">Intelligent Insights</div>
-              </div>
-            </div>
+              </CarouselItem>
 
-            {/* Demo Card 4: Personalized Coaching */}
-            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.15s' }}>
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Sparkles className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-primary mb-2">You</div>
-                  <div className="text-sm text-muted-foreground">
-                    "I'm not sure what to focus on next."
+              {/* Demo Card 4: Personalized Coaching */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/2">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                      <Sparkles className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-primary mb-2">You</div>
+                      <div className="text-sm text-muted-foreground">
+                        "I'm not sure what to focus on next."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 pl-14">
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3">
+                        "Based on your recent interactions, I notice you're excelling at time management but struggling with delegation. Let's explore building trust with your team - it aligns perfectly with your leadership goals."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-primary/10">
+                    <div className="text-xs text-primary font-semibold">Adaptive Guidance</div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.35s' }}>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
-                  <div className="text-sm bg-accent/10 rounded-lg p-3">
-                    "Based on your recent interactions, I notice you're excelling at time management but struggling with delegation. Let's explore building trust with your team - it aligns perfectly with your leadership goals."
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-primary/10">
-                <div className="text-xs text-primary font-semibold">Adaptive Guidance</div>
-              </div>
-            </div>
+              </CarouselItem>
 
-            {/* Demo Card 5: 24/7 Support */}
-            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.25s' }}>
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-primary mb-2">You</div>
-                  <div className="text-sm text-muted-foreground">
-                    "Quick question - best way to start a difficult conversation?"
+              {/* Demo Card 5: 24/7 Support */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/2">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                      <MessageCircle className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-primary mb-2">You</div>
+                      <div className="text-sm text-muted-foreground">
+                        "Quick question - best way to start a difficult conversation?"
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 pl-14">
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3">
+                        "Start with context and empathy: 'I value our working relationship and want to discuss something important.' Then be specific and focus on impact rather than blame. Want to practice together?"
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-primary/10">
+                    <div className="text-xs text-primary font-semibold">Always Available</div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.45s' }}>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
-                  <div className="text-sm bg-accent/10 rounded-lg p-3">
-                    "Start with context and empathy: 'I value our working relationship and want to discuss something important.' Then be specific and focus on impact rather than blame. Want to practice together?"
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-primary/10">
-                <div className="text-xs text-primary font-semibold">Always Available</div>
-              </div>
-            </div>
+              </CarouselItem>
 
-            {/* Demo Card 6: Learning Style */}
-            <div className="glass-effect rounded-2xl p-6 border border-primary/20 animate-fade-in hover-scale" style={{ animationDelay: '0.3s' }}>
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Zap className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-primary mb-2">You</div>
-                  <div className="text-sm text-muted-foreground">
-                    "I learn better with real examples."
+              {/* Demo Card 6: Learning Style */}
+              <CarouselItem className="md:basis-1/2 lg:basis-1/2">
+                <div className="glass-effect rounded-2xl p-6 border border-primary/20 hover-scale h-full">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                      <Zap className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-primary mb-2">You</div>
+                      <div className="text-sm text-muted-foreground">
+                        "I learn better with real examples."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 pl-14">
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
+                      <div className="text-sm bg-accent/10 rounded-lg p-3">
+                        "Got it! I've adapted to your learning style. From now on, I'll use case studies and real-world scenarios. For instance, let's look at how Steve Jobs handled difficult product decisions..."
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-primary/10">
+                    <div className="text-xs text-primary font-semibold">Personalized Learning</div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4 pl-14 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-accent mb-2">Nyx</div>
-                  <div className="text-sm bg-accent/10 rounded-lg p-3">
-                    "Got it! I've adapted to your learning style. From now on, I'll use case studies and real-world scenarios. For instance, let's look at how Steve Jobs handled difficult product decisions..."
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-primary/10">
-                <div className="text-xs text-primary font-semibold">Personalized Learning</div>
-              </div>
-            </div>
-          </div>
+              </CarouselItem>
+            </CarouselContent>
+            
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
 
           {/* CTA */}
           <div className="text-center mt-16">
