@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import nyxCore from "@/assets/nyx-dna.png";
 import heroStaticBackground from "@/assets/hero-static-background.png";
 import heroDuoFigures from "@/assets/hero-duo-figures.png";
+import meetNyxBackground from "@/assets/meet-nyx-background.png";
 import { Mic, Sparkles, Brain, Globe, Smartphone, MessageCircle, Target, TrendingUp, Zap } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -258,7 +259,7 @@ const Index = () => {
       <section id="nyx" className="py-32 relative overflow-hidden">
         {/* Responsive Background Image */}
         <div className="absolute inset-0 flex items-center justify-center animate-opacity-breathe-orby pointer-events-none">
-          <img src={isMobile ? nyxCore : heroStaticBackground} alt="" className={isMobile ? "w-full h-full object-contain animate-float" : "w-full h-full object-contain"} loading="lazy" decoding="async" />
+          <img src={meetNyxBackground} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
