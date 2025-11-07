@@ -137,14 +137,14 @@ export default function Auth() {
     const data = await response.json();
     if (!response.ok || !data.success) throw new Error(data.error || 'Verification failed');
 
-    // Sign in with temporary password provided by edge function
-    if (data.tempPassword) {
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        phone,
-        password: data.tempPassword,
+    // Set the session returned from the edge function
+    if (data.session) {
+      const { error: sessionError } = await supabase.auth.setSession({
+        access_token: data.session.access_token,
+        refresh_token: data.session.refresh_token,
       });
       
-      if (signInError) throw signInError;
+      if (sessionError) throw sessionError;
     }
 
     toast({ title: 'Success!', description: 'You are now signed in.' });

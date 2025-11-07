@@ -62,42 +62,72 @@ const handler = async (req: Request): Promise<Response> => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    // Try to create the user with a temporary password for session creation
-    const tempPassword = crypto.randomUUID();
+    let userId: string;
+
+    // Try to create the user
     const { data: createData, error: createError } = await supabase.auth.admin.createUser({
       phone,
       phone_confirm: true,
-      password: tempPassword,
     });
 
     if (createError) {
-      // If user already exists, that's fine - they're verified
+      // If user already exists, get their ID
       if (createError.message.includes('already registered')) {
-        console.log("User already exists and is verified");
+        console.log("User already exists, fetching user ID");
         
-        // Update existing user's password
         const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
-        if (!listError) {
-          const existingUser = users.find(u => u.phone === phone);
-          if (existingUser) {
-            await supabase.auth.admin.updateUserById(existingUser.id, {
-              password: tempPassword,
-            });
-          }
+        if (listError) {
+          throw listError;
         }
+        
+        const existingUser = users.find(u => u.phone === phone);
+        if (!existingUser) {
+          throw new Error('User not found');
+        }
+        
+        userId = existingUser.id;
+        console.log("Found existing user:", userId);
       } else {
         console.error("Supabase auth error:", createError);
         throw createError;
       }
     } else {
-      console.log("Created new user:", createData.user.id);
+      userId = createData.user.id;
+      console.log("Created new user:", userId);
+    }
+
+    // Generate a session using admin API
+    // Note: generateLink doesn't directly return session tokens, so we'll use the hashed_token
+    const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
+      type: 'magiclink',
+      email: `${phone.replace(/\+/g, '')}@phone.user`, // Use phone as email identifier
+    });
+
+    if (linkError) {
+      console.error("Error generating link:", linkError);
+      throw linkError;
+    }
+
+    console.log("Magic link generated successfully");
+
+    // Extract tokens from the action link
+    const actionLink = linkData.properties.action_link;
+    const url = new URL(actionLink);
+    const accessToken = url.searchParams.get('access_token');
+    const refreshToken = url.searchParams.get('refresh_token');
+
+    if (!accessToken || !refreshToken) {
+      throw new Error('Failed to extract session tokens');
     }
 
     return new Response(
       JSON.stringify({ 
         success: true,
         message: 'Phone number verified successfully',
-        tempPassword, // Send back to client for auto sign-in
+        session: {
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        }
       }),
       {
         status: 200,
