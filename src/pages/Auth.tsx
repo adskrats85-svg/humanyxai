@@ -59,8 +59,8 @@ export default function Auth() {
     }
   };
 
-  const handleEmailVerify = async (e?: React.FormEvent) => {
-    e?.preventDefault();
+  const handleEmailVerify = async (e?: React.FormEvent | string) => {
+    if (e && typeof e !== 'string') (e as React.FormEvent).preventDefault();
     if (emailOTP.length !== 6) return;
     
     setLoading(true);
@@ -119,8 +119,8 @@ export default function Auth() {
     }
   };
 
-  const handlePhoneVerify = async (e?: React.FormEvent) => {
-    e?.preventDefault();
+  const handlePhoneVerify = async (e?: React.FormEvent | string) => {
+    if (e && typeof e !== 'string') (e as React.FormEvent).preventDefault();
     if (phoneOTP.length !== 6) return;
     
     setLoading(true);

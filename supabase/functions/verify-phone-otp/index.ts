@@ -81,12 +81,12 @@ const handler = async (req: Request): Promise<Response> => {
         }
         
         const existingUser = users.find(u => u.phone === phone);
-        if (!existingUser) {
-          throw new Error('User not found');
+        if (existingUser) {
+          userId = existingUser.id;
+          console.log("Found existing user:", userId);
+        } else {
+          console.warn("Existing user with this phone not found in current page; proceeding without userId");
         }
-        
-        userId = existingUser.id;
-        console.log("Found existing user:", userId);
       } else {
         console.error("Supabase auth error:", createError);
         throw createError;
