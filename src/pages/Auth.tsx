@@ -23,6 +23,7 @@ export default function Auth() {
   const [phoneOTP, setPhoneOTP] = useState('');
   const [verificationSid, setVerificationSid] = useState('');
   const [canResend, setCanResend] = useState(true);
+  const [isVerifying, setIsVerifying] = useState(false);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -136,8 +137,9 @@ export default function Auth() {
 
   const handlePhoneVerify = async (e?: React.FormEvent | string) => {
     if (e && typeof e !== 'string') (e as React.FormEvent).preventDefault();
-    if (phoneOTP.length !== 6) return;
+    if (phoneOTP.length !== 6 || isVerifying) return;
     
+    setIsVerifying(true);
     setLoading(true);
     try {
       const normalizedPhone = phone.trim().replace(/\s/g, '');
@@ -157,22 +159,25 @@ export default function Auth() {
 
       const data = await response.json();
       if (!response.ok || !data.success) {
+        setIsVerifying(false);
         throw new Error(data.error || 'Verification failed');
       }
 
       // Redirect to the magic link to complete sign-in
       if (data.redirectUrl) {
+        toast({ title: 'Verified!', description: 'Signing you in...' });
         window.location.href = data.redirectUrl;
       } else {
+        setIsVerifying(false);
         throw new Error('No redirect URL received');
       }
     } catch (error: any) {
+      setIsVerifying(false);
       toast({
         title: 'Invalid code',
         description: error.message || 'Please check your code and try again.',
         variant: 'destructive',
       });
-    } finally {
       setLoading(false);
     }
   };
@@ -296,10 +301,10 @@ export default function Auth() {
                   <Button 
                     type="submit" 
                     className="w-full" 
-                    disabled={phoneOTP.length !== 6 || loading}
+                    disabled={phoneOTP.length !== 6 || loading || isVerifying}
                   >
                     {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                    Verify Code
+                    {isVerifying ? 'Signing In...' : 'Verify Code'}
                   </Button>
                   <div className="flex gap-2">
                     <Button 
