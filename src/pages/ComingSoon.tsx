@@ -120,60 +120,24 @@ export default function ComingSoon() {
         </div>
       </section>
 
-      {/* What's Coming Section */}
+      {/* Launch Timeline Section */}
       <section className="py-32 relative overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                What's <span className="glow-text">Coming</span>
+                Launch <span className="glow-text">Timeline</span>
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                We're building the future of human evolution through AI. Here's a glimpse of what awaits.
+                We're building the future of human evolution through AI. Here's what's coming.
               </p>
             </div>
 
-            {/* Features Grid */}
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Feature 1 */}
-              <div className="glass-effect rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover-scale">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6">
-                  <Brain className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Adaptive Intelligence</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Nyx learns your patterns, understands your goals, and adapts its approach to match your unique journey. Experience AI that truly knows you.
-                </p>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="glass-effect rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover-scale">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6">
-                  <MessageCircle className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Dual-Tone Dialogue</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  From empathetic listening to honest challenges, Nyx balances comfort with accountability. Growth requires both understanding and truth.
-                </p>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="glass-effect rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover-scale">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6">
-                  <TrendingUp className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Evolution Tracking</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Watch your growth unfold with intelligent insights, progress tracking, and personalized milestones. See how far you've come.
-                </p>
-              </div>
-            </div>
-
             {/* Timeline */}
-            <div className="mt-24 glass-effect rounded-2xl p-12 border border-primary/20">
+            <div className="glass-effect rounded-2xl p-12 border border-primary/20 mb-12">
               <div className="flex items-center justify-center gap-3 mb-8">
                 <Calendar className="w-6 h-6 text-primary" />
-                <h3 className="text-3xl font-bold">Launch Timeline</h3>
+                <h3 className="text-3xl font-bold">Roadmap</h3>
               </div>
               
               <div className="space-y-6 max-w-2xl mx-auto">
@@ -201,6 +165,26 @@ export default function ComingSoon() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Newsletter Signup */}
+            <div className="glass-effect rounded-2xl p-12 border border-primary/20 text-center">
+              <h3 className="text-3xl font-bold mb-4">Stay Updated</h3>
+              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Be the first to know when we launch. Get exclusive updates, early access invites, and insights into the future of AI-powered personal evolution.
+              </p>
+              
+              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 h-12 bg-background/50 border-primary/30 focus:border-primary"
+                />
+                <Button type="submit" variant="gradient" className="h-12 px-8">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Notify Me
+                </Button>
+              </form>
             </div>
           </div>
         </div>
