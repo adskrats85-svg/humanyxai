@@ -22,7 +22,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import UserMenu from "@/components/UserMenu";
-import { PasswordGate } from "@/components/PasswordGate";
 
 // Zod validation schema for signup form
 const signupSchema = z.object({
@@ -64,6 +63,14 @@ const Index = () => {
   const isMobile = useIsMobile();
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  // Check site access and redirect
+  useEffect(() => {
+    const hasAccess = localStorage.getItem('site_access') === 'granted';
+    if (!hasAccess) {
+      navigate('/coming-soon');
+    }
+  }, [navigate]);
 
   // If already authenticated, send to Dashboard
   useEffect(() => {
@@ -222,8 +229,7 @@ const Index = () => {
     }
   };
   return (
-    <PasswordGate>
-      <div className="min-h-screen text-foreground">
+    <div className="min-h-screen text-foreground">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass-effect border-b border-primary/20">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -948,7 +954,6 @@ const Index = () => {
         </div>
       </footer>
     </div>
-    </PasswordGate>
   );
 };
 export default Index;
