@@ -6,11 +6,23 @@ import { toast } from 'sonner';
 import { Sparkles, Lock, Calendar, Zap, Brain, MessageCircle, TrendingUp } from 'lucide-react';
 import heroStaticBackground from "@/assets/hero-static-background.png";
 import heroDuoFigures from "@/assets/hero-duo-figures.png";
+import { supabase } from '@/integrations/supabase/client-fallback';
+import { z } from 'zod';
 
 const SITE_PASSWORD = 'AK200130!';
 
+const newsletterSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .email({ message: "Please enter a valid email address" })
+    .max(255, { message: "Email must be less than 255 characters" })
+});
+
 export default function ComingSoon() {
   const [password, setPassword] = useState('');
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,6 +35,46 @@ export default function ComingSoon() {
     } else {
       toast.error('Incorrect password');
       setPassword('');
+    }
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (isSubmitting) return;
+
+    try {
+      setIsSubmitting(true);
+
+      // Validate email
+      const validationResult = newsletterSchema.safeParse({ email: newsletterEmail });
+      
+      if (!validationResult.success) {
+        toast.error(validationResult.error.errors[0].message);
+        return;
+      }
+
+      // Insert into newsletter_signups table
+      const { error } = await supabase
+        .from('newsletter_signups')
+        .insert({
+          email: validationResult.data.email,
+          source: 'coming-soon'
+        });
+
+      if (error) {
+        console.error('Newsletter signup error:', error);
+        toast.error('Failed to sign up. Please try again.');
+        return;
+      }
+
+      toast.success('Thanks for signing up! We\'ll keep you updated.');
+      setNewsletterEmail('');
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      toast.error('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -174,15 +226,18 @@ export default function ComingSoon() {
                 Be the first to know when we launch. Get exclusive updates, early access invites, and insights into the future of AI-powered personal evolution.
               </p>
               
-              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <Input
                   type="email"
                   placeholder="Enter your email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
                   className="flex-1 h-12 bg-background/50 border-primary/30 focus:border-primary"
+                  required
                 />
-                <Button type="submit" variant="gradient" className="h-12 px-8">
+                <Button type="submit" variant="gradient" className="h-12 px-8" disabled={isSubmitting}>
                   <Sparkles className="w-4 h-4 mr-2" />
-                  Notify Me
+                  {isSubmitting ? 'Signing Up...' : 'Notify Me'}
                 </Button>
               </form>
             </div>
