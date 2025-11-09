@@ -64,13 +64,6 @@ const Index = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  // Check site access and redirect
-  useEffect(() => {
-    const hasAccess = localStorage.getItem('site_access') === 'granted';
-    if (!hasAccess) {
-      navigate('/coming-soon');
-    }
-  }, [navigate]);
 
   // If already authenticated, send to Dashboard
   useEffect(() => {
