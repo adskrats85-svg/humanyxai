@@ -9,7 +9,7 @@ import { z } from 'zod';
 import nyxCore from "@/assets/nyx-dna.png";
 import heroStaticBackground from "@/assets/hero-static-background.png";
 import heroDuoFigures from "@/assets/hero-duo-figures.png";
-import meetNyxBackground from "@/assets/meet-nyx-background.png";
+import meetNyxBackground from "@/assets/nyx-orb.png";
 import sarahChen from "@/assets/reviews/sarah-chen.jpg";
 import marcusJohnson from "@/assets/reviews/marcus-johnson.jpg";
 import emilyRodriguez from "@/assets/reviews/emily-rodriguez.jpg";
